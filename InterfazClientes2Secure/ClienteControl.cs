@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace InterfazClientes2Secure
 {
@@ -105,7 +107,7 @@ namespace InterfazClientes2Secure
                 tabControlCliente.Visible = false;
                 this.Height = ALTURA_MINIMIZADO;
                 toolStripButtonMinimizar.Text = "[+]";
-                toolStripButtonMinimizar.ToolTipText = "Maximizar";               
+                toolStripButtonMinimizar.ToolTipText = "Maximizar";
             }
             else
             {
@@ -161,7 +163,7 @@ namespace InterfazClientes2Secure
         private void CambiarEstado(object sender, EventArgs e)
         {
             ToolStripButton boton = sender as ToolStripButton;
-            
+
             if (boton.Text == URGENTE)
             {
                 // El color de la barra y de los botones no es el mismo para
@@ -223,25 +225,31 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Añade una nueva tarea en el tablelayout de tareas.
-        /// Una tarea por fila.
+        /// Crear una nueva tarea. Envía un query POST para crear la tarea en el backend.
+        /// Si la respuesta es favorable, agrega la tarea a la interfaz.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void NuevaTarea(object sender, EventArgs e)
-        {           
-            TableLayoutPanel tablaFondo = tableLayoutTareas;
+        private async void NuevaTarea(object sender, EventArgs e)
+        {
+            Job tarea = new Job(Cliente.Id);
 
-            Job tarea = new Job();
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));              
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_TAREAS, tarea);
 
-            if (!hayTareas)
-                hayTareas = true;
-            else
-                tablaFondo.RowCount++;
-
-            TareaControl control = new TareaControl(tarea);
-            tablaFondo.Controls.Add(control, 0, tablaFondo.RowCount - 1);
-            control.EnfocarEnNombre();
+                if (response.IsSuccessStatusCode)
+                {
+                    TareaControl control = new TareaControl(tarea);
+                    AgregarControlTarea(control);
+                    control.EnfocarEnNombre();                   
+                }
+                else
+                    MessageBox.Show("No fue posible guardar la nueva tarea en la base de datos.", "Error al comunicarse con el servidor");               
+            }
         }
 
         /// <summary>
@@ -300,6 +308,22 @@ namespace InterfazClientes2Secure
                 tableLayoutTareas.RowCount++;
 
             TareaControl control = new TareaControl(tarea);
+            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
+        }
+
+        /// <summary>
+        /// Agrega un controlTarea al tableLayout correspondiente.
+        /// Coloca el controlador en una tabla nueva.
+        /// </summary>
+        /// <param name="tarea"></param>
+        public void AgregarControlTarea(TareaControl control)
+        {
+
+            if (!hayTareas)
+                hayTareas = true;
+            else
+                tableLayoutTareas.RowCount++;
+
             tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
         }
     }

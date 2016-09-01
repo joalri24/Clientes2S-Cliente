@@ -7,6 +7,13 @@ namespace InterfazClientes2Secure
 {
     public class Job
     {
+        // ------------------------------------------------------------------
+        // Constantes
+        // ------------------------------------------------------------------
+        private const string URGENTE = "Urgente";
+        private const string ATENCION = "Atención";
+        private const string NORMAL = "Normal";
+        private const string FINALIZADA = "Finalizada";
 
         // -----------------------------------------
         // Propiedades
@@ -35,9 +42,14 @@ namespace InterfazClientes2Secure
         // Constructores
         // -----------------------------------------
 
-        public Job()
+        public Job(int clientId)
         {
             Date = DateTime.Now;
+            Name = "Nueva tarea";
+            Description = "";
+            State = NORMAL;
+            ContactId = 0;
+            ClientId = clientId;
         }
     }
 }
