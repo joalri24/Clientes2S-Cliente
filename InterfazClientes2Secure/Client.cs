@@ -23,6 +23,8 @@ namespace InterfazClientes2Secure
 
         // "Foreign Key"
         public int MainContactId { get; set; }
- 
+
+        public bool Follow { get; set; }
+
     }
 }

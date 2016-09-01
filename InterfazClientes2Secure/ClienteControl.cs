@@ -41,40 +41,42 @@ namespace InterfazClientes2Secure
         /// </summary>
         private bool hayContactos;
 
-        private Cliente cliente;
+        //private Cliente cliente;
+        private Client Cliente;
 
 
         // ------------------------------------------------------------------
         // Constructores
         // ------------------------------------------------------------------
 
-
         public ClienteControl()
         {
             InitializeComponent();
             hayTareas = false;
             hayContactos = false;
-            cliente = null;
+            Cliente = null;
         }
 
         /// <summary>
         /// TODO
         /// </summary>
         /// <param name="clienteP"></param>
-        public ClienteControl(Cliente clienteP)
+        public ClienteControl(Client cliente)
         {
             InitializeComponent();
             hayTareas = false;
             hayContactos = false;
-            cliente = clienteP;
+            Cliente = cliente;
 
-            textBoxNombreCliente.Text = cliente.Nombre;
-            toolStripLabelCliente.Text = cliente.Nombre;
-
-            comboBoxTipoAsociacion.Text = cliente.TipoAsociación;
-            checkBoxSeguimiento.Checked = cliente.HacerSeguimiento;
-
-            if (clienteP.ContactoPrincipal != null)
+            textBoxNombreCliente.Text = Cliente.Name;
+            toolStripLabelCliente.Text = Cliente.Name;
+            comboBoxTipoAsociacion.Text = Cliente.Association;
+            checkBoxSeguimiento.Checked = Cliente.Follow;
+            textBoxComentarios.Text = Cliente.Comments;
+            textBoxPendientes.Text = Cliente.Pendings;
+            CambiarEstado(Cliente.State);
+            dateTimePickerUltimoContacto.Value = Cliente.LastContact;
+            /**if (cliente.ContactoPrincipal != null)
             {
                 textBoxNombreCP.Text = cliente.ContactoPrincipal.Nombre;
                 textBoxCorreoCP.Text = cliente.ContactoPrincipal.Correo;
@@ -82,7 +84,7 @@ namespace InterfazClientes2Secure
                 textBoxCargoCP.Text = cliente.ContactoPrincipal.Cargo;
 
                 AgregarContacto(cliente.ContactoPrincipal);
-            }
+            }*/
 
         }
 
@@ -180,6 +182,32 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
+        /// Cambia el color de la barra y de los botones según el estado pasado como
+        /// parámetro. Si recibe un estado que no reconoce, asume que el estado es "Normal".
+        /// </summary>
+        /// <param name="estado"></param>
+        void CambiarEstado(string estado)
+        {
+            if (estado == URGENTE)
+            {
+                // El color de la barra y de los botones no es el mismo para
+                // evitar que estos últimos se confundan con el fondo.
+                toolStripCliente.BackColor = Color.IndianRed;
+                toolStripButtonEstadoU.BackColor = Color.Firebrick;
+            }
+            else if (estado == ATENCION)
+            {
+                toolStripCliente.BackColor = Color.SandyBrown;
+                toolStripButtonEstadoA.BackColor = Color.DarkOrange;
+            }
+            else
+            {
+                toolStripCliente.BackColor = Color.Gainsboro;
+                toolStripButtonEstadoN.BackColor = Color.LightGray;
+            }
+        }
+
+        /// <summary>
         /// Elimina un cliente Después de que se muestra un dialogo de confirmación. Quita el control.
         /// TODO: El control se elimina pero la fila donde se encontraba 
         /// queda vacía. Se deben eliminar las filas vacías en algún momento.
@@ -188,7 +216,7 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private void EliminarCliente(object sender, EventArgs e)
         {
-            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar el cliente  \"" + cliente.Nombre + "\"?");
+            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar el cliente  \"" + Cliente.Name + "\"?");
             if (dialogoConfirmacion.ShowDialog() == DialogResult.OK)
                 this.Dispose();
 

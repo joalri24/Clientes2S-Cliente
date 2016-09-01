@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +18,9 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------
         // Constantes
         // ------------------------------------------------
+        public const string DIRECCION_SERVIDOR = "http://localhost:2424/";
+        public const string APP_JSON = "application/json";
+        public const string RUTA_CLIENTES = "api/clients";
 
         // ------------------------------------------------
         // Atributos
@@ -57,7 +62,7 @@ namespace InterfazClientes2Secure
         /// </summary>
         private void CrearCliente(object sender, EventArgs e)
         {
-            FormNuevoCliente dialogo = new FormNuevoCliente();
+            /**FormNuevoCliente dialogo = new FormNuevoCliente();
 
             // Abre una ventana de dialogo para obtener la información del nuevo cliente.
             if (dialogo.ShowDialog() == DialogResult.OK)
@@ -77,8 +82,8 @@ namespace InterfazClientes2Secure
                 }
 
                 ClienteControl controlCliente = new ClienteControl(cliente);
-                AgregarClienteControl(controlCliente);               
-            }                       
+                AgregarClienteControl(controlCliente);              
+            } */                      
         }
 
         /// <summary>
@@ -102,9 +107,28 @@ namespace InterfazClientes2Secure
         /// Obtiene los clientes desde el backend por medio de un servicio web.
         /// Crea los controles correspondientes y los agrega a al layout de fondo.
         /// </summary>
-        private void CargarClientes(object sender, EventArgs e)
+        private async void CargarClientes(object sender, EventArgs e)
         {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
 
+                HttpResponseMessage response = await client.GetAsync(RUTA_CLIENTES);
+                if (response.IsSuccessStatusCode)
+                {
+                    Client[] clientes = await response.Content.ReadAsAsync<Client[]>();
+
+                    foreach (var cliente in clientes)
+                    {
+                        var control = new ClienteControl(cliente);
+                        AgregarClienteControl(control);
+                    }
+                }
+            }
         }
+
+
     }
 }

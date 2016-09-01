@@ -35,9 +35,9 @@
             this.toolStripLabelEstado = new System.Windows.Forms.ToolStripLabel();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
-            this.toolStripButtonEstado1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonEstado2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonEstado3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEstadoU = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEstadoA = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonEstadoN = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEliminar = new System.Windows.Forms.ToolStripButton();
             this.tabControlCliente = new System.Windows.Forms.TabControl();
             this.tabPageResumen = new System.Windows.Forms.TabPage();
@@ -53,7 +53,7 @@
             this.textBoxNombreCliente = new System.Windows.Forms.TextBox();
             this.groupBoxContactoP = new System.Windows.Forms.GroupBox();
             this.buttonSeleccionarUsuario = new System.Windows.Forms.Button();
-            this.dateTimePickerCP = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerUltimoContacto = new System.Windows.Forms.DateTimePicker();
             this.textBoxCorreoCP = new System.Windows.Forms.TextBox();
             this.textBoxTelCP = new System.Windows.Forms.TextBox();
             this.textBoxCargoCP = new System.Windows.Forms.TextBox();
@@ -113,9 +113,9 @@
             this.toolStripLabelEstado,
             this.toolStripSeparator1,
             this.toolStripLabel1,
-            this.toolStripButtonEstado1,
-            this.toolStripButtonEstado2,
-            this.toolStripButtonEstado3,
+            this.toolStripButtonEstadoU,
+            this.toolStripButtonEstadoA,
+            this.toolStripButtonEstadoN,
             this.toolStripButtonEliminar});
             this.toolStripCliente.Location = new System.Drawing.Point(0, 0);
             this.toolStripCliente.Name = "toolStripCliente";
@@ -159,44 +159,44 @@
             this.toolStripLabel1.Size = new System.Drawing.Size(48, 22);
             this.toolStripLabel1.Text = "Estado: ";
             // 
-            // toolStripButtonEstado1
+            // toolStripButtonEstadoU
             // 
-            this.toolStripButtonEstado1.AutoSize = false;
-            this.toolStripButtonEstado1.BackColor = System.Drawing.Color.Firebrick;
-            this.toolStripButtonEstado1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripButtonEstado1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstado1.Image")));
-            this.toolStripButtonEstado1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonEstado1.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
-            this.toolStripButtonEstado1.Name = "toolStripButtonEstado1";
-            this.toolStripButtonEstado1.Size = new System.Drawing.Size(18, 18);
-            this.toolStripButtonEstado1.Text = "Urgente";
-            this.toolStripButtonEstado1.Click += new System.EventHandler(this.CambiarEstado);
+            this.toolStripButtonEstadoU.AutoSize = false;
+            this.toolStripButtonEstadoU.BackColor = System.Drawing.Color.Firebrick;
+            this.toolStripButtonEstadoU.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripButtonEstadoU.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstadoU.Image")));
+            this.toolStripButtonEstadoU.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonEstadoU.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
+            this.toolStripButtonEstadoU.Name = "toolStripButtonEstadoU";
+            this.toolStripButtonEstadoU.Size = new System.Drawing.Size(18, 18);
+            this.toolStripButtonEstadoU.Text = "Urgente";
+            this.toolStripButtonEstadoU.Click += new System.EventHandler(this.CambiarEstado);
             // 
-            // toolStripButtonEstado2
+            // toolStripButtonEstadoA
             // 
-            this.toolStripButtonEstado2.AutoSize = false;
-            this.toolStripButtonEstado2.BackColor = System.Drawing.Color.DarkOrange;
-            this.toolStripButtonEstado2.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripButtonEstado2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstado2.Image")));
-            this.toolStripButtonEstado2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonEstado2.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
-            this.toolStripButtonEstado2.Name = "toolStripButtonEstado2";
-            this.toolStripButtonEstado2.Size = new System.Drawing.Size(18, 18);
-            this.toolStripButtonEstado2.Text = "Atención";
-            this.toolStripButtonEstado2.Click += new System.EventHandler(this.CambiarEstado);
+            this.toolStripButtonEstadoA.AutoSize = false;
+            this.toolStripButtonEstadoA.BackColor = System.Drawing.Color.DarkOrange;
+            this.toolStripButtonEstadoA.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripButtonEstadoA.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstadoA.Image")));
+            this.toolStripButtonEstadoA.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonEstadoA.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
+            this.toolStripButtonEstadoA.Name = "toolStripButtonEstadoA";
+            this.toolStripButtonEstadoA.Size = new System.Drawing.Size(18, 18);
+            this.toolStripButtonEstadoA.Text = "Atención";
+            this.toolStripButtonEstadoA.Click += new System.EventHandler(this.CambiarEstado);
             // 
-            // toolStripButtonEstado3
+            // toolStripButtonEstadoN
             // 
-            this.toolStripButtonEstado3.AutoSize = false;
-            this.toolStripButtonEstado3.BackColor = System.Drawing.Color.Linen;
-            this.toolStripButtonEstado3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
-            this.toolStripButtonEstado3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstado3.Image")));
-            this.toolStripButtonEstado3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonEstado3.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
-            this.toolStripButtonEstado3.Name = "toolStripButtonEstado3";
-            this.toolStripButtonEstado3.Size = new System.Drawing.Size(18, 18);
-            this.toolStripButtonEstado3.Text = "Normal";
-            this.toolStripButtonEstado3.Click += new System.EventHandler(this.CambiarEstado);
+            this.toolStripButtonEstadoN.AutoSize = false;
+            this.toolStripButtonEstadoN.BackColor = System.Drawing.Color.Linen;
+            this.toolStripButtonEstadoN.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.None;
+            this.toolStripButtonEstadoN.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonEstadoN.Image")));
+            this.toolStripButtonEstadoN.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonEstadoN.Margin = new System.Windows.Forms.Padding(3, 1, 0, 2);
+            this.toolStripButtonEstadoN.Name = "toolStripButtonEstadoN";
+            this.toolStripButtonEstadoN.Size = new System.Drawing.Size(18, 18);
+            this.toolStripButtonEstadoN.Text = "Normal";
+            this.toolStripButtonEstadoN.Click += new System.EventHandler(this.CambiarEstado);
             // 
             // toolStripButtonEliminar
             // 
@@ -370,7 +370,7 @@
             // groupBoxContactoP
             // 
             this.groupBoxContactoP.Controls.Add(this.buttonSeleccionarUsuario);
-            this.groupBoxContactoP.Controls.Add(this.dateTimePickerCP);
+            this.groupBoxContactoP.Controls.Add(this.dateTimePickerUltimoContacto);
             this.groupBoxContactoP.Controls.Add(this.textBoxCorreoCP);
             this.groupBoxContactoP.Controls.Add(this.textBoxTelCP);
             this.groupBoxContactoP.Controls.Add(this.textBoxCargoCP);
@@ -399,13 +399,13 @@
             this.buttonSeleccionarUsuario.Text = "...";
             this.buttonSeleccionarUsuario.UseVisualStyleBackColor = true;
             // 
-            // dateTimePickerCP
+            // dateTimePickerUltimoContacto
             // 
-            this.dateTimePickerCP.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerCP.Location = new System.Drawing.Point(137, 163);
-            this.dateTimePickerCP.Name = "dateTimePickerCP";
-            this.dateTimePickerCP.Size = new System.Drawing.Size(250, 21);
-            this.dateTimePickerCP.TabIndex = 9;
+            this.dateTimePickerUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerUltimoContacto.Location = new System.Drawing.Point(137, 163);
+            this.dateTimePickerUltimoContacto.Name = "dateTimePickerUltimoContacto";
+            this.dateTimePickerUltimoContacto.Size = new System.Drawing.Size(250, 21);
+            this.dateTimePickerUltimoContacto.TabIndex = 9;
             // 
             // textBoxCorreoCP
             // 
@@ -665,7 +665,7 @@
             this.toolStripButtonNuevoContacto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNuevoContacto.Image")));
             this.toolStripButtonNuevoContacto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonNuevoContacto.Name = "toolStripButtonNuevoContacto";
-            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(29, 23);
+            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(21, 23);
             this.toolStripButtonNuevoContacto.Text = "+";
             this.toolStripButtonNuevoContacto.ToolTipText = "Añadir contacto";
             this.toolStripButtonNuevoContacto.Click += new System.EventHandler(this.NuevoContacto_Click);
@@ -673,7 +673,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(29, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(21, 6);
             // 
             // toolStripButton2
             // 
@@ -681,7 +681,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(29, 20);
+            this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // toolStripButton3
@@ -690,13 +690,13 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(29, 20);
+            this.toolStripButton3.Size = new System.Drawing.Size(21, 20);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(29, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(21, 6);
             // 
             // toolStripButton4
             // 
@@ -704,7 +704,7 @@
             this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(29, 20);
+            this.toolStripButton4.Size = new System.Drawing.Size(21, 20);
             this.toolStripButton4.Text = "toolStripButton4";
             // 
             // ClienteControl
@@ -758,9 +758,9 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabelEstado;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonEstado1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonEstado2;
-        private System.Windows.Forms.ToolStripButton toolStripButtonEstado3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonEstadoU;
+        private System.Windows.Forms.ToolStripButton toolStripButtonEstadoA;
+        private System.Windows.Forms.ToolStripButton toolStripButtonEstadoN;
         private System.Windows.Forms.ToolStripButton toolStripButtonEliminar;
         private System.Windows.Forms.SplitContainer splitContainerClienteFondo;
         private System.Windows.Forms.SplitContainer splitContainerSuperior;
@@ -780,7 +780,7 @@
         private System.Windows.Forms.Label labelCargoCP;
         private System.Windows.Forms.Label labelNombreCP;
         private System.Windows.Forms.TextBox textBoxNombreCP;
-        private System.Windows.Forms.DateTimePicker dateTimePickerCP;
+        private System.Windows.Forms.DateTimePicker dateTimePickerUltimoContacto;
         private System.Windows.Forms.TextBox textBoxCorreoCP;
         private System.Windows.Forms.TextBox textBoxTelCP;
         private System.Windows.Forms.TextBox textBoxCargoCP;

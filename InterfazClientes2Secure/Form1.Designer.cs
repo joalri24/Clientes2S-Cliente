@@ -345,6 +345,7 @@
             this.toolStripButtonCargar.Name = "toolStripButtonCargar";
             this.toolStripButtonCargar.Size = new System.Drawing.Size(91, 22);
             this.toolStripButtonCargar.Text = "Cargar Clientes";
+            this.toolStripButtonCargar.Click += new System.EventHandler(this.CargarClientes);
             // 
             // Form1
             // 
