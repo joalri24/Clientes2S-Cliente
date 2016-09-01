@@ -20,7 +20,9 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------
         public const string DIRECCION_SERVIDOR = "http://localhost:2424/";
         public const string APP_JSON = "application/json";
+
         public const string RUTA_CLIENTES = "api/clients";
+        public const string RUTA_TAREAS_CLIENTE = "/jobs";
 
         // ------------------------------------------------
         // Atributos
@@ -109,21 +111,34 @@ namespace InterfazClientes2Secure
         /// </summary>
         private async void CargarClientes(object sender, EventArgs e)
         {
-            using (var client = new HttpClient())
+            // Obtener los clientes con un query GET.
+            using (var httpClient = new HttpClient())
             {
-                client.BaseAddress = new Uri(DIRECCION_SERVIDOR);
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
 
-                HttpResponseMessage response = await client.GetAsync(RUTA_CLIENTES);
+                HttpResponseMessage response = await httpClient.GetAsync(RUTA_CLIENTES);
                 if (response.IsSuccessStatusCode)
                 {
                     Client[] clientes = await response.Content.ReadAsAsync<Client[]>();
 
-                    foreach (var cliente in clientes)
+                    foreach (Client cliente in clientes)
                     {
-                        var control = new ClienteControl(cliente);
-                        AgregarClienteControl(control);
+                        var controlCliente = new ClienteControl(cliente);
+                        AgregarClienteControl(controlCliente);
+
+                        // Obtener las tarea del cliente y agregarlas en los controles correspondientes.
+                        httpClient.DefaultRequestHeaders.Accept.Clear();
+                        response = await httpClient.GetAsync(RUTA_CLIENTES + "/" + cliente.Id + RUTA_TAREAS_CLIENTE);
+
+                        if (response.IsSuccessStatusCode)
+                        {                          
+                            Job[] tareas = await response.Content.ReadAsAsync<Job[]>();
+                            foreach (var tarea in tareas)
+                                controlCliente.AgregarControlTarea(tarea);
+      
+                        }
                     }
                 }
             }

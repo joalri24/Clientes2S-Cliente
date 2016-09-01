@@ -31,7 +31,8 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
-        private Tarea tarea;
+        //private Tarea tarea;
+        private Job Tarea;
         // ------------------------------------------------------------------
         // Constructor
         // ------------------------------------------------------------------
@@ -41,19 +42,21 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// TODO
+        /// Construye un controlTarea a partir de la información
+        /// contenida en el objeto Job pasado como parámetro.
         /// </summary>
-        public TareaControl(Tarea tareaP)
+        public TareaControl(Job tarea)
         {
             InitializeComponent();
-            tarea = tareaP;
+            Tarea = tarea;
 
-            toolStripLabelTarea.Text = tarea.Nombre;
-            textBoxTareaNombre.Text = tarea.Nombre;
-            toolStripLabelEstadoTarea.Text = tarea.Estado;
-            textBoxTareaEstado.Text = tarea.Estado;
-            textBoxDescripcion.Text = tarea.Descripcion;
-            dateTimePickerTareaFecha.Text = tarea.Fecha.ToString();
+            toolStripLabelTarea.Text = Tarea.Name;
+            textBoxTareaNombre.Text = Tarea.Name;
+            toolStripLabelEstadoTarea.Text = Tarea.State;
+            textBoxTareaEstado.Text = Tarea.State;
+            textBoxDescripcion.Text = Tarea.Description;
+            dateTimePickerTareaFecha.Value = Tarea.Date;
+            CambiarEstado(Tarea.State);
         }
 
         // ------------------------------------------------------------------
@@ -124,6 +127,44 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
+        /// Cambia el estado del cliente según la cadena pasada como parámetro. 
+        /// Si no reconoce el estado dado, asume que es Normal.
+        /// La  barra donde aparece el nombre cambia de color.
+        /// </summary>
+        /// <param name="estado"></param>
+        private void CambiarEstado(string estado)
+        {
+
+            if (estado == URGENTE)
+            {
+                // El color de la barra y de los botones no es el mismo para
+                // evitar que estos últimos se confundan con el fondo.
+                toolStripTarea.BackColor = Color.IndianRed;
+                toolStripButtonTareaEstadoU.BackColor = Color.Firebrick;
+            }
+            else if (estado == ATENCION)
+            {
+                toolStripTarea.BackColor = Color.SandyBrown;
+                toolStripButtonTareaEstadoA.BackColor = Color.DarkOrange;
+            }
+            else if (estado == FINALIZADA)
+            {
+                toolStripTarea.BackColor = Color.OliveDrab;
+                toolStripButtonTareaEstadoF.BackColor = Color.DarkGreen;
+            }
+            else
+            {
+                toolStripTarea.BackColor = Color.Gainsboro;
+                toolStripButtonTareaEstadoN.BackColor = Color.LightGray;
+            }
+
+            // Actualiza los labels de la interfaz
+            toolStripLabelEstadoTarea.Text = "(" + estado + ")";
+            textBoxTareaEstado.Text = estado;
+
+        }
+
+        /// <summary>
         /// Elimina una tarea. Quita el control.
         /// TODO: El control se elimina pero la fila donde se encontraba 
         /// queda vacía. Se deben eliminar las filas vacías en algún momento.
@@ -133,7 +174,7 @@ namespace InterfazClientes2Secure
         private void EliminarTarea(object sender, EventArgs e)
         {
             // TODO Reemplazar por el nombre de la tarea.
-            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eleminar la tarea \"" + tarea.Nombre + "\"?");
+            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eleminar la tarea \"" + Tarea.Name + "\"?");
             if (dialogoConfirmacion.ShowDialog() == DialogResult.OK)
                 this.Dispose();
         }
@@ -157,7 +198,6 @@ namespace InterfazClientes2Secure
         public void EnfocarEnNombre()
         {
             textBoxTareaNombre.Select();
-            Console.WriteLine(textBoxTareaNombre.Text);
         }
 
     }

@@ -7,6 +7,10 @@ namespace InterfazClientes2Secure
 {
     public class Job
     {
+
+        // -----------------------------------------
+        // Propiedades
+        // -----------------------------------------
         public int Id { get; set; }
 
         // Foreign Key
@@ -26,5 +30,24 @@ namespace InterfazClientes2Secure
         // "Foreign Key"
         public int ContactId { get; set; }
 
+
+        // -----------------------------------------
+        // Constructores
+        // -----------------------------------------
+
+        public Job()
+        {
+            Date = DateTime.Now;
+        }
+
+
+        // -----------------------------------------
+        // Métodos
+        // ----------------------------------------- 
+        
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

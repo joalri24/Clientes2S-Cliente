@@ -232,7 +232,7 @@ namespace InterfazClientes2Secure
         {           
             TableLayoutPanel tablaFondo = tableLayoutTareas;
 
-            Tarea tarea = new Tarea();
+            Job tarea = new Job();
 
             if (!hayTareas)
                 hayTareas = true;
@@ -286,6 +286,21 @@ namespace InterfazClientes2Secure
             tablaFondo.Controls.Add(new ContactoControl(contacto), 0, tablaFondo.RowCount - 1);
         }
 
+        /// <summary>
+        /// Agrega un controlTarea al tableLayout correspondiente.
+        /// Coloca el controlador en una tabla nueva.
+        /// </summary>
+        /// <param name="tarea"></param>
+        public void AgregarControlTarea(Job tarea)
+        {
 
+            if (!hayTareas)
+                hayTareas = true;
+            else
+                tableLayoutTareas.RowCount++;
+
+            TareaControl control = new TareaControl(tarea);
+            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
+        }
     }
 }
