@@ -26,5 +26,17 @@ namespace InterfazClientes2Secure
         public DateTime LastContact { get; set; }
 
         public string Notes { get; set; }
+
+
+        // -----------------------------------------
+        // Constructores
+        // -----------------------------------------
+
+        public Contact(string nombre)
+        {
+            LastContact = DateTime.Now;
+            Name = nombre;
+        }
+
     }
 }

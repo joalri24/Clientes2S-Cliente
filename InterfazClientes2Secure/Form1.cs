@@ -23,6 +23,7 @@ namespace InterfazClientes2Secure
 
         public const string RUTA_CLIENTES = "api/clients";
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
+        public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
 
         // ------------------------------------------------
         // Atributos
@@ -137,7 +138,17 @@ namespace InterfazClientes2Secure
                             Job[] tareas = await response.Content.ReadAsAsync<Job[]>();
                             foreach (var tarea in tareas)
                                 controlCliente.AgregarControlTarea(tarea);
-      
+                        }
+
+                        // Obtener los contactos del cliente y agregarlas en los controles correspondientes.
+                        httpClient.DefaultRequestHeaders.Accept.Clear();
+                        response = await httpClient.GetAsync(RUTA_CLIENTES + "/" + cliente.Id + RUTA_CONTACTOS_CLIENTE);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            Contact[] contactos = await response.Content.ReadAsAsync<Contact[]>();
+                            foreach (var contacto in contactos)
+                                controlCliente.AgregarControlContacto(contacto);
                         }
                     }
                 }

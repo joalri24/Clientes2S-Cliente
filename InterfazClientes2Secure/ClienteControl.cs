@@ -260,12 +260,12 @@ namespace InterfazClientes2Secure
             {
                 TableLayoutPanel tablaFondo = tableLayoutContactos;
 
-                Contacto contacto = new Contacto(dialogo.darNombre());
-                contacto.Cargo = dialogo.darCargo();
-                contacto.Correo = dialogo.darCorreo();
-                contacto.Telefono = dialogo.darTelefono();
+                Contact contacto = new Contact(dialogo.darNombre());
+                contacto.JobTitle = dialogo.darCargo();
+                contacto.Mail = dialogo.darCorreo();
+                contacto.Telephone = dialogo.darTelefono();
 
-                AgregarContacto(contacto);
+                AgregarControlContacto(contacto);
             }
         }
 
@@ -275,7 +275,7 @@ namespace InterfazClientes2Secure
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void AgregarContacto(Contacto contacto)
+        public void AgregarControlContacto(Contact contacto)
         {
             TableLayoutPanel tablaFondo = tableLayoutContactos;
             if (!hayContactos)

@@ -39,15 +39,5 @@ namespace InterfazClientes2Secure
         {
             Date = DateTime.Now;
         }
-
-
-        // -----------------------------------------
-        // Métodos
-        // ----------------------------------------- 
-        
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

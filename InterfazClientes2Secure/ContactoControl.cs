@@ -26,7 +26,7 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
-        private Contacto contacto;
+        private Contact Contacto;
 
 
         // ------------------------------------------------------------------
@@ -36,21 +36,21 @@ namespace InterfazClientes2Secure
         public ContactoControl()
         {
             InitializeComponent();
-            contacto = null;
+            Contacto = null;
         }
 
-        public ContactoControl(Contacto contactoP)
+        public ContactoControl(Contact contacto)
         {
             InitializeComponent();
-            contacto = contactoP;
+            Contacto = contacto;
 
-            toolStripLabelContacto.Text = contacto.Nombre;
-            textBoxNombreContacto.Text = contacto.Nombre;
-            textBoxCargo.Text = contacto.Cargo;
-            textBoxTelefono.Text = contacto.Telefono;
-            textBoxCelular.Text = contacto.Celular;
-            textBoxCorreo.Text = contacto.Correo;
-
+            toolStripLabelContacto.Text = Contacto.Name;
+            textBoxNombreContacto.Text = Contacto.Name;
+            textBoxCargo.Text = Contacto.JobTitle;
+            textBoxTelefono.Text = Contacto.Telephone;
+            textBoxCorreo.Text = Contacto.Mail;
+            dateTimePickerContacto.Value = Contacto.LastContact;
+            textBoxNotasContacto.Text = contacto.Notes;
         }
 
 
@@ -91,31 +91,9 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private void EliminarContacto(object sender, EventArgs e)
         {
-            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar el contacto  \"" + contacto.Nombre + "\"?");
+            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar el contacto  \"" + Contacto.Name + "\"?");
             if (dialogoConfirmacion.ShowDialog() == DialogResult.OK)
                 this.Dispose();
-        }
-
-        /// <summary>
-        /// Cambia el estilo del borde cuando se hace click en el textbox.
-        /// Activa un borde 3d.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextBox_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Cambia el estilo del borde cuando se le quita el foco al textbox.
-        /// Queda sin ningún borde.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextBox_Leave(object sender, EventArgs e)
-        {
-
         }
 
         /// <summary>
