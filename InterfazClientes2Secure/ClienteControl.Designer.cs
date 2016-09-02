@@ -324,6 +324,7 @@
             this.textBoxComentarios.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxComentarios.Size = new System.Drawing.Size(388, 95);
             this.textBoxComentarios.TabIndex = 4;
+            this.textBoxComentarios.Leave += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // labelComentarios
             // 
@@ -409,6 +410,7 @@
             this.dateTimePickerUltimoContacto.Name = "dateTimePickerUltimoContacto";
             this.dateTimePickerUltimoContacto.Size = new System.Drawing.Size(250, 21);
             this.dateTimePickerUltimoContacto.TabIndex = 9;
+            this.dateTimePickerUltimoContacto.ValueChanged += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // textBoxCorreoCP
             // 
@@ -514,6 +516,7 @@
             this.textBoxPendientes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxPendientes.Size = new System.Drawing.Size(937, 95);
             this.textBoxPendientes.TabIndex = 6;
+            this.textBoxPendientes.Leave += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // labelPendientes
             // 

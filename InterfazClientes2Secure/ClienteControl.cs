@@ -178,6 +178,7 @@ namespace InterfazClientes2Secure
         /// <summary>
         /// Cambia el color de la barra y de los botones según el estado pasado como
         /// parámetro. Si recibe un estado que no reconoce, asume que el estado es "Normal".
+        /// Este método se utiliza normalmente cuando se están cargando los clientes desde el servidor.
         /// </summary>
         /// <param name="estado"></param>
         void CambiarEstado(string estado)
