@@ -165,7 +165,9 @@ namespace InterfazClientes2Secure
 
                     foreach (Client cliente in clientes)
                     {
+
                         var controlCliente = new ClienteControl(cliente);
+                        controlCliente.ObtenerDatosContactoPrincipal(cliente.MainContactId);
                         AgregarClienteControl(controlCliente);
 
                         // Obtener las tarea del cliente y las agrega en los controles correspondientes.

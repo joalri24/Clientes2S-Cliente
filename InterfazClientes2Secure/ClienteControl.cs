@@ -79,6 +79,7 @@ namespace InterfazClientes2Secure
             textBoxPendientes.Text = Cliente.Pendings;
             CambiarEstado(Cliente.State);
             dateTimePickerUltimoContacto.Value = Cliente.LastContact;
+
             /**if (cliente.ContactoPrincipal != null)
             {
                 textBoxNombreCP.Text = cliente.ContactoPrincipal.Nombre;
@@ -97,53 +98,53 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------------------------
 
         /// <summary>
-        /// Minimiza el control cuando se hace click en el boton correspondiente.
-        /// Lo maximiza si ya se encuentra minimizado.
+        /// Añade un nuevo contacto en el tablelayout de contactos.
+        /// Un contacto por fila.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Minimizar(object sender, EventArgs e)
+        public void AgregarControlContacto(Contact contacto)
         {
-            if (tabControlCliente.Visible)
-            {
-                tabControlCliente.Visible = false;
-                this.Height = ALTURA_MINIMIZADO;
-                toolStripButtonMinimizar.Text = "[+]";
-                toolStripButtonMinimizar.ToolTipText = "Maximizar";
-            }
+            TableLayoutPanel tablaFondo = tableLayoutContactos;
+            if (!hayContactos)
+                hayContactos = true;
             else
-            {
-                tabControlCliente.Visible = true;
-                this.Height = ALTURA_ORIGINAL;
-                toolStripButtonMinimizar.Text = "[-]";
-                toolStripButtonMinimizar.ToolTipText = "Minimizar";
-            }
-        }
+                tablaFondo.RowCount++;
 
-
-        /// <summary>
-        /// Cambia el estilo del borde cuando se le quita el foco al textbox.
-        /// Queda sin ningún borde.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextBox_Leave(object sender, EventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            textbox.BorderStyle = BorderStyle.None;
+            tablaFondo.Controls.Add(new ContactoControl(contacto), 0, tablaFondo.RowCount - 1);
         }
 
         /// <summary>
-        /// Actualiza el nombre de la empresa en la barra superior cuando
-        /// se modifica el campo correspondiente dentro de la pestaña de 
-        /// resumen.
+        /// Agrega un controlTarea al tableLayout correspondiente.
+        /// Coloca el controlador en una tabla nueva.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBoxNombreCliente_TextChanged(object sender, EventArgs e)
+        /// <param name="tarea"></param>
+        public void AgregarControlTarea(Job tarea)
         {
-            TextBox textbox = sender as TextBox;
-            toolStripLabelCliente.Text = textbox.Text;
+
+            if (!hayTareas)
+                hayTareas = true;
+            else
+                tableLayoutTareas.RowCount++;
+
+            TareaControl control = new TareaControl(tarea);
+            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
+        }
+
+        /// <summary>
+        /// Agrega un controlTarea al tableLayout correspondiente.
+        /// Coloca el controlador en una tabla nueva.
+        /// </summary>
+        /// <param name="tarea"></param>
+        public void AgregarControlTarea(TareaControl control)
+        {
+
+            if (!hayTareas)
+                hayTareas = true;
+            else
+                tableLayoutTareas.RowCount++;
+
+            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
         }
 
         /// <summary>
@@ -221,124 +222,6 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Crear una nueva tarea. Envía un query POST para crear la tarea en el backend.
-        /// Si la respuesta es favorable, agrega la tarea a la interfaz.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void NuevaTarea(object sender, EventArgs e)
-        {
-            Job tarea = new Job(Cliente.Id);
-
-            using (var httpClient = new HttpClient())
-            {
-                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));              
-                HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_TAREAS, tarea);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    tarea = await response.Content.ReadAsAsync<Job>(); // Esto se hace para obtener el Id asignado por el servidor.
-                    TareaControl control = new TareaControl(tarea);
-                    AgregarControlTarea(control);
-                    control.EnfocarEnNombre();                   
-                }
-                else
-                    MessageBox.Show("No fue posible guardar la nueva tarea en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");               
-            }
-        }
-
-        /// <summary>
-        /// Añade un nuevo contacto en el tablelayout de contactos.
-        /// Un contacto por fila.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void NuevoContacto_Click(object sender, EventArgs e)
-        {
-
-            FormNuevoContacto dialogo = new FormNuevoContacto();
-
-            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
-            if (dialogo.ShowDialog() == DialogResult.OK)
-            {              
-                Contact contacto = new Contact(dialogo.darNombre());
-                contacto.JobTitle = dialogo.darCargo();
-                contacto.Mail = dialogo.darCorreo();
-                contacto.Telephone = dialogo.darTelefono();
-                contacto.ClientId = Cliente.Id;
-
-                // Envía el query POST
-                using (var httpClient = new HttpClient())
-                {
-                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
-                    httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
-                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_CONTACTOS, contacto);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        contacto = await response.Content.ReadAsAsync<Contact>(); // Esto se hace para obtener el Id asignado por el servidor.
-                        AgregarControlContacto(contacto);                       
-                    }
-                    else
-                        MessageBox.Show("No fue posible guardar el nuevo contacto en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
-                }         
-            }
-        }
-
-        /// <summary>
-        /// Añade un nuevo contacto en el tablelayout de contactos.
-        /// Un contacto por fila.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        public void AgregarControlContacto(Contact contacto)
-        {
-            TableLayoutPanel tablaFondo = tableLayoutContactos;
-            if (!hayContactos)
-                hayContactos = true;
-            else
-                tablaFondo.RowCount++;
-
-            tablaFondo.Controls.Add(new ContactoControl(contacto), 0, tablaFondo.RowCount - 1);
-        }
-
-        /// <summary>
-        /// Agrega un controlTarea al tableLayout correspondiente.
-        /// Coloca el controlador en una tabla nueva.
-        /// </summary>
-        /// <param name="tarea"></param>
-        public void AgregarControlTarea(Job tarea)
-        {
-
-            if (!hayTareas)
-                hayTareas = true;
-            else
-                tableLayoutTareas.RowCount++;
-
-            TareaControl control = new TareaControl(tarea);
-            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
-        }
-
-        /// <summary>
-        /// Agrega un controlTarea al tableLayout correspondiente.
-        /// Coloca el controlador en una tabla nueva.
-        /// </summary>
-        /// <param name="tarea"></param>
-        public void AgregarControlTarea(TareaControl control)
-        {
-
-            if (!hayTareas)
-                hayTareas = true;
-            else
-                tableLayoutTareas.RowCount++;
-
-            tableLayoutTareas.Controls.Add(control, 0, tableLayoutTareas.RowCount - 1);
-        }
-
-        /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que se hayan
         /// realizado sobre el cliente. Se ejecuta cuando recibe eventos de la interfaz
         /// </summary>
@@ -360,7 +243,7 @@ namespace InterfazClientes2Secure
                     Cliente.Comments = textBoxComentarios.Text;
                     Cliente.Pendings = textBoxPendientes.Text;
                     Cliente.LastContact = dateTimePickerUltimoContacto.Value;
-                    Cliente.Follow = checkBoxSeguimiento.Checked; 
+                    Cliente.Follow = checkBoxSeguimiento.Checked;
 
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
 
@@ -401,5 +284,148 @@ namespace InterfazClientes2Secure
                 }
             }
         }
+
+        /// <summary>
+        /// Minimiza el control cuando se hace click en el boton correspondiente.
+        /// Lo maximiza si ya se encuentra minimizado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Minimizar(object sender, EventArgs e)
+        {
+            if (tabControlCliente.Visible)
+            {
+                tabControlCliente.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizar.Text = "[+]";
+                toolStripButtonMinimizar.ToolTipText = "Maximizar";
+            }
+            else
+            {
+                tabControlCliente.Visible = true;
+                Height = ALTURA_ORIGINAL;
+                toolStripButtonMinimizar.Text = "[-]";
+                toolStripButtonMinimizar.ToolTipText = "Minimizar";
+            }
+        }
+
+        /// <summary>
+        /// Crear una nueva tarea. Envía un query POST para crear la tarea en el backend.
+        /// Si la respuesta es favorable, agrega la tarea a la interfaz.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void NuevaTarea(object sender, EventArgs e)
+        {
+            Job tarea = new Job(Cliente.Id);
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_TAREAS, tarea);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    tarea = await response.Content.ReadAsAsync<Job>(); // Esto se hace para obtener el Id asignado por el servidor.
+                    TareaControl control = new TareaControl(tarea);
+                    AgregarControlTarea(control);
+                    control.EnfocarEnNombre();
+                }
+                else
+                    MessageBox.Show("No fue posible guardar la nueva tarea en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+            }
+        }
+
+        /// <summary>
+        /// Añade un nuevo contacto en el tablelayout de contactos.
+        /// Un contacto por fila.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void NuevoContacto_Click(object sender, EventArgs e)
+        {
+
+            FormNuevoContacto dialogo = new FormNuevoContacto();
+
+            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                Contact contacto = new Contact(dialogo.darNombre());
+                contacto.JobTitle = dialogo.darCargo();
+                contacto.Mail = dialogo.darCorreo();
+                contacto.Telephone = dialogo.darTelefono();
+                contacto.ClientId = Cliente.Id;
+
+                // Envía el query POST
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_CONTACTOS, contacto);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        contacto = await response.Content.ReadAsAsync<Contact>(); // Esto se hace para obtener el Id asignado por el servidor.
+                        AgregarControlContacto(contacto);
+                    }
+                    else
+                        MessageBox.Show("No fue posible guardar el nuevo contacto en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Busca en el servidor el contacto con el Id pasado como parámetro.
+        /// Si no encuentra un contacto simplemente no hace nada.
+        /// </summary>
+        /// <param name="IdContactoPrincipal"></param>
+        public async void ObtenerDatosContactoPrincipal(int IdContactoPrincipal)
+        {
+            // Envía el query GET
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                HttpResponseMessage response = await httpClient.GetAsync(Form1.RUTA_CONTACTOS + "/" + IdContactoPrincipal);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    Contact contacto = await response.Content.ReadAsAsync<Contact>();
+                    textBoxNombreCP.Text = contacto.Name;
+                    textBoxCargoCP.Text = contacto.JobTitle;
+                    textBoxCorreoCP.Text = contacto.Mail;
+                    textBoxTelCP.Text = contacto.Telephone;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Cambia el estilo del borde cuando se le quita el foco al textbox.
+        /// Queda sin ningún borde.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void TextBox_Leave(object sender, EventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            textbox.BorderStyle = BorderStyle.None;
+        }
+
+        /// <summary>
+        /// Actualiza el nombre de la empresa en la barra superior cuando
+        /// se modifica el campo correspondiente dentro de la pestaña de 
+        /// resumen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNombreCliente_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            toolStripLabelCliente.Text = textbox.Text;
+        }      
     }
 }

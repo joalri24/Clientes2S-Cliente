@@ -61,30 +61,6 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------------------------
 
         /// <summary>
-        /// Minimiza el control cuando se hace click en el boton correspondiente.
-        /// Lo maximiza si ya se encuentra minimizado.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Minimizar(object sender, EventArgs e)
-        {
-            if (splitContainerContacto.Visible)
-            {
-                splitContainerContacto.Visible = false;
-                this.Height = ALTURA_MINIMIZADO;
-                toolStripButtonMinimizarContacto.Text = "[+]";
-                toolStripButtonMinimizarContacto.ToolTipText = "Maximizar";
-            }
-            else
-            {
-                splitContainerContacto.Visible = true;
-                this.Height = ALTURA_ORIGINAL;
-                toolStripButtonMinimizarContacto.Text = "[-]";
-                toolStripButtonMinimizarContacto.ToolTipText = "Minimizar";
-            }
-        }
-
-        /// <summary>
         /// Elimina al contacto. Quita el control.
         /// TODO: El control se elimina pero la fila donde se encontraba 
         /// queda vacía. Se deben eliminar las filas vacías en algún momento.
@@ -96,18 +72,6 @@ namespace InterfazClientes2Secure
             Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar el contacto  \"" + Contacto.Name + "\"?");
             if (dialogoConfirmacion.ShowDialog() == DialogResult.OK)
                 this.Dispose();
-        }
-
-        /// <summary>
-        /// Actualiza el nombre del contacto en la barra superior cuando
-        /// se modifica el campo correspondiente.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBoxNombreContacto_TextChanged(object sender, EventArgs e)
-        {
-            TextBox textbox = sender as TextBox;
-            toolStripLabelContacto.Text = textbox.Text;
         }
 
         /// <summary>
@@ -132,7 +96,7 @@ namespace InterfazClientes2Secure
                     Contacto.Telephone = textBoxTelefono.Text;
                     Contacto.Mail = textBoxCorreo.Text;
                     Contacto.LastContact = dateTimePickerContacto.Value;
-                    Contacto.Notes = textBoxNotasContacto.Text;                                     
+                    Contacto.Notes = textBoxNotasContacto.Text;
 
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CONTACTOS + "/" + Contacto.Id, Contacto);
 
@@ -140,6 +104,42 @@ namespace InterfazClientes2Secure
                         MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
                 }
             }
+        }
+
+        /// <summary>
+        /// Minimiza el control cuando se hace click en el boton correspondiente.
+        /// Lo maximiza si ya se encuentra minimizado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Minimizar(object sender, EventArgs e)
+        {
+            if (splitContainerContacto.Visible)
+            {
+                splitContainerContacto.Visible = false;
+                this.Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizarContacto.Text = "[+]";
+                toolStripButtonMinimizarContacto.ToolTipText = "Maximizar";
+            }
+            else
+            {
+                splitContainerContacto.Visible = true;
+                this.Height = ALTURA_ORIGINAL;
+                toolStripButtonMinimizarContacto.Text = "[-]";
+                toolStripButtonMinimizarContacto.ToolTipText = "Minimizar";
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el nombre del contacto en la barra superior cuando
+        /// se modifica el campo correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxNombreContacto_TextChanged(object sender, EventArgs e)
+        {
+            TextBox textbox = sender as TextBox;
+            toolStripLabelContacto.Text = textbox.Text;
         }
     }
 }
