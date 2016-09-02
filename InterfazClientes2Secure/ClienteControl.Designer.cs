@@ -139,7 +139,7 @@
             // 
             this.toolStripLabelCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripLabelCliente.Name = "toolStripLabelCliente";
-            this.toolStripLabelCliente.Size = new System.Drawing.Size(65, 22);
+            this.toolStripLabelCliente.Size = new System.Drawing.Size(64, 22);
             this.toolStripLabelCliente.Text = "Stable Tec";
             // 
             // toolStripLabelEstado
@@ -300,6 +300,7 @@
             this.comboBoxTipoAsociacion.Size = new System.Drawing.Size(145, 24);
             this.comboBoxTipoAsociacion.TabIndex = 6;
             this.comboBoxTipoAsociacion.Text = "Directo";
+            this.comboBoxTipoAsociacion.TextChanged += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // checkBoxSeguimiento
             // 
@@ -312,6 +313,7 @@
             this.checkBoxSeguimiento.TabIndex = 5;
             this.checkBoxSeguimiento.Text = "Hacer seguimiento";
             this.checkBoxSeguimiento.UseVisualStyleBackColor = true;
+            this.checkBoxSeguimiento.CheckedChanged += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // textBoxComentarios
             // 
@@ -366,6 +368,7 @@
             this.textBoxNombreCliente.TabIndex = 0;
             this.textBoxNombreCliente.Text = "Stable Tec";
             this.textBoxNombreCliente.TextChanged += new System.EventHandler(this.textBoxNombreCliente_TextChanged);
+            this.textBoxNombreCliente.Leave += new System.EventHandler(this.GuardarCambiosCliente);
             // 
             // groupBoxContactoP
             // 

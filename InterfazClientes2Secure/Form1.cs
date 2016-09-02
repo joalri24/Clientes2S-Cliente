@@ -160,10 +160,8 @@ namespace InterfazClientes2Secure
                         var controlCliente = new ClienteControl(cliente);
                         AgregarClienteControl(controlCliente);
 
-                        // Obtener las tarea del cliente y agregarlas en los controles correspondientes.
-                        httpClient.DefaultRequestHeaders.Accept.Clear();
+                        // Obtener las tarea del cliente y las agrega en los controles correspondientes.
                         response = await httpClient.GetAsync(RUTA_CLIENTES + "/" + cliente.Id + RUTA_TAREAS_CLIENTE);
-
                         if (response.IsSuccessStatusCode)
                         {                          
                             Job[] tareas = await response.Content.ReadAsAsync<Job[]>();
@@ -171,10 +169,8 @@ namespace InterfazClientes2Secure
                                 controlCliente.AgregarControlTarea(tarea);
                         }
 
-                        // Obtener los contactos del cliente y agregarlas en los controles correspondientes.
-                        httpClient.DefaultRequestHeaders.Accept.Clear();
+                        // Obtener los contactos del cliente y las agrega en los controles correspondientes.
                         response = await httpClient.GetAsync(RUTA_CLIENTES + "/" + cliente.Id + RUTA_CONTACTOS_CLIENTE);
-
                         if (response.IsSuccessStatusCode)
                         {
                             Contact[] contactos = await response.Content.ReadAsAsync<Contact[]>();
@@ -185,7 +181,5 @@ namespace InterfazClientes2Secure
                 }
             }
         }
-
-
     }
 }
