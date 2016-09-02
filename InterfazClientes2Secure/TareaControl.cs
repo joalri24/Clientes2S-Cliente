@@ -126,7 +126,10 @@ namespace InterfazClientes2Secure
             
             // Actualiza los labels de la interfaz
             toolStripLabelEstadoTarea.Text = "(" + boton.Text + ")";
+            Tarea.State = boton.Text;
+            GuardarCambiosTarea();
             textBoxTareaEstado.Text = boton.Text;
+            
 
         }
 
@@ -206,11 +209,41 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente
+        /// se hayan realizado sobre el cliente. Se ejecuta al recibir ciertos
+        /// eventos de la interfaz.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private async void GuardarCambiosTarea(object sender, EventArgs e)
+        {
+
+            if (Form1.cargando == false)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+
+                    Tarea.Name = textBoxTareaNombre.Text;
+                    Tarea.Description = textBoxDescripcion.Text;
+                    Tarea.Date = dateTimePickerTareaFecha.Value;
+
+                    HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_TAREAS + "/" + Tarea.Id, Tarea);
+
+                    if (!response.IsSuccessStatusCode)
+                        MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// se hayan realizado sobre el cliente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GuardarCambiosTarea()
         {
 
             if (Form1.cargando == false)

@@ -173,6 +173,9 @@ namespace InterfazClientes2Secure
                 toolStripCliente.BackColor = Color.Gainsboro;
                 boton.BackColor = Color.LightGray;
             }
+
+            Cliente.State = boton.Text;
+            GuardarCambiosCliente();
         }
 
         /// <summary>
@@ -336,8 +339,8 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente
+        /// Envá un query PUT para guardar en el servidor los cambios que se hayan
+        /// realizado sobre el cliente. Se ejecuta cuando recibe eventos de la interfaz
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -358,6 +361,38 @@ namespace InterfazClientes2Secure
                     Cliente.Pendings = textBoxPendientes.Text;
                     Cliente.LastContact = dateTimePickerUltimoContacto.Value;
                     Cliente.Follow = checkBoxSeguimiento.Checked; 
+
+                    HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
+
+                    if (!response.IsSuccessStatusCode)
+                        MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// se hayan realizado sobre el cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GuardarCambiosCliente()
+        {
+
+            if (Form1.cargando == false)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+
+                    Cliente.Association = comboBoxTipoAsociacion.Text;
+                    Cliente.Name = textBoxNombreCliente.Text;
+                    Cliente.Comments = textBoxComentarios.Text;
+                    Cliente.Pendings = textBoxPendientes.Text;
+                    Cliente.LastContact = dateTimePickerUltimoContacto.Value;
+                    Cliente.Follow = checkBoxSeguimiento.Checked;
 
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
 
