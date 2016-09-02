@@ -26,5 +26,22 @@ namespace InterfazClientes2Secure
 
         public bool Follow { get; set; }
 
+
+        // ------------------------------------
+        // Constructor
+        // ------------------------------------
+
+        public Client(string name, string association)
+        {
+            Name = name;
+            Association = association;
+            Comments = "";
+            Pendings = "";
+            Follow = true;
+            LastContact = DateTime.Now;
+            MainContactId = 0;
+            State = "Normal";
+        }
+
     }
 }

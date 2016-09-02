@@ -65,17 +65,31 @@ namespace InterfazClientes2Secure
         /// <summary>
         /// Crear nuevo cliente cuando se hace click en el botón correspondiente.
         /// </summary>
-        private void CrearCliente(object sender, EventArgs e)
+        private async void CrearCliente(object sender, EventArgs e)
         {
-            /**FormNuevoCliente dialogo = new FormNuevoCliente();
+            FormNuevoCliente dialogo = new FormNuevoCliente();
 
             // Abre una ventana de dialogo para obtener la información del nuevo cliente.
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
 
-                Cliente cliente = new Cliente(dialogo.darNombreCliente(), dialogo.darTipoAsociacion());
+                Client cliente = new Client(dialogo.darNombreCliente(), dialogo.darTipoAsociacion());
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CLIENTES, cliente);
 
-                // Registra el contacto principal si se rellenaron los campos correspondientes.
+                    if (response.IsSuccessStatusCode)
+                    {
+                        cliente = await response.Content.ReadAsAsync<Client>(); // Esto se hace para obtener el Id asignado por el servidor.
+                        AgregarClienteControl(cliente);
+                    }                                                            
+                    else
+                        MessageBox.Show("No fue posible guardar el nuevo cliente en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
+                /* Registra el contacto principal si se rellenaron los campos correspondientes.
                 if (dialogo.darNombreContactoPrincipal() != "")
                 {
                     Contacto contacto = new Contacto(dialogo.darNombreContactoPrincipal());
@@ -84,15 +98,30 @@ namespace InterfazClientes2Secure
                     contacto.Telefono = dialogo.darTelefonoContactoPrincipal();
 
                     cliente.ContactoPrincipal = contacto;                   
-                }
-
-                ClienteControl controlCliente = new ClienteControl(cliente);
-                AgregarClienteControl(controlCliente);              
-            } */                      
+                }*/                 
+            }                       
         }
 
         /// <summary>
-        /// Agrega el control pasado como parámetro al layout del fondo.
+        /// Agrega el cliente pasado como parámetro al layout del fondo.
+        /// Crea el control correspondiente y lo introduce en una nueva fila.
+        /// </summary>
+        /// <param name="control"></param>
+        void AgregarClienteControl(Client cliente)
+        {
+            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
+            // disponibles donde se puede poner el nuevo cliente.
+            if (vacio)
+                vacio = false;
+            else
+                tableLayoutClientes.RowCount++;
+
+            ClienteControl control = new ClienteControl(cliente);
+            tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
+        }
+
+        /// <summary>
+        /// Agrega el cliente pasado como parámetro al layout del fondo.
         /// Lo introduce en una nueva fila.
         /// </summary>
         /// <param name="control"></param>

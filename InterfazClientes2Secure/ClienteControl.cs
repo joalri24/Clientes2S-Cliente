@@ -60,7 +60,8 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// TODO
+        /// Construye un control Cliente a partir de los datos del 
+        /// objeto Client pasado como paràmetro.
         /// </summary>
         /// <param name="clienteP"></param>
         public ClienteControl(Client cliente)
@@ -90,6 +91,7 @@ namespace InterfazClientes2Secure
 
         }
 
+
         // ------------------------------------------------------------------
         // Métodos
         // ------------------------------------------------------------------
@@ -118,16 +120,6 @@ namespace InterfazClientes2Secure
             }
         }
 
-        /// <summary>
-        /// Cambia el estilo del borde cuando se hace click en el textbox.
-        /// Activa un borde 3d.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void TextBox_Enter(object sender, EventArgs e)
-        {
-
-        }
 
         /// <summary>
         /// Cambia el estilo del borde cuando se le quita el foco al textbox.
@@ -243,6 +235,7 @@ namespace InterfazClientes2Secure
 
                 if (response.IsSuccessStatusCode)
                 {
+                    tarea = await response.Content.ReadAsAsync<Job>(); // Esto se hace para obtener el Id asignado por el servidor.
                     TareaControl control = new TareaControl(tarea);
                     AgregarControlTarea(control);
                     control.EnfocarEnNombre();                   
@@ -282,7 +275,7 @@ namespace InterfazClientes2Secure
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var control = new ContactoControl(contacto);
+                        contacto = await response.Content.ReadAsAsync<Contact>(); // Esto se hace para obtener el Id asignado por el servidor.
                         AgregarControlContacto(contacto);                       
                     }
                     else
