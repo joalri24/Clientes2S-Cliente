@@ -248,7 +248,7 @@ namespace InterfazClientes2Secure
                     control.EnfocarEnNombre();                   
                 }
                 else
-                    MessageBox.Show("No fue posible guardar la nueva tarea en la base de datos.", "Error al comunicarse con el servidor");               
+                    MessageBox.Show("No fue posible guardar la nueva tarea en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");               
             }
         }
 
@@ -258,22 +258,36 @@ namespace InterfazClientes2Secure
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void NuevoContacto_Click(object sender, EventArgs e)
+        private async void NuevoContacto_Click(object sender, EventArgs e)
         {
 
             FormNuevoContacto dialogo = new FormNuevoContacto();
 
             // Abre una ventana de dialogo para obtener la información del nuevo contacto.
             if (dialogo.ShowDialog() == DialogResult.OK)
-            {
-                TableLayoutPanel tablaFondo = tableLayoutContactos;
-
+            {              
                 Contact contacto = new Contact(dialogo.darNombre());
                 contacto.JobTitle = dialogo.darCargo();
                 contacto.Mail = dialogo.darCorreo();
                 contacto.Telephone = dialogo.darTelefono();
+                contacto.ClientId = Cliente.Id;
 
-                AgregarControlContacto(contacto);
+                // Envía el query POST
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(Form1.RUTA_CONTACTOS, contacto);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var control = new ContactoControl(contacto);
+                        AgregarControlContacto(contacto);                       
+                    }
+                    else
+                        MessageBox.Show("No fue posible guardar el nuevo contacto en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }         
             }
         }
 

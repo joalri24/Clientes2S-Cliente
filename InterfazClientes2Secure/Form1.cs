@@ -23,6 +23,7 @@ namespace InterfazClientes2Secure
 
         public const string RUTA_CLIENTES = "api/clients";
         public const string RUTA_TAREAS = "api/jobs";
+        public const string RUTA_CONTACTOS = "api/contacts";
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
         public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
 
