@@ -265,5 +265,28 @@ namespace InterfazClientes2Secure
                 }
             }
         }
+
+        /// <summary>
+        /// Muestra un formulario donde se puede seleccionar un contacto para asociarlo 
+        /// con la tarea.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SeleccionarContacto(object sender, EventArgs e)
+        {
+            var dialogo = new FormSeleccionarContacto(Tarea.ClientId);
+
+            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                Contact contacto = dialogo.DarContactoSeleccionado();
+                Tarea.ContactId = contacto.Id;
+                textBoxTareaNombreContacto.Text = contacto.Name;
+                textBoxTareaCargoContacto.Text = contacto.JobTitle;
+                textBoxTareaTelContacto.Text = contacto.Telephone;
+                textBoxTareaCorreoContacto.Text = contacto.Mail;
+            }
+        }
+
     }
 }

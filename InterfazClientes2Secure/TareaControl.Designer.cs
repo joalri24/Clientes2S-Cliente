@@ -53,7 +53,7 @@
             this.dateTimePickerTareaFecha = new System.Windows.Forms.DateTimePicker();
             this.labelTareaFecha = new System.Windows.Forms.Label();
             this.groupBoxTareaContacto = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSeleccionarContacto = new System.Windows.Forms.Button();
             this.textBoxTareaCorreoContacto = new System.Windows.Forms.TextBox();
             this.labelTareaContactoCorreo = new System.Windows.Forms.Label();
             this.textBoxTareaTelContacto = new System.Windows.Forms.TextBox();
@@ -346,7 +346,7 @@
             // 
             // groupBoxTareaContacto
             // 
-            this.groupBoxTareaContacto.Controls.Add(this.button1);
+            this.groupBoxTareaContacto.Controls.Add(this.buttonSeleccionarContacto);
             this.groupBoxTareaContacto.Controls.Add(this.textBoxTareaCorreoContacto);
             this.groupBoxTareaContacto.Controls.Add(this.labelTareaContactoCorreo);
             this.groupBoxTareaContacto.Controls.Add(this.textBoxTareaTelContacto);
@@ -364,14 +364,15 @@
             this.groupBoxTareaContacto.TabStop = false;
             this.groupBoxTareaContacto.Text = "Contacto";
             // 
-            // button1
+            // buttonSeleccionarContacto
             // 
-            this.button1.Location = new System.Drawing.Point(367, 24);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(27, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSeleccionarContacto.Location = new System.Drawing.Point(367, 24);
+            this.buttonSeleccionarContacto.Name = "buttonSeleccionarContacto";
+            this.buttonSeleccionarContacto.Size = new System.Drawing.Size(27, 23);
+            this.buttonSeleccionarContacto.TabIndex = 13;
+            this.buttonSeleccionarContacto.Text = "...";
+            this.buttonSeleccionarContacto.UseVisualStyleBackColor = true;
+            this.buttonSeleccionarContacto.Click += new System.EventHandler(this.SeleccionarContacto);
             // 
             // textBoxTareaCorreoContacto
             // 
@@ -516,6 +517,6 @@
         private System.Windows.Forms.Label labelTareaContactoCargo;
         private System.Windows.Forms.TextBox textBoxTareaNombreContacto;
         private System.Windows.Forms.Label labelTareaNombreContacto;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSeleccionarContacto;
     }
 }

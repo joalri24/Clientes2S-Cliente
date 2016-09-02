@@ -84,6 +84,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.groupBoxFecha = new System.Windows.Forms.GroupBox();
             this.toolStripCliente.SuspendLayout();
             this.tabControlCliente.SuspendLayout();
             this.tabPageResumen.SuspendLayout();
@@ -102,6 +103,7 @@
             this.toolStrip1.SuspendLayout();
             this.tabPageContactos.SuspendLayout();
             this.toolStrip2.SuspendLayout();
+            this.groupBoxFecha.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripCliente
@@ -139,7 +141,7 @@
             // 
             this.toolStripLabelCliente.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.toolStripLabelCliente.Name = "toolStripLabelCliente";
-            this.toolStripLabelCliente.Size = new System.Drawing.Size(64, 22);
+            this.toolStripLabelCliente.Size = new System.Drawing.Size(65, 22);
             this.toolStripLabelCliente.Text = "Stable Tec";
             // 
             // toolStripLabelEstado
@@ -265,6 +267,7 @@
             // 
             // splitContainerSuperior.Panel2
             // 
+            this.splitContainerSuperior.Panel2.Controls.Add(this.groupBoxFecha);
             this.splitContainerSuperior.Panel2.Controls.Add(this.groupBoxContactoP);
             this.splitContainerSuperior.Size = new System.Drawing.Size(964, 241);
             this.splitContainerSuperior.SplitterDistance = 412;
@@ -374,21 +377,19 @@
             // groupBoxContactoP
             // 
             this.groupBoxContactoP.Controls.Add(this.buttonSeleccionarUsuario);
-            this.groupBoxContactoP.Controls.Add(this.dateTimePickerUltimoContacto);
             this.groupBoxContactoP.Controls.Add(this.textBoxCorreoCP);
             this.groupBoxContactoP.Controls.Add(this.textBoxTelCP);
             this.groupBoxContactoP.Controls.Add(this.textBoxCargoCP);
             this.groupBoxContactoP.Controls.Add(this.textBoxNombreCP);
-            this.groupBoxContactoP.Controls.Add(this.labelUltimoContacto);
             this.groupBoxContactoP.Controls.Add(this.labelCorreoCP);
             this.groupBoxContactoP.Controls.Add(this.labelTelCP);
             this.groupBoxContactoP.Controls.Add(this.labelCargoCP);
             this.groupBoxContactoP.Controls.Add(this.labelNombreCP);
-            this.groupBoxContactoP.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxContactoP.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxContactoP.ForeColor = System.Drawing.Color.Brown;
             this.groupBoxContactoP.Location = new System.Drawing.Point(0, 0);
             this.groupBoxContactoP.Name = "groupBoxContactoP";
-            this.groupBoxContactoP.Size = new System.Drawing.Size(548, 241);
+            this.groupBoxContactoP.Size = new System.Drawing.Size(548, 139);
             this.groupBoxContactoP.TabIndex = 0;
             this.groupBoxContactoP.TabStop = false;
             this.groupBoxContactoP.Text = "Contacto principal";
@@ -406,7 +407,7 @@
             // dateTimePickerUltimoContacto
             // 
             this.dateTimePickerUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerUltimoContacto.Location = new System.Drawing.Point(137, 163);
+            this.dateTimePickerUltimoContacto.Location = new System.Drawing.Point(137, 25);
             this.dateTimePickerUltimoContacto.Name = "dateTimePickerUltimoContacto";
             this.dateTimePickerUltimoContacto.Size = new System.Drawing.Size(250, 21);
             this.dateTimePickerUltimoContacto.TabIndex = 9;
@@ -448,7 +449,7 @@
             // 
             this.labelUltimoContacto.AutoSize = true;
             this.labelUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUltimoContacto.Location = new System.Drawing.Point(7, 165);
+            this.labelUltimoContacto.Location = new System.Drawing.Point(10, 25);
             this.labelUltimoContacto.Name = "labelUltimoContacto";
             this.labelUltimoContacto.Size = new System.Drawing.Size(121, 18);
             this.labelUltimoContacto.TabIndex = 4;
@@ -713,6 +714,17 @@
             this.toolStripButton4.Size = new System.Drawing.Size(21, 20);
             this.toolStripButton4.Text = "toolStripButton4";
             // 
+            // groupBoxFecha
+            // 
+            this.groupBoxFecha.Controls.Add(this.labelUltimoContacto);
+            this.groupBoxFecha.Controls.Add(this.dateTimePickerUltimoContacto);
+            this.groupBoxFecha.ForeColor = System.Drawing.Color.Brown;
+            this.groupBoxFecha.Location = new System.Drawing.Point(0, 142);
+            this.groupBoxFecha.Name = "groupBoxFecha";
+            this.groupBoxFecha.Size = new System.Drawing.Size(548, 63);
+            this.groupBoxFecha.TabIndex = 1;
+            this.groupBoxFecha.TabStop = false;
+            // 
             // ClienteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,6 +759,8 @@
             this.tabPageContactos.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
+            this.groupBoxFecha.ResumeLayout(false);
+            this.groupBoxFecha.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -809,5 +823,6 @@
         private System.Windows.Forms.TextBox textBoxPendientes;
         private System.Windows.Forms.Label labelPendientes;
         private System.Windows.Forms.Button buttonSeleccionarUsuario;
+        private System.Windows.Forms.GroupBox groupBoxFecha;
     }
 }

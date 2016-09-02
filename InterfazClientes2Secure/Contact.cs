@@ -38,5 +38,10 @@ namespace InterfazClientes2Secure
             Name = nombre;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
     }
 }
