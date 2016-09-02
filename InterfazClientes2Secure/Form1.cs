@@ -33,6 +33,12 @@ namespace InterfazClientes2Secure
 
         private bool vacio;
 
+        /// <summary>
+        /// Se utiliza para evitar que se hagan actualizaciones en la 
+        /// base de datos mientrás se están cargando los datos
+        /// </summary>
+        public static bool cargando = false;
+
         // ------------------------------------------------
         // Constructor
         // ------------------------------------------------
@@ -40,6 +46,7 @@ namespace InterfazClientes2Secure
         {
             InitializeComponent();
             vacio = true;
+            cargando = false;
         }
 
 
@@ -144,6 +151,7 @@ namespace InterfazClientes2Secure
         private async void CargarClientes(object sender, EventArgs e)
         {
             // Obtener los clientes con un query GET.
+            cargando = true;
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
@@ -180,6 +188,7 @@ namespace InterfazClientes2Secure
                     }
                 }
             }
+            cargando = false;
         }
     }
 }

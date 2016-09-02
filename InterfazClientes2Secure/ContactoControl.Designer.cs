@@ -150,6 +150,7 @@
             this.textBoxCorreo.Size = new System.Drawing.Size(330, 24);
             this.textBoxCorreo.TabIndex = 9;
             this.textBoxCorreo.Text = "ra.pepito@stable.org";
+            this.textBoxCorreo.Leave += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelCorreoContacto
             // 
@@ -188,6 +189,7 @@
             this.textBoxTelefono.Size = new System.Drawing.Size(330, 24);
             this.textBoxTelefono.TabIndex = 5;
             this.textBoxTelefono.Text = "9999999";
+            this.textBoxTelefono.Leave += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelTelefonoContacto
             // 
@@ -207,6 +209,7 @@
             this.textBoxCargo.Size = new System.Drawing.Size(330, 24);
             this.textBoxCargo.TabIndex = 3;
             this.textBoxCargo.Text = "Lider Desarrollo";
+            this.textBoxCargo.Leave += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelCargoContacto
             // 
@@ -227,6 +230,7 @@
             this.textBoxNombreContacto.TabIndex = 1;
             this.textBoxNombreContacto.Text = "Juan Ramírez Pérez";
             this.textBoxNombreContacto.TextChanged += new System.EventHandler(this.textBoxNombreContacto_TextChanged);
+            this.textBoxNombreContacto.Leave += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelNombreContacto
             // 
@@ -260,6 +264,7 @@
             this.dateTimePickerContacto.Name = "dateTimePickerContacto";
             this.dateTimePickerContacto.Size = new System.Drawing.Size(250, 21);
             this.dateTimePickerContacto.TabIndex = 11;
+            this.dateTimePickerContacto.ValueChanged += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelUltimoContacto
             // 
@@ -280,6 +285,7 @@
             this.textBoxNotasContacto.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxNotasContacto.Size = new System.Drawing.Size(437, 113);
             this.textBoxNotasContacto.TabIndex = 2;
+            this.textBoxNotasContacto.Leave += new System.EventHandler(this.GuardarCambiosContacto);
             // 
             // labelNotasContacto
             // 

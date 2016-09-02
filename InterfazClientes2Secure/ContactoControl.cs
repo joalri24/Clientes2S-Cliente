@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Net.Http.Headers;
 
 namespace InterfazClientes2Secure
 {
@@ -106,6 +108,38 @@ namespace InterfazClientes2Secure
         {
             TextBox textbox = sender as TextBox;
             toolStripLabelContacto.Text = textbox.Text;
+        }
+
+        /// <summary>
+        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// se hayan realizado sobre el cliente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GuardarCambiosContacto(object sender, EventArgs e)
+        {
+
+            if (Form1.cargando == false)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+
+                    Contacto.Name = textBoxNombreContacto.Text;
+                    Contacto.JobTitle = textBoxCargo.Text;
+                    Contacto.Telephone = textBoxTelefono.Text;
+                    Contacto.Mail = textBoxCorreo.Text;
+                    Contacto.LastContact = dateTimePickerContacto.Value;
+                    Contacto.Notes = textBoxNotasContacto.Text;                                     
+
+                    HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CONTACTOS + "/" + Contacto.Id, Contacto);
+
+                    if (!response.IsSuccessStatusCode)
+                        MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
+            }
         }
     }
 }

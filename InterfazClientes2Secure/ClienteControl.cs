@@ -343,23 +343,27 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private async void GuardarCambiosCliente(object sender, EventArgs e)
         {
-            using (var httpClient = new HttpClient())
+
+            if (Form1.cargando == false)
             {
-                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
-                httpClient.DefaultRequestHeaders.Accept.Clear();
-                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
 
-                Cliente.Association = comboBoxTipoAsociacion.Text;
-                Cliente.Name = textBoxNombreCliente.Text;
-                Cliente.Comments = textBoxComentarios.Text;
-                Cliente.Pendings = textBoxPendientes.Text;
-                Cliente.LastContact = dateTimePickerUltimoContacto.Value;
-                Cliente.Follow = checkBoxSeguimiento.Checked; 
+                    Cliente.Association = comboBoxTipoAsociacion.Text;
+                    Cliente.Name = textBoxNombreCliente.Text;
+                    Cliente.Comments = textBoxComentarios.Text;
+                    Cliente.Pendings = textBoxPendientes.Text;
+                    Cliente.LastContact = dateTimePickerUltimoContacto.Value;
+                    Cliente.Follow = checkBoxSeguimiento.Checked; 
 
-                HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
+                    HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
 
-                if (!response.IsSuccessStatusCode)
-                    MessageBox.Show("No fue posible guardar los caambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                    if (!response.IsSuccessStatusCode)
+                        MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                }
             }
         }
     }

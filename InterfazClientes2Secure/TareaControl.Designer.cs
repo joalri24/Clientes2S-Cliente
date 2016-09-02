@@ -239,6 +239,7 @@
             this.textBoxDescripcion.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxDescripcion.Size = new System.Drawing.Size(447, 147);
             this.textBoxDescripcion.TabIndex = 3;
+            this.textBoxDescripcion.Leave += new System.EventHandler(this.GuardarCambiosTarea);
             // 
             // labelTareaDescripcion
             // 
@@ -259,6 +260,7 @@
             this.textBoxTareaNombre.TabIndex = 1;
             this.textBoxTareaNombre.Text = "Levantamiento de datos";
             this.textBoxTareaNombre.TextChanged += new System.EventHandler(this.textBoxTareaNombre_TextChanged);
+            this.textBoxTareaNombre.Leave += new System.EventHandler(this.GuardarCambiosTarea);
             // 
             // labelTareaNombre
             // 
