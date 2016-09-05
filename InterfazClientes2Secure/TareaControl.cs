@@ -33,7 +33,7 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
-        private Job Tarea;
+        public Job Tarea;
 
 
         // ------------------------------------------------------------------

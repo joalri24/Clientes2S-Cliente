@@ -39,6 +39,24 @@ namespace InterfazClientes2Secure
         /// </summary>
         public static bool cargando = false;
 
+        /// <summary>
+        /// Una lista de todos los controles cliente que hay en la aplicación.
+        /// Se utiliza para actualizaciones y otras funcionalidades de la interfaz gráfica.
+        /// </summary>
+        private static List<ClienteControl> controlesCliente { get; set; }
+
+        /// <summary>
+        /// Una lista de todos los controles tareas que hay en la aplicación.
+        /// Se utiliza para actualizaciones y otras funcionalidades de la interfaz gráfica.
+        /// </summary>
+        public static List<TareaControl> controlesTareas { get; set; }
+
+        /// <summary>
+        /// Una lista de todos los controles contacto que hay en la aplicación.
+        /// Se utiliza para actualizaciones y otras funcionalidades de la interfaz gráfica.
+        /// </summary>
+        public static List<ContactoControl> controlesContactos { get; set; }
+
         // ------------------------------------------------
         // Constructor
         // ------------------------------------------------
@@ -47,6 +65,9 @@ namespace InterfazClientes2Secure
             InitializeComponent();
             vacio = true;
             cargando = false;
+            controlesCliente = new List<ClienteControl>();
+            controlesContactos = new List<ContactoControl>();
+            controlesTareas = new List<TareaControl>();
         }
 
 
@@ -70,6 +91,8 @@ namespace InterfazClientes2Secure
 
             ClienteControl control = new ClienteControl(cliente);
             tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
+            controlesCliente.Add(control);
+
         }
 
         /// <summary>
@@ -87,6 +110,7 @@ namespace InterfazClientes2Secure
                 tableLayoutClientes.RowCount++;
 
             tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
+            controlesCliente.Add(control);
         }
 
         /// <summary>
@@ -213,6 +237,27 @@ namespace InterfazClientes2Secure
                     clienteControl.GuardarCambiosCliente();
                     clienteControl.ImprimirDatosContactoPrincipal(contacto);
                 }
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Clientes: ------------------");
+            foreach (ClienteControl control in controlesCliente)
+            {
+                Console.WriteLine(control.Cliente.Name);
+            }
+
+            Console.WriteLine("Contactos: ------------------");
+            foreach (ContactoControl control in controlesContactos)
+            {
+                Console.WriteLine(control.Contacto.Name);
+            }
+
+            Console.WriteLine("Tareas: ------------------");
+            foreach (TareaControl control in controlesTareas)
+            {
+                Console.WriteLine(control.Tarea.Name);
             }
         }
     }

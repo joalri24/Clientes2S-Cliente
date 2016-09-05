@@ -28,7 +28,7 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
-        private Contact Contacto;
+        public Contact Contacto;
 
 
         // ------------------------------------------------------------------
