@@ -305,6 +305,7 @@ namespace InterfazClientes2Secure
                         contacto.Telephone = textBoxTelCP.Text;
 
                         response = await httpClient.PutAsJsonAsync(Form1.RUTA_CONTACTOS + "/" + contacto.Id, contacto);
+                        Form1.ActualizarContacto(contacto);
 
                         if (!response.IsSuccessStatusCode)
                             MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
@@ -488,8 +489,6 @@ namespace InterfazClientes2Secure
             TextBox textbox = sender as TextBox;
             toolStripLabelCliente.Text = textbox.Text;
         }
-
-       
 
     }
 }

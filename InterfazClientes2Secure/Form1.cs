@@ -240,6 +240,11 @@ namespace InterfazClientes2Secure
             }
         }
 
+        /// <summary>
+        /// TODO borrar.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripButton1_Click(object sender, EventArgs e)
         {
             Console.WriteLine("Clientes: ------------------");
@@ -258,6 +263,17 @@ namespace InterfazClientes2Secure
             foreach (TareaControl control in controlesTareas)
             {
                 Console.WriteLine(control.Tarea.Name);
+            }
+        }
+
+        public static void ActualizarContacto(Contact contacto)
+        {
+
+            foreach (ContactoControl control in controlesContactos)
+            {
+                if (control.Contacto.Id == contacto.Id)
+                    control.ImprimirDatosContacto(contacto);
+                
             }
         }
     }

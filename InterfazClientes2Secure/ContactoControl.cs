@@ -141,5 +141,13 @@ namespace InterfazClientes2Secure
             TextBox textbox = sender as TextBox;
             toolStripLabelContacto.Text = textbox.Text;
         }
+
+        public void ImprimirDatosContacto(Contact contacto)
+        {
+            textBoxNombreContacto.Text = contacto.Name;
+            textBoxCargo.Text = contacto.JobTitle;
+            textBoxTelefono.Text = contacto.Telephone;
+            textBoxCorreo.Text = contacto.Mail;
+        }
     }
 }
