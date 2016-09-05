@@ -78,14 +78,14 @@ namespace InterfazClientes2Secure
             if (splitContainerTarea.Visible)
             {
                 splitContainerTarea.Visible = false;
-                this.Height = ALTURA_MINIMIZADO;
+                Height = ALTURA_MINIMIZADO;
                 toolStripButtonMinimizarTarea.Text = "[+]";
                 toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
             }
             else
             {
                 splitContainerTarea.Visible = true;
-                this.Height = ALTURA_ORIGINAL;
+                Height = ALTURA_ORIGINAL;
                 toolStripButtonMinimizarTarea.Text = "[-]";
                 toolStripButtonMinimizarTarea.ToolTipText = "Minimizar";
             }
@@ -239,7 +239,7 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente.
+        /// se hayan realizado sobre la tarea
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -257,6 +257,7 @@ namespace InterfazClientes2Secure
                     Tarea.Name = textBoxTareaNombre.Text;
                     Tarea.Description = textBoxDescripcion.Text;
                     Tarea.Date = dateTimePickerTareaFecha.Value;
+                    // El cambio de estado y de ContactId tiene lugar en otros métodos.
 
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_TAREAS + "/" + Tarea.Id, Tarea);
 
@@ -285,6 +286,8 @@ namespace InterfazClientes2Secure
                 textBoxTareaCargoContacto.Text = contacto.JobTitle;
                 textBoxTareaTelContacto.Text = contacto.Telephone;
                 textBoxTareaCorreoContacto.Text = contacto.Mail;
+
+                GuardarCambiosTarea();
             }
         }
 

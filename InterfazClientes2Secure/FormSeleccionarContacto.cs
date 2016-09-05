@@ -18,6 +18,8 @@ namespace InterfazClientes2Secure
         // Constantes
         // ------------------------------------------------------------------
 
+        const string TODOS_LOS_CONTACTOS = "Todos los contactos: ";
+        const string CONTACTOS_DEL_CLIENTE = "Contactos del cliente: ";
         // ------------------------------------------------------------------
         // Atributos
         // ------------------------------------------------------------------
@@ -31,7 +33,6 @@ namespace InterfazClientes2Secure
         {
             InitializeComponent();
             buttonAceptar.Enabled = false;
-            int IdCliente = 0;
         }
 
         public FormSeleccionarContacto(int idCliente )
@@ -40,7 +41,9 @@ namespace InterfazClientes2Secure
             ObtenerContactosCliente(idCliente);
             buttonAceptar.Enabled = false;
             IdCliente = idCliente;
+            labelCliente.Text = CONTACTOS_DEL_CLIENTE;
         }
+
 
         // ------------------------------------------------------------------
         // Métodos
@@ -116,12 +119,14 @@ namespace InterfazClientes2Secure
                 ObtenerTodosLosContactos();
                 boton.Text = "Mostrar cliente...";
                 boton.Tag = "Cliente";
+                labelCliente.Text = TODOS_LOS_CONTACTOS;
             }
             else if (boton.Tag.ToString() == "Cliente")
             {
                 ObtenerContactosCliente(IdCliente);
                 boton.Text = "Mostrar todos...";
                 boton.Tag = "Todos";
+                labelCliente.Text = CONTACTOS_DEL_CLIENTE;
             }
         }
 
