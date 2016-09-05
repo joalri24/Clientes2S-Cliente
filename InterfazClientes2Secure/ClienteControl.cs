@@ -79,17 +79,6 @@ namespace InterfazClientes2Secure
             textBoxPendientes.Text = Cliente.Pendings;
             CambiarEstado(Cliente.State);
             dateTimePickerUltimoContacto.Value = Cliente.LastContact;
-
-            /**if (cliente.ContactoPrincipal != null)
-            {
-                textBoxNombreCP.Text = cliente.ContactoPrincipal.Nombre;
-                textBoxCorreoCP.Text = cliente.ContactoPrincipal.Correo;
-                textBoxTelCP.Text = cliente.ContactoPrincipal.Telefono;
-                textBoxCargoCP.Text = cliente.ContactoPrincipal.Cargo;
-
-                AgregarContacto(cliente.ContactoPrincipal);
-            }*/
-
         }
 
 
@@ -412,6 +401,26 @@ namespace InterfazClientes2Secure
                     textBoxCorreoCP.Text = contacto.Mail;
                     textBoxTelCP.Text = contacto.Telephone;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Muestra un formulario donde se puede seleccionar un contacto para asociarlo 
+        /// como contacto principal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SeleccionarContacto(object sender, EventArgs e)
+        {
+            var dialogo = new FormSeleccionarContacto(Cliente.Id);
+
+            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                Contact contacto = dialogo.DarContactoSeleccionado();
+                Cliente.MainContactId = contacto.Id;
+                ImprimirDatosContactoPrincipal(contacto);
+                GuardarCambiosCliente();
             }
         }
 

@@ -51,14 +51,15 @@
             this.labelSeguimiento = new System.Windows.Forms.Label();
             this.labelTipoAsociacion = new System.Windows.Forms.Label();
             this.textBoxNombreCliente = new System.Windows.Forms.TextBox();
+            this.groupBoxFecha = new System.Windows.Forms.GroupBox();
+            this.labelUltimoContacto = new System.Windows.Forms.Label();
+            this.dateTimePickerUltimoContacto = new System.Windows.Forms.DateTimePicker();
             this.groupBoxContactoP = new System.Windows.Forms.GroupBox();
             this.buttonSeleccionarUsuario = new System.Windows.Forms.Button();
-            this.dateTimePickerUltimoContacto = new System.Windows.Forms.DateTimePicker();
             this.textBoxCorreoCP = new System.Windows.Forms.TextBox();
             this.textBoxTelCP = new System.Windows.Forms.TextBox();
             this.textBoxCargoCP = new System.Windows.Forms.TextBox();
             this.textBoxNombreCP = new System.Windows.Forms.TextBox();
-            this.labelUltimoContacto = new System.Windows.Forms.Label();
             this.labelCorreoCP = new System.Windows.Forms.Label();
             this.labelTelCP = new System.Windows.Forms.Label();
             this.labelCargoCP = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
-            this.groupBoxFecha = new System.Windows.Forms.GroupBox();
             this.toolStripCliente.SuspendLayout();
             this.tabControlCliente.SuspendLayout();
             this.tabPageResumen.SuspendLayout();
@@ -97,13 +97,13 @@
             this.splitContainerSuperior.Panel2.SuspendLayout();
             this.splitContainerSuperior.SuspendLayout();
             this.groupBoxInfoGeneral.SuspendLayout();
+            this.groupBoxFecha.SuspendLayout();
             this.groupBoxContactoP.SuspendLayout();
             this.groupBoxOtros.SuspendLayout();
             this.tabPageTareas.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.tabPageContactos.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.groupBoxFecha.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripCliente
@@ -374,6 +374,36 @@
             this.textBoxNombreCliente.TextChanged += new System.EventHandler(this.textBoxNombreCliente_TextChanged);
             this.textBoxNombreCliente.Leave += new System.EventHandler(this.GuardarCambiosCliente);
             // 
+            // groupBoxFecha
+            // 
+            this.groupBoxFecha.Controls.Add(this.labelUltimoContacto);
+            this.groupBoxFecha.Controls.Add(this.dateTimePickerUltimoContacto);
+            this.groupBoxFecha.ForeColor = System.Drawing.Color.Brown;
+            this.groupBoxFecha.Location = new System.Drawing.Point(0, 142);
+            this.groupBoxFecha.Name = "groupBoxFecha";
+            this.groupBoxFecha.Size = new System.Drawing.Size(548, 63);
+            this.groupBoxFecha.TabIndex = 1;
+            this.groupBoxFecha.TabStop = false;
+            // 
+            // labelUltimoContacto
+            // 
+            this.labelUltimoContacto.AutoSize = true;
+            this.labelUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelUltimoContacto.Location = new System.Drawing.Point(10, 25);
+            this.labelUltimoContacto.Name = "labelUltimoContacto";
+            this.labelUltimoContacto.Size = new System.Drawing.Size(121, 18);
+            this.labelUltimoContacto.TabIndex = 4;
+            this.labelUltimoContacto.Text = "Último contacto: ";
+            // 
+            // dateTimePickerUltimoContacto
+            // 
+            this.dateTimePickerUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerUltimoContacto.Location = new System.Drawing.Point(137, 25);
+            this.dateTimePickerUltimoContacto.Name = "dateTimePickerUltimoContacto";
+            this.dateTimePickerUltimoContacto.Size = new System.Drawing.Size(250, 21);
+            this.dateTimePickerUltimoContacto.TabIndex = 9;
+            this.dateTimePickerUltimoContacto.ValueChanged += new System.EventHandler(this.GuardarCambiosCliente);
+            // 
             // groupBoxContactoP
             // 
             this.groupBoxContactoP.Controls.Add(this.buttonSeleccionarUsuario);
@@ -403,15 +433,7 @@
             this.buttonSeleccionarUsuario.TabIndex = 10;
             this.buttonSeleccionarUsuario.Text = "...";
             this.buttonSeleccionarUsuario.UseVisualStyleBackColor = true;
-            // 
-            // dateTimePickerUltimoContacto
-            // 
-            this.dateTimePickerUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePickerUltimoContacto.Location = new System.Drawing.Point(137, 25);
-            this.dateTimePickerUltimoContacto.Name = "dateTimePickerUltimoContacto";
-            this.dateTimePickerUltimoContacto.Size = new System.Drawing.Size(250, 21);
-            this.dateTimePickerUltimoContacto.TabIndex = 9;
-            this.dateTimePickerUltimoContacto.ValueChanged += new System.EventHandler(this.GuardarCambiosCliente);
+            this.buttonSeleccionarUsuario.Click += new System.EventHandler(this.SeleccionarContacto);
             // 
             // textBoxCorreoCP
             // 
@@ -444,16 +466,6 @@
             this.textBoxNombreCP.Name = "textBoxNombreCP";
             this.textBoxNombreCP.Size = new System.Drawing.Size(313, 24);
             this.textBoxNombreCP.TabIndex = 5;
-            // 
-            // labelUltimoContacto
-            // 
-            this.labelUltimoContacto.AutoSize = true;
-            this.labelUltimoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelUltimoContacto.Location = new System.Drawing.Point(10, 25);
-            this.labelUltimoContacto.Name = "labelUltimoContacto";
-            this.labelUltimoContacto.Size = new System.Drawing.Size(121, 18);
-            this.labelUltimoContacto.TabIndex = 4;
-            this.labelUltimoContacto.Text = "Último contacto: ";
             // 
             // labelCorreoCP
             // 
@@ -714,17 +726,6 @@
             this.toolStripButton4.Size = new System.Drawing.Size(21, 20);
             this.toolStripButton4.Text = "toolStripButton4";
             // 
-            // groupBoxFecha
-            // 
-            this.groupBoxFecha.Controls.Add(this.labelUltimoContacto);
-            this.groupBoxFecha.Controls.Add(this.dateTimePickerUltimoContacto);
-            this.groupBoxFecha.ForeColor = System.Drawing.Color.Brown;
-            this.groupBoxFecha.Location = new System.Drawing.Point(0, 142);
-            this.groupBoxFecha.Name = "groupBoxFecha";
-            this.groupBoxFecha.Size = new System.Drawing.Size(548, 63);
-            this.groupBoxFecha.TabIndex = 1;
-            this.groupBoxFecha.TabStop = false;
-            // 
             // ClienteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -747,6 +748,8 @@
             this.splitContainerSuperior.ResumeLayout(false);
             this.groupBoxInfoGeneral.ResumeLayout(false);
             this.groupBoxInfoGeneral.PerformLayout();
+            this.groupBoxFecha.ResumeLayout(false);
+            this.groupBoxFecha.PerformLayout();
             this.groupBoxContactoP.ResumeLayout(false);
             this.groupBoxContactoP.PerformLayout();
             this.groupBoxOtros.ResumeLayout(false);
@@ -759,8 +762,6 @@
             this.tabPageContactos.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.groupBoxFecha.ResumeLayout(false);
-            this.groupBoxFecha.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -29,6 +29,10 @@ namespace InterfazClientes2Secure
         // Constructores
         // ------------------------------------------------------------------
 
+        /// <summary>
+        /// Crea un nuevo formulario para seleccionar contactos. Hace una lista con todos los contactos.
+        /// </summary>
+        /// <param name="idCliente"></param>
         public FormSeleccionarContacto()
         {
             InitializeComponent();
@@ -39,6 +43,11 @@ namespace InterfazClientes2Secure
             buttonCambiarContactos.Enabled = false;
         }
 
+        /// <summary>
+        /// Crea un nuevo formulario para seleccionar contactos. Hace una lista con los contactos
+        /// asociados al cliente identificado con el número pasado como parámetro.
+        /// </summary>
+        /// <param name="idCliente"></param>
         public FormSeleccionarContacto(int idCliente )
         {
             InitializeComponent();
