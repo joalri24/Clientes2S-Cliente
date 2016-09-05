@@ -442,6 +442,7 @@
             this.textBoxCorreoCP.Name = "textBoxCorreoCP";
             this.textBoxCorreoCP.Size = new System.Drawing.Size(313, 24);
             this.textBoxCorreoCP.TabIndex = 8;
+            this.textBoxCorreoCP.Leave += new System.EventHandler(this.GuardarCambiosContactoPrincipal);
             // 
             // textBoxTelCP
             // 
@@ -450,6 +451,7 @@
             this.textBoxTelCP.Name = "textBoxTelCP";
             this.textBoxTelCP.Size = new System.Drawing.Size(313, 24);
             this.textBoxTelCP.TabIndex = 7;
+            this.textBoxTelCP.Leave += new System.EventHandler(this.GuardarCambiosContactoPrincipal);
             // 
             // textBoxCargoCP
             // 
@@ -458,6 +460,7 @@
             this.textBoxCargoCP.Name = "textBoxCargoCP";
             this.textBoxCargoCP.Size = new System.Drawing.Size(313, 24);
             this.textBoxCargoCP.TabIndex = 6;
+            this.textBoxCargoCP.Leave += new System.EventHandler(this.GuardarCambiosContactoPrincipal);
             // 
             // textBoxNombreCP
             // 
@@ -466,6 +469,7 @@
             this.textBoxNombreCP.Name = "textBoxNombreCP";
             this.textBoxNombreCP.Size = new System.Drawing.Size(313, 24);
             this.textBoxNombreCP.TabIndex = 5;
+            this.textBoxNombreCP.Leave += new System.EventHandler(this.GuardarCambiosContactoPrincipal);
             // 
             // labelCorreoCP
             // 

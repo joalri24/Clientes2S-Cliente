@@ -449,7 +449,41 @@ namespace InterfazClientes2Secure
             toolStripLabelCliente.Text = textbox.Text;
         }
 
+        /// <summary>
+        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// se hayan realizado sobre el contacto principal.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void GuardarCambiosContactoPrincipal(object sender, EventArgs e)
+        {
 
+            if (Form1.cargando == false)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+
+                    HttpResponseMessage response = await httpClient.GetAsync(Form1.RUTA_CONTACTOS + "/" + Cliente.MainContactId);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Contact contacto = await response.Content.ReadAsAsync<Contact>();
+                        contacto.Name = textBoxNombreCP.Text;
+                        contacto.JobTitle = textBoxCargoCP.Text;
+                        contacto.Mail = textBoxCorreoCP.Text;
+                        contacto.Telephone = textBoxTelCP.Text;
+
+                        response = await httpClient.PutAsJsonAsync(Form1.RUTA_CONTACTOS + "/" + contacto.Id, contacto);
+
+                        if (!response.IsSuccessStatusCode)
+                            MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                    }
+                }
+            }
+        }
 
     }
 }
