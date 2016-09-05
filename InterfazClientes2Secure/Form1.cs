@@ -55,61 +55,6 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------
 
         /// <summary>
-        /// TODO Borrar. Atajo para crear nuevos clientes.
-        /// </summary>
-        private void newToolStripButton_Click(object sender, EventArgs e)
-        {           
-            TableLayoutPanel tablaFondo = tableLayoutClientes;
-            if (vacio)
-                vacio = false;
-            else
-                tablaFondo.RowCount++;
-
-            tablaFondo.Controls.Add(new ClienteControl(), 0, tablaFondo.RowCount - 1);
-            //Console.WriteLine("Rows: " + tablaFondo.RowCount);
-        }
-
-        /// <summary>
-        /// Crear nuevo cliente cuando se hace click en el botón correspondiente.
-        /// </summary>
-        private async void CrearCliente(object sender, EventArgs e)
-        {
-            FormNuevoCliente dialogo = new FormNuevoCliente();
-
-            // Abre una ventana de dialogo para obtener la información del nuevo cliente.
-            if (dialogo.ShowDialog() == DialogResult.OK)
-            {
-
-                Client cliente = new Client(dialogo.darNombreCliente(), dialogo.darTipoAsociacion());
-                using (var httpClient = new HttpClient())
-                {
-                    httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
-                    httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
-                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CLIENTES, cliente);
-
-                    if (response.IsSuccessStatusCode)
-                    {
-                        cliente = await response.Content.ReadAsAsync<Client>(); // Esto se hace para obtener el Id asignado por el servidor.
-                        AgregarClienteControl(cliente);
-                    }                                                            
-                    else
-                        MessageBox.Show("No fue posible guardar el nuevo cliente en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
-                }
-                /* Registra el contacto principal si se rellenaron los campos correspondientes.
-                if (dialogo.darNombreContactoPrincipal() != "")
-                {
-                    Contacto contacto = new Contacto(dialogo.darNombreContactoPrincipal());
-                    contacto.Cargo = dialogo.darCargoContactoPrincipal();
-                    contacto.Correo = dialogo.darCorreoContactoPrincipal();
-                    contacto.Telefono = dialogo.darTelefonoContactoPrincipal();
-
-                    cliente.ContactoPrincipal = contacto;                   
-                }*/                 
-            }                       
-        }
-
-        /// <summary>
         /// Agrega el cliente pasado como parámetro al layout del fondo.
         /// Crea el control correspondiente y lo introduce en una nueva fila.
         /// </summary>
@@ -173,7 +118,7 @@ namespace InterfazClientes2Secure
                         // Obtener las tarea del cliente y las agrega en los controles correspondientes.
                         response = await httpClient.GetAsync(RUTA_CLIENTES + "/" + cliente.Id + RUTA_TAREAS_CLIENTE);
                         if (response.IsSuccessStatusCode)
-                        {                          
+                        {
                             Job[] tareas = await response.Content.ReadAsAsync<Job[]>();
                             foreach (var tarea in tareas)
                                 controlCliente.AgregarControlTarea(tarea);
@@ -192,5 +137,77 @@ namespace InterfazClientes2Secure
             }
             cargando = false;
         }
+
+        /// <summary>
+        /// Crear nuevo cliente cuando se hace click en el botón correspondiente.
+        /// </summary>
+        private async void CrearCliente(object sender, EventArgs e)
+        {
+            FormNuevoCliente dialogo = new FormNuevoCliente();
+
+            // Abre una ventana de dialogo para obtener la información del nuevo cliente.
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+
+                Client cliente = new Client(dialogo.darNombreCliente(), dialogo.darTipoAsociacion());
+                ClienteControl clienteControl = null;
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CLIENTES, cliente);
+                    
+                    if (response.IsSuccessStatusCode)
+                    {
+                        cliente = await response.Content.ReadAsAsync<Client>(); // Esto se hace para obtener el Id asignado por el servidor.
+                        //AgregarClienteControl(cliente);
+                        clienteControl = new ClienteControl(cliente);
+                        AgregarClienteControl(clienteControl);
+                    }
+                    else
+                    {
+                        MessageBox.Show("No fue posible guardar el nuevo cliente en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                        return;
+                    }
+                        
+                }
+                
+                // Registra el contacto principal si se rellenaron los campos correspondientes.                     
+                if (dialogo.CrearNuevoContacto  )
+                {
+                    // Si se va a crear un nuevo contacto, es necesario que al menos el campo del nombre no esté vacío.
+                    if(dialogo.darNombreContactoPrincipal() != "")
+                    {
+                        Contact contacto = new Contact(dialogo.darNombreContactoPrincipal());
+                        contacto.JobTitle = dialogo.darCargoContactoPrincipal();
+                        contacto.Mail = dialogo.darCorreoContactoPrincipal();
+                        contacto.Telephone = dialogo.darTelefonoContactoPrincipal();
+                        contacto.ClientId = cliente.Id;
+
+                        // Envía el query POST
+                        using (var httpClient = new HttpClient())
+                        {
+                            httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                            httpClient.DefaultRequestHeaders.Accept.Clear();
+                            httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                            HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CONTACTOS, contacto);
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                contacto = await response.Content.ReadAsAsync<Contact>(); // Esto se hace para obtener el Id asignado por el servidor.
+                                clienteControl.AgregarControlContacto(contacto);
+                            }
+                            else
+                                MessageBox.Show("No fue posible guardar el nuevo contacto en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                        }
+                    }
+                }
+                else   // Esto sucede cuando se selecciona un contacto de la lista de contactos existentes.
+                {
+
+                }
+            }
+        }    
     }
 }

@@ -16,10 +16,21 @@ namespace InterfazClientes2Secure
     /// </summary>
     public partial class FormNuevoCliente : Form
     {
+
+        // ------------------------------------------------------------------
+        // Atributos
+        // ------------------------------------------------------------------
+
+        public bool CrearNuevoContacto { get; }
+        // ------------------------------------------------------------------
+        // Contructores
+        // ------------------------------------------------------------------
+
         public FormNuevoCliente()
         {
             InitializeComponent();
             textBoxNombreCliente.Select();
+            CrearNuevoContacto = true;
         }
 
         // ------------------------------------------------------------------

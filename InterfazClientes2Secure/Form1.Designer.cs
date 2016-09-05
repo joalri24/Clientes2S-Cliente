@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonCargar = new System.Windows.Forms.ToolStripButton();
             this.newToolStripButton = new System.Windows.Forms.ToolStripButton();
             this.tableLayoutClientes = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -62,7 +63,6 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonCargar = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -74,9 +74,19 @@
             this.newToolStripButton});
             this.toolStrip1.Location = new System.Drawing.Point(0, 24);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(1014, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(1077, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolStripButtonCargar
+            // 
+            this.toolStripButtonCargar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonCargar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCargar.Image")));
+            this.toolStripButtonCargar.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCargar.Name = "toolStripButtonCargar";
+            this.toolStripButtonCargar.Size = new System.Drawing.Size(91, 22);
+            this.toolStripButtonCargar.Text = "Cargar Clientes";
+            this.toolStripButtonCargar.Click += new System.EventHandler(this.CargarClientes);
             // 
             // newToolStripButton
             // 
@@ -99,7 +109,7 @@
             this.tableLayoutClientes.Name = "tableLayoutClientes";
             this.tableLayoutClientes.RowCount = 1;
             this.tableLayoutClientes.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutClientes.Size = new System.Drawing.Size(1014, 485);
+            this.tableLayoutClientes.Size = new System.Drawing.Size(1077, 591);
             this.tableLayoutClientes.TabIndex = 1;
             // 
             // menuStrip1
@@ -111,7 +121,7 @@
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1014, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1077, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -337,21 +347,11 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // toolStripButtonCargar
-            // 
-            this.toolStripButtonCargar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCargar.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCargar.Image")));
-            this.toolStripButtonCargar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCargar.Name = "toolStripButtonCargar";
-            this.toolStripButtonCargar.Size = new System.Drawing.Size(91, 22);
-            this.toolStripButtonCargar.Text = "Cargar Clientes";
-            this.toolStripButtonCargar.Click += new System.EventHandler(this.CargarClientes);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1014, 534);
+            this.ClientSize = new System.Drawing.Size(1077, 640);
             this.Controls.Add(this.tableLayoutClientes);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.menuStrip1);
