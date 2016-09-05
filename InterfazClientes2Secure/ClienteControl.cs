@@ -506,5 +506,9 @@ namespace InterfazClientes2Secure
             toolStripLabelCliente.Text = textbox.Text;
         }
 
+        private void toolStripButtonMinimizarTodos_Click(object sender, EventArgs e)
+        {
+            Form1.MinimizarTareas();
+        }
     }
 }
