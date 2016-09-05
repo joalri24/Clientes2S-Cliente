@@ -146,6 +146,9 @@ namespace InterfazClientes2Secure
         private async void CargarClientes(object sender, EventArgs e)
         {
 
+            tableLayoutClientes.Controls.Clear();
+            tableLayoutClientes.RowCount = 1;
+            vacio = true;
             // Obtener los clientes con un query GET.
             cargando = true;
             using (var httpClient = new HttpClient())
