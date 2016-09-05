@@ -142,8 +142,28 @@ namespace InterfazClientes2Secure
                 ContactoPrincipal = dialogo.DarContactoSeleccionado();
                 CrearNuevoContacto = false;
                 ImprimirDatosContactoPrincipal(ContactoPrincipal);
+                textBoxNombreContacto.ReadOnly = true;
+                textBoxCargo.ReadOnly = true;
+                textBoxCorreo.ReadOnly = true;
+                textBoxTelefono.ReadOnly = true;
+                buttonCrearNuevo.Enabled = true;
             }
         }
 
+        private void ButtonCrearNuevoContacto_Click(object sender, EventArgs e)
+        {
+            Button boton = sender as Button;
+            boton.Enabled = false;
+            CrearNuevoContacto = true;
+            textBoxNombreContacto.ReadOnly = false;
+            textBoxCargo.ReadOnly = false;
+            textBoxCorreo.ReadOnly = false;
+            textBoxTelefono.ReadOnly = false;
+            textBoxNombreContacto.Text = "";
+            textBoxCargo.Text = "";
+            textBoxCorreo.Text = "";
+            textBoxTelefono.Text = "";
+
+        }
     }
 }

@@ -36,6 +36,7 @@
             this.textBoxNombreCliente = new System.Windows.Forms.TextBox();
             this.labelNombreCliente = new System.Windows.Forms.Label();
             this.groupBoxContacto = new System.Windows.Forms.GroupBox();
+            this.buttonCrearNuevo = new System.Windows.Forms.Button();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
             this.labelCorreo = new System.Windows.Forms.Label();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
@@ -124,6 +125,7 @@
             // 
             // groupBoxContacto
             // 
+            this.groupBoxContacto.Controls.Add(this.buttonCrearNuevo);
             this.groupBoxContacto.Controls.Add(this.textBoxCorreo);
             this.groupBoxContacto.Controls.Add(this.labelCorreo);
             this.groupBoxContacto.Controls.Add(this.textBoxTelefono);
@@ -136,10 +138,22 @@
             this.groupBoxContacto.ForeColor = System.Drawing.Color.Brown;
             this.groupBoxContacto.Location = new System.Drawing.Point(363, 12);
             this.groupBoxContacto.Name = "groupBoxContacto";
-            this.groupBoxContacto.Size = new System.Drawing.Size(350, 166);
+            this.groupBoxContacto.Size = new System.Drawing.Size(384, 166);
             this.groupBoxContacto.TabIndex = 1;
             this.groupBoxContacto.TabStop = false;
             this.groupBoxContacto.Text = "Contacto Principal (opcional)";
+            // 
+            // buttonCrearNuevo
+            // 
+            this.buttonCrearNuevo.Enabled = false;
+            this.buttonCrearNuevo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.buttonCrearNuevo.Location = new System.Drawing.Point(351, 31);
+            this.buttonCrearNuevo.Name = "buttonCrearNuevo";
+            this.buttonCrearNuevo.Size = new System.Drawing.Size(25, 25);
+            this.buttonCrearNuevo.TabIndex = 11;
+            this.buttonCrearNuevo.Text = "+";
+            this.buttonCrearNuevo.UseVisualStyleBackColor = true;
+            this.buttonCrearNuevo.Click += new System.EventHandler(this.ButtonCrearNuevoContacto_Click);
             // 
             // textBoxCorreo
             // 
@@ -197,6 +211,7 @@
             // 
             // buttonSeleccionar
             // 
+            this.buttonSeleccionar.ForeColor = System.Drawing.SystemColors.ControlText;
             this.buttonSeleccionar.Location = new System.Drawing.Point(320, 30);
             this.buttonSeleccionar.Name = "buttonSeleccionar";
             this.buttonSeleccionar.Size = new System.Drawing.Size(25, 25);
@@ -226,7 +241,7 @@
             // buttonCancelar
             // 
             this.buttonCancelar.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancelar.Location = new System.Drawing.Point(638, 184);
+            this.buttonCancelar.Location = new System.Drawing.Point(672, 184);
             this.buttonCancelar.Name = "buttonCancelar";
             this.buttonCancelar.Size = new System.Drawing.Size(75, 23);
             this.buttonCancelar.TabIndex = 5;
@@ -237,7 +252,7 @@
             // 
             this.buttonAceptar.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.buttonAceptar.Enabled = false;
-            this.buttonAceptar.Location = new System.Drawing.Point(557, 184);
+            this.buttonAceptar.Location = new System.Drawing.Point(591, 181);
             this.buttonAceptar.Name = "buttonAceptar";
             this.buttonAceptar.Size = new System.Drawing.Size(75, 23);
             this.buttonAceptar.TabIndex = 4;
@@ -257,7 +272,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(724, 216);
+            this.ClientSize = new System.Drawing.Size(759, 216);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonAceptar);
             this.Controls.Add(this.buttonCancelar);
@@ -296,5 +311,6 @@
         private System.Windows.Forms.TextBox textBoxNombreContacto;
         private System.Windows.Forms.Label labelNombreContacto;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonCrearNuevo;
     }
 }
