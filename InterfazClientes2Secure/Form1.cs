@@ -76,6 +76,32 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------
 
         /// <summary>
+        /// Actualiza todos los controles que deben actualizarse al modificar los datos de un cliente.
+        /// </summary>
+        /// <param name="contacto"></param>
+        public static void ActualizarContacto(Contact contacto)
+        {
+
+            foreach (ContactoControl control in controlesContactos)
+            {
+                if (control.Contacto.Id == contacto.Id)
+                    control.ImprimirDatosContacto(contacto);
+            }
+
+            foreach (TareaControl control in controlesTareas)
+            {
+                if (control.Tarea.ContactId == contacto.Id)
+                    control.ImprimirDatosContacto(contacto);
+            }
+
+            foreach (ClienteControl control in controlesCliente)
+            {
+                if (control.Cliente.MainContactId == contacto.Id)
+                    control.ImprimirDatosContactoPrincipal(contacto);
+            }
+        }
+
+        /// <summary>
         /// Agrega el cliente pasado como parámetro al layout del fondo.
         /// Crea el control correspondiente y lo introduce en una nueva fila.
         /// </summary>
@@ -119,6 +145,7 @@ namespace InterfazClientes2Secure
         /// </summary>
         private async void CargarClientes(object sender, EventArgs e)
         {
+
             // Obtener los clientes con un query GET.
             cargando = true;
             using (var httpClient = new HttpClient())
@@ -240,41 +267,5 @@ namespace InterfazClientes2Secure
             }
         }
 
-        /// <summary>
-        /// TODO borrar.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Clientes: ------------------");
-            foreach (ClienteControl control in controlesCliente)
-            {
-                Console.WriteLine(control.Cliente.Name);
-            }
-
-            Console.WriteLine("Contactos: ------------------");
-            foreach (ContactoControl control in controlesContactos)
-            {
-                Console.WriteLine(control.Contacto.Name);
-            }
-
-            Console.WriteLine("Tareas: ------------------");
-            foreach (TareaControl control in controlesTareas)
-            {
-                Console.WriteLine(control.Tarea.Name);
-            }
-        }
-
-        public static void ActualizarContacto(Contact contacto)
-        {
-
-            foreach (ContactoControl control in controlesContactos)
-            {
-                if (control.Contacto.Id == contacto.Id)
-                    control.ImprimirDatosContacto(contacto);
-                
-            }
-        }
     }
 }

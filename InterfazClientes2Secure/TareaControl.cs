@@ -210,8 +210,7 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente. Se ejecuta al recibir ciertos
-        /// eventos de la interfaz.
+        /// se hayan realizado sobre el cliente. Se ejecuta al recibir ciertos eventos de la interfaz.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -293,7 +292,7 @@ namespace InterfazClientes2Secure
         /// del contacto pasado como parámetro.
         /// </summary>
         /// <param name="contacto"></param>
-        private void ImprimirDatosContacto(Contact contacto)
+        public void ImprimirDatosContacto(Contact contacto)
         {
             textBoxTareaNombreContacto.Text = contacto.Name;
             textBoxTareaCargoContacto.Text = contacto.JobTitle;

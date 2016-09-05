@@ -99,6 +99,7 @@ namespace InterfazClientes2Secure
                     Contacto.Notes = textBoxNotasContacto.Text;
 
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CONTACTOS + "/" + Contacto.Id, Contacto);
+                    Form1.ActualizarContacto(Contacto);
 
                     if (!response.IsSuccessStatusCode)
                         MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
