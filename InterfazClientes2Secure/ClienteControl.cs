@@ -44,7 +44,7 @@ namespace InterfazClientes2Secure
         private bool hayContactos;
 
         //private Cliente cliente;
-        private Client Cliente;
+        public Client Cliente;
 
 
         // ------------------------------------------------------------------
@@ -253,13 +253,12 @@ namespace InterfazClientes2Secure
             }
         }
 
+
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
         /// se hayan realizado sobre el cliente
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void GuardarCambiosCliente()
+        public async void GuardarCambiosCliente()
         {
 
             if (Form1.cargando == false)
@@ -283,6 +282,19 @@ namespace InterfazClientes2Secure
                         MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
                 }
             }
+        }
+
+        /// <summary>
+        /// Actualiza la interfaz para que los campos correspondientes muestren los datos 
+        /// del contacto pasado como parámetro.
+        /// </summary>
+        /// <param name="contacto"></param>
+        public void ImprimirDatosContactoPrincipal(Contact contacto)
+        {
+            textBoxNombreCP.Text = contacto.Name;
+            textBoxCargoCP.Text = contacto.JobTitle;
+            textBoxTelCP.Text = contacto.Telephone;
+            textBoxCorreoCP.Text = contacto.Mail;
         }
 
         /// <summary>
@@ -426,6 +438,9 @@ namespace InterfazClientes2Secure
         {
             TextBox textbox = sender as TextBox;
             toolStripLabelCliente.Text = textbox.Text;
-        }      
+        }
+
+
+
     }
 }

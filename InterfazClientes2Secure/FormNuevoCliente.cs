@@ -21,7 +21,9 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
-        public bool CrearNuevoContacto { get; }
+        public bool CrearNuevoContacto { get; set; }
+
+        private Contact ContactoPrincipal;
         // ------------------------------------------------------------------
         // Contructores
         // ------------------------------------------------------------------
@@ -31,6 +33,7 @@ namespace InterfazClientes2Secure
             InitializeComponent();
             textBoxNombreCliente.Select();
             CrearNuevoContacto = true;
+            ContactoPrincipal = null;
         }
 
         // ------------------------------------------------------------------
@@ -103,6 +106,43 @@ namespace InterfazClientes2Secure
         public string darCorreoContactoPrincipal()
         {
             return textBoxCorreo.Text;
+        }
+
+        public Contact darContactoSeleccionado()
+        {
+            return ContactoPrincipal;
+        }
+
+        /// <summary>
+        /// Actualiza la interfaz para que los campos correspondientes muestren los datos 
+        /// del contacto pasado como parámetro.
+        /// </summary>
+        /// <param name="contacto"></param>
+        public void ImprimirDatosContactoPrincipal(Contact contacto)
+        {
+            textBoxNombreContacto.Text = contacto.Name;
+            textBoxCargo.Text = contacto.JobTitle;
+            textBoxTelefono.Text = contacto.Telephone;
+            textBoxCorreo.Text = contacto.Mail;
+        }
+
+        /// <summary>
+        /// Muestra un formulario donde se puede seleccionar un contacto para asociarlo 
+        /// con la tarea.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SeleccionarContacto(object sender, EventArgs e)
+        {
+            var dialogo = new FormSeleccionarContacto();
+
+            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                ContactoPrincipal = dialogo.DarContactoSeleccionado();
+                CrearNuevoContacto = false;
+                ImprimirDatosContactoPrincipal(ContactoPrincipal);
+            }
         }
 
     }

@@ -174,7 +174,7 @@ namespace InterfazClientes2Secure
                 }
                 
                 // Registra el contacto principal si se rellenaron los campos correspondientes.                     
-                if (dialogo.CrearNuevoContacto  )
+                if (dialogo.CrearNuevoContacto)
                 {
                     // Si se va a crear un nuevo contacto, es necesario que al menos el campo del nombre no esté vacío.
                     if(dialogo.darNombreContactoPrincipal() != "")
@@ -196,6 +196,9 @@ namespace InterfazClientes2Secure
                             if (response.IsSuccessStatusCode)
                             {
                                 contacto = await response.Content.ReadAsAsync<Contact>(); // Esto se hace para obtener el Id asignado por el servidor.
+                                clienteControl.Cliente.MainContactId = contacto.Id;
+                                clienteControl.GuardarCambiosCliente();
+                                clienteControl.ImprimirDatosContactoPrincipal(contacto);
                                 clienteControl.AgregarControlContacto(contacto);
                             }
                             else
@@ -205,9 +208,12 @@ namespace InterfazClientes2Secure
                 }
                 else   // Esto sucede cuando se selecciona un contacto de la lista de contactos existentes.
                 {
-
+                    Contact contacto = dialogo.darContactoSeleccionado();
+                    clienteControl.Cliente.MainContactId = contacto.Id;
+                    clienteControl.GuardarCambiosCliente();
+                    clienteControl.ImprimirDatosContactoPrincipal(contacto);
                 }
             }
-        }    
+        }
     }
 }

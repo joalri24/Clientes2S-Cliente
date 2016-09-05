@@ -282,7 +282,8 @@ namespace InterfazClientes2Secure
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
                 Contact contacto = dialogo.DarContactoSeleccionado();
-                ImprimirDatosContactoPrincipal(contacto);
+                Tarea.ContactId = contacto.Id;
+                ImprimirDatosContacto(contacto);
                 GuardarCambiosTarea();
             }
         }
@@ -292,9 +293,8 @@ namespace InterfazClientes2Secure
         /// del contacto pasado como parámetro.
         /// </summary>
         /// <param name="contacto"></param>
-        private void ImprimirDatosContactoPrincipal(Contact contacto)
+        private void ImprimirDatosContacto(Contact contacto)
         {
-            Tarea.ContactId = contacto.Id;
             textBoxTareaNombreContacto.Text = contacto.Name;
             textBoxTareaCargoContacto.Text = contacto.JobTitle;
             textBoxTareaTelContacto.Text = contacto.Telephone;
@@ -317,7 +317,7 @@ namespace InterfazClientes2Secure
                 if (response.IsSuccessStatusCode)
                 {
                     Contact contacto = await response.Content.ReadAsAsync<Contact>();
-                    ImprimirDatosContactoPrincipal(contacto);
+                    ImprimirDatosContacto(contacto);
                 }
             }
         }

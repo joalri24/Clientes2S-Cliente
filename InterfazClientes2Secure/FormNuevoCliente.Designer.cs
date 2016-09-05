@@ -203,6 +203,7 @@
             this.buttonSeleccionar.TabIndex = 6;
             this.buttonSeleccionar.Text = "...";
             this.buttonSeleccionar.UseVisualStyleBackColor = true;
+            this.buttonSeleccionar.Click += new System.EventHandler(this.SeleccionarContacto);
             // 
             // textBoxNombreContacto
             // 

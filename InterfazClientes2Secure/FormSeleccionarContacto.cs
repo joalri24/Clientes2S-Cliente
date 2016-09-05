@@ -33,6 +33,10 @@ namespace InterfazClientes2Secure
         {
             InitializeComponent();
             buttonAceptar.Enabled = false;
+            labelCliente.Text = TODOS_LOS_CONTACTOS;
+            ObtenerTodosLosContactos();
+            buttonAceptar.Enabled = false;
+            buttonCambiarContactos.Enabled = false;
         }
 
         public FormSeleccionarContacto(int idCliente )
