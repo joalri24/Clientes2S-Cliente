@@ -352,6 +352,22 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
+        /// Minimiza el control.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Minimizar()
+        {
+            if (tabControlCliente.Visible)
+            {
+                tabControlCliente.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizar.Text = "[+]";
+                toolStripButtonMinimizar.ToolTipText = "Maximizar";
+            }
+        }
+
+        /// <summary>
         /// Crear una nueva tarea. Envía un query POST para crear la tarea en el backend.
         /// Si la respuesta es favorable, agrega la tarea a la interfaz.
         /// </summary>

@@ -189,6 +189,7 @@ namespace InterfazClientes2Secure
                     }
                 }
             }
+            MinimizarClientes();
             cargando = false;
         }
 
@@ -269,6 +270,28 @@ namespace InterfazClientes2Secure
                 }
             }
         }
+
+        /// <summary>
+        /// Obtiene los clientes desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// </summary>
+        private void MinimizarClientes(object sender, EventArgs e)
+        {
+            MinimizarClientes();
+            
+        }
+
+        /// <summary>
+        /// Obtiene los clientes desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// </summary>
+        private void MinimizarClientes()
+        {
+            foreach (ClienteControl control in controlesCliente)
+                control.Minimizar();
+
+        }
+
 
     }
 }

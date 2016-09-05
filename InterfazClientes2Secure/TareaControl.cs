@@ -92,6 +92,17 @@ namespace InterfazClientes2Secure
             }
         }
 
+        public void Minimizar()
+        {
+            if (splitContainerTarea.Visible)
+            {
+                splitContainerTarea.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizarTarea.Text = "[+]";
+                toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
+            }
+        }
+
         /// <summary>
         /// Cambia el estado del cliente. En la interfaz el color de la
         /// barra donde aparece el nombre cambia de color.
@@ -278,7 +289,7 @@ namespace InterfazClientes2Secure
             var dialogo = new FormSeleccionarContacto(Tarea.ClientId);
 
             // Abre una ventana de dialogo para obtener la información del nuevo contacto.
-            if (dialogo.ShowDialog() == DialogResult.OK)
+            if (dialogo.ShowDialog() == DialogResult.OK && dialogo.DarContactoSeleccionado() != null)
             {
                 Contact contacto = dialogo.DarContactoSeleccionado();
                 Tarea.ContactId = contacto.Id;
@@ -320,5 +331,7 @@ namespace InterfazClientes2Secure
                 }
             }
         }
+
+
     }
 }

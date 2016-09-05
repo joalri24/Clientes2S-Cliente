@@ -132,6 +132,22 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
+        /// Minimiza el control cuando se hace click en el boton correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        public void Minimizar()
+        {
+            if (splitContainerContacto.Visible)
+            {
+                splitContainerContacto.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizarContacto.Text = "[+]";
+                toolStripButtonMinimizarContacto.ToolTipText = "Maximizar";
+            }
+        }
+
+        /// <summary>
         /// Actualiza el nombre del contacto en la barra superior cuando
         /// se modifica el campo correspondiente.
         /// </summary>
@@ -150,5 +166,6 @@ namespace InterfazClientes2Secure
             textBoxTelefono.Text = contacto.Telephone;
             textBoxCorreo.Text = contacto.Mail;
         }
+
     }
 }
