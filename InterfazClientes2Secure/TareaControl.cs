@@ -61,6 +61,7 @@ namespace InterfazClientes2Secure
             textBoxDescripcion.Text = Tarea.Description;
             dateTimePickerTareaFecha.Value = Tarea.Date;
             CambiarEstado(Tarea.State);
+            ObtenerDatosContactoPrincipal();
         }
 
         // ------------------------------------------------------------------
@@ -239,7 +240,7 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre la tarea
+        /// se hayan realizado sobre la tarea.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -281,15 +282,44 @@ namespace InterfazClientes2Secure
             if (dialogo.ShowDialog() == DialogResult.OK)
             {
                 Contact contacto = dialogo.DarContactoSeleccionado();
-                Tarea.ContactId = contacto.Id;
-                textBoxTareaNombreContacto.Text = contacto.Name;
-                textBoxTareaCargoContacto.Text = contacto.JobTitle;
-                textBoxTareaTelContacto.Text = contacto.Telephone;
-                textBoxTareaCorreoContacto.Text = contacto.Mail;
-
+                ImprimirDatosContactoPrincipal(contacto);
                 GuardarCambiosTarea();
             }
         }
 
+        /// <summary>
+        /// Actualiza la interfaz para que los campos correspondientes muestren los datos 
+        /// del contacto pasado como parámetro.
+        /// </summary>
+        /// <param name="contacto"></param>
+        private void ImprimirDatosContactoPrincipal(Contact contacto)
+        {
+            Tarea.ContactId = contacto.Id;
+            textBoxTareaNombreContacto.Text = contacto.Name;
+            textBoxTareaCargoContacto.Text = contacto.JobTitle;
+            textBoxTareaTelContacto.Text = contacto.Telephone;
+            textBoxTareaCorreoContacto.Text = contacto.Mail;
+        }
+
+        /// <summary>
+        /// Busca en el servidor los datos del contacto pricipal utilizando el su id.
+        /// Si no obtiene una respuesta exitosa, no hace nada.
+        /// </summary>
+        private async void ObtenerDatosContactoPrincipal()
+        {
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+
+                HttpResponseMessage response = await httpClient.GetAsync(Form1.RUTA_CONTACTOS + "/" + Tarea.ContactId);
+                if (response.IsSuccessStatusCode)
+                {
+                    Contact contacto = await response.Content.ReadAsAsync<Contact>();
+                    ImprimirDatosContactoPrincipal(contacto);
+                }
+            }
+        }
     }
 }
