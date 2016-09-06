@@ -20,7 +20,7 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------------------------
 
         // Tamaños para maximizar y minimizar
-        private const int ALTURA_ORIGINAL = 210;
+        private const int ALTURA_ORIGINAL = 230;
         private const int ALTURA_MINIMIZADO = 25;
 
 

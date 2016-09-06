@@ -472,7 +472,7 @@ namespace InterfazClientes2Secure
             var dialogo = new FormSeleccionarContacto(Cliente.Id);
 
             // Abre una ventana de dialogo para obtener la información del nuevo contacto.
-            if (dialogo.ShowDialog() == DialogResult.OK)
+            if (dialogo.ShowDialog() == DialogResult.OK && dialogo.DarContactoSeleccionado() != null)
             {
                 Contact contacto = dialogo.DarContactoSeleccionado();
                 Cliente.MainContactId = contacto.Id;

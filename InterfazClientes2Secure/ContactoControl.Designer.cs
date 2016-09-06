@@ -37,8 +37,6 @@
             this.groupBoxInfo = new System.Windows.Forms.GroupBox();
             this.textBoxCorreo = new System.Windows.Forms.TextBox();
             this.labelCorreoContacto = new System.Windows.Forms.Label();
-            this.textBoxCelular = new System.Windows.Forms.TextBox();
-            this.labelCelularContacto = new System.Windows.Forms.Label();
             this.textBoxTelefono = new System.Windows.Forms.TextBox();
             this.labelTelefonoContacto = new System.Windows.Forms.Label();
             this.textBoxCargo = new System.Windows.Forms.TextBox();
@@ -125,8 +123,6 @@
             // 
             this.groupBoxInfo.Controls.Add(this.textBoxCorreo);
             this.groupBoxInfo.Controls.Add(this.labelCorreoContacto);
-            this.groupBoxInfo.Controls.Add(this.textBoxCelular);
-            this.groupBoxInfo.Controls.Add(this.labelCelularContacto);
             this.groupBoxInfo.Controls.Add(this.textBoxTelefono);
             this.groupBoxInfo.Controls.Add(this.labelTelefonoContacto);
             this.groupBoxInfo.Controls.Add(this.textBoxCargo);
@@ -145,7 +141,7 @@
             // textBoxCorreo
             // 
             this.textBoxCorreo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCorreo.Location = new System.Drawing.Point(89, 130);
+            this.textBoxCorreo.Location = new System.Drawing.Point(89, 109);
             this.textBoxCorreo.Name = "textBoxCorreo";
             this.textBoxCorreo.Size = new System.Drawing.Size(330, 24);
             this.textBoxCorreo.TabIndex = 9;
@@ -156,30 +152,11 @@
             // 
             this.labelCorreoContacto.AutoSize = true;
             this.labelCorreoContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCorreoContacto.Location = new System.Drawing.Point(6, 133);
+            this.labelCorreoContacto.Location = new System.Drawing.Point(6, 112);
             this.labelCorreoContacto.Name = "labelCorreoContacto";
             this.labelCorreoContacto.Size = new System.Drawing.Size(59, 18);
             this.labelCorreoContacto.TabIndex = 8;
             this.labelCorreoContacto.Text = "Correo:";
-            // 
-            // textBoxCelular
-            // 
-            this.textBoxCelular.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCelular.Location = new System.Drawing.Point(89, 106);
-            this.textBoxCelular.Name = "textBoxCelular";
-            this.textBoxCelular.Size = new System.Drawing.Size(330, 24);
-            this.textBoxCelular.TabIndex = 7;
-            this.textBoxCelular.Text = "99-999-99";
-            // 
-            // labelCelularContacto
-            // 
-            this.labelCelularContacto.AutoSize = true;
-            this.labelCelularContacto.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCelularContacto.Location = new System.Drawing.Point(6, 109);
-            this.labelCelularContacto.Name = "labelCelularContacto";
-            this.labelCelularContacto.Size = new System.Drawing.Size(58, 18);
-            this.labelCelularContacto.TabIndex = 6;
-            this.labelCelularContacto.Text = "Celular:";
             // 
             // textBoxTelefono
             // 
@@ -331,8 +308,6 @@
         private System.Windows.Forms.GroupBox groupBoxOtros;
         private System.Windows.Forms.TextBox textBoxCorreo;
         private System.Windows.Forms.Label labelCorreoContacto;
-        private System.Windows.Forms.TextBox textBoxCelular;
-        private System.Windows.Forms.Label labelCelularContacto;
         private System.Windows.Forms.TextBox textBoxTelefono;
         private System.Windows.Forms.Label labelTelefonoContacto;
         private System.Windows.Forms.TextBox textBoxCargo;

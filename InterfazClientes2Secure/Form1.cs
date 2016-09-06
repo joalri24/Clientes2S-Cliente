@@ -27,6 +27,7 @@ namespace InterfazClientes2Secure
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
         public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
 
+        private const string CARGANDO = "Obteniendo datos desde el servidor...";
         // ------------------------------------------------
         // Atributos
         // ------------------------------------------------
@@ -148,9 +149,10 @@ namespace InterfazClientes2Secure
 
             tableLayoutClientes.Controls.Clear();
             tableLayoutClientes.RowCount = 1;
-            vacio = true;
-            // Obtener los clientes con un query GET.
+            vacio = true;            
             cargando = true;
+            toolStripLabelMensaje.Text = CARGANDO;
+            // Obtener los clientes con un query GET.
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
@@ -191,6 +193,7 @@ namespace InterfazClientes2Secure
             }
             MinimizarClientes();
             cargando = false;
+            toolStripLabelMensaje.Text = "";
         }
 
         /// <summary>
