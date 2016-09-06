@@ -84,7 +84,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButton4 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonMinimizarContacto = new System.Windows.Forms.ToolStripButton();
             this.toolStripCliente.SuspendLayout();
             this.tabControlCliente.SuspendLayout();
             this.tabPageResumen.SuspendLayout();
@@ -565,11 +565,11 @@
             this.tableLayoutTareas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutTareas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutTareas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutTareas.Location = new System.Drawing.Point(35, 3);
+            this.tableLayoutTareas.Location = new System.Drawing.Point(29, 3);
             this.tableLayoutTareas.Name = "tableLayoutTareas";
             this.tableLayoutTareas.RowCount = 1;
             this.tableLayoutTareas.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutTareas.Size = new System.Drawing.Size(932, 403);
+            this.tableLayoutTareas.Size = new System.Drawing.Size(938, 403);
             this.tableLayoutTareas.TabIndex = 1;
             // 
             // toolStrip1
@@ -585,7 +585,7 @@
             this.toolStripButtonMinimizarTodos});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(32, 403);
+            this.toolStrip1.Size = new System.Drawing.Size(26, 403);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -637,7 +637,7 @@
             this.toolStripButtonMinimizarTodos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMinimizarTodos.Image")));
             this.toolStripButtonMinimizarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMinimizarTodos.Name = "toolStripButtonMinimizarTodos";
-            this.toolStripButtonMinimizarTodos.Size = new System.Drawing.Size(29, 19);
+            this.toolStripButtonMinimizarTodos.Size = new System.Drawing.Size(23, 19);
             this.toolStripButtonMinimizarTodos.Text = "[-]";
             this.toolStripButtonMinimizarTodos.ToolTipText = "Minimizar todos";
             this.toolStripButtonMinimizarTodos.Click += new System.EventHandler(this.toolStripButtonMinimizarTodos_Click);
@@ -660,11 +660,11 @@
             this.tableLayoutContactos.ColumnCount = 1;
             this.tableLayoutContactos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutContactos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutContactos.Location = new System.Drawing.Point(27, 3);
+            this.tableLayoutContactos.Location = new System.Drawing.Point(35, 3);
             this.tableLayoutContactos.Name = "tableLayoutContactos";
             this.tableLayoutContactos.RowCount = 1;
             this.tableLayoutContactos.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutContactos.Size = new System.Drawing.Size(940, 403);
+            this.tableLayoutContactos.Size = new System.Drawing.Size(932, 403);
             this.tableLayoutContactos.TabIndex = 2;
             // 
             // toolStrip2
@@ -677,10 +677,10 @@
             this.toolStripButton2,
             this.toolStripButton3,
             this.toolStripSeparator5,
-            this.toolStripButton4});
+            this.toolStripButtonMinimizarContacto});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(24, 403);
+            this.toolStrip2.Size = new System.Drawing.Size(32, 403);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -691,7 +691,7 @@
             this.toolStripButtonNuevoContacto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNuevoContacto.Image")));
             this.toolStripButtonNuevoContacto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonNuevoContacto.Name = "toolStripButtonNuevoContacto";
-            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(21, 23);
+            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(22, 23);
             this.toolStripButtonNuevoContacto.Text = "+";
             this.toolStripButtonNuevoContacto.ToolTipText = "Añadir contacto";
             this.toolStripButtonNuevoContacto.Click += new System.EventHandler(this.NuevoContacto_Click);
@@ -699,7 +699,7 @@
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(22, 6);
             // 
             // toolStripButton2
             // 
@@ -707,7 +707,7 @@
             this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(21, 20);
+            this.toolStripButton2.Size = new System.Drawing.Size(22, 20);
             this.toolStripButton2.Text = "toolStripButton2";
             // 
             // toolStripButton3
@@ -716,22 +716,24 @@
             this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(21, 20);
+            this.toolStripButton3.Size = new System.Drawing.Size(22, 20);
             this.toolStripButton3.Text = "toolStripButton3";
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(21, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(22, 6);
             // 
-            // toolStripButton4
+            // toolStripButtonMinimizarContacto
             // 
-            this.toolStripButton4.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton4.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton4.Image")));
-            this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton4.Name = "toolStripButton4";
-            this.toolStripButton4.Size = new System.Drawing.Size(21, 20);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.toolStripButtonMinimizarContacto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonMinimizarContacto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMinimizarContacto.Image")));
+            this.toolStripButtonMinimizarContacto.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMinimizarContacto.Name = "toolStripButtonMinimizarContacto";
+            this.toolStripButtonMinimizarContacto.Size = new System.Drawing.Size(29, 19);
+            this.toolStripButtonMinimizarContacto.Text = "[-]";
+            this.toolStripButtonMinimizarContacto.ToolTipText = "Minimizar todos";
+            this.toolStripButtonMinimizarContacto.Click += new System.EventHandler(this.toolStripButtonMinimizarContacto_Click);
             // 
             // ClienteControl
             // 
@@ -827,7 +829,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripButton toolStripButton4;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMinimizarContacto;
         private System.Windows.Forms.TextBox textBoxPendientes;
         private System.Windows.Forms.Label labelPendientes;
         private System.Windows.Forms.Button buttonSeleccionarUsuario;

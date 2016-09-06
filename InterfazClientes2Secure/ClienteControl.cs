@@ -510,5 +510,10 @@ namespace InterfazClientes2Secure
         {
             Form1.MinimizarTareas();
         }
+
+        private void toolStripButtonMinimizarContacto_Click(object sender, EventArgs e)
+        {
+            Form1.MinimizarContactos();
+        }
     }
 }

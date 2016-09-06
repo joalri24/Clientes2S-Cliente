@@ -288,19 +288,25 @@ namespace InterfazClientes2Secure
         {
             foreach (ClienteControl control in controlesCliente)
                 control.Minimizar();
-
         }
 
 
         /// <summary>
-        /// Obtiene los clientes desde el backend por medio de un servicio web.
-        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// Minimiza todos los controles Tarea visibles
         /// </summary>
         public static void MinimizarTareas()
         {
             foreach (TareaControl control in controlesTareas)
                 control.Minimizar();
+        }
 
+        /// <summary>
+        /// Minimiza todos los controles contactos.
+        /// </summary>
+        public static void MinimizarContactos()
+        {
+            foreach (ContactoControl control in controlesContactos)
+                control.Minimizar();
         }
 
     }
