@@ -42,10 +42,6 @@
             this.listBoxContactos.FormattingEnabled = true;
             this.listBoxContactos.HorizontalScrollbar = true;
             this.listBoxContactos.ItemHeight = 16;
-            this.listBoxContactos.Items.AddRange(new object[] {
-            "Donald Trump",
-            "Lagarto",
-            "Pepito"});
             this.listBoxContactos.Location = new System.Drawing.Point(12, 43);
             this.listBoxContactos.Name = "listBoxContactos";
             this.listBoxContactos.Size = new System.Drawing.Size(270, 276);
