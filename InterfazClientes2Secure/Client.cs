@@ -26,6 +26,8 @@ namespace InterfazClientes2Secure
 
         public bool Follow { get; set; }
 
+        public string ApplicationUserId { get; set; }
+
 
         // ------------------------------------
         // Constructor

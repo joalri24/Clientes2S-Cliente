@@ -208,6 +208,8 @@ namespace InterfazClientes2Secure
             {
 
                 Client cliente = new Client(dialogo.darNombreCliente(), dialogo.darTipoAsociacion());
+                // TODO Agregar el id del usuario al cliente.
+
                 ClienteControl clienteControl = null;
                 using (var httpClient = new HttpClient())
                 {
