@@ -26,8 +26,10 @@ namespace InterfazClientes2Secure
         public const string RUTA_CONTACTOS = "api/contacts";
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
         public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
+        public const string RUTA_TOKEN = "Token";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
+
         // ------------------------------------------------
         // Atributos
         // ------------------------------------------------
@@ -58,6 +60,11 @@ namespace InterfazClientes2Secure
         /// </summary>
         public static List<ContactoControl> controlesContactos { get; set; }
 
+        /// <summary>
+        /// Objeto que almacena la información de sesión.
+        /// </summary>
+        public Sesion Sesion { get; set; }
+
         // ------------------------------------------------
         // Constructor
         // ------------------------------------------------
@@ -69,6 +76,7 @@ namespace InterfazClientes2Secure
             controlesCliente = new List<ClienteControl>();
             controlesContactos = new List<ContactoControl>();
             controlesTareas = new List<TareaControl>();
+            Sesion = null;
         }
 
 
@@ -158,6 +166,8 @@ namespace InterfazClientes2Secure
                 httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                if (Sesion != null)
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
 
                 HttpResponseMessage response = await httpClient.GetAsync(RUTA_CLIENTES);
                 if (response.IsSuccessStatusCode)
@@ -190,6 +200,10 @@ namespace InterfazClientes2Secure
                         }
                     }
                 }
+                else
+                {
+                    toolStripLabelMensaje.Text = "Respuesta negativa del servidor";
+                }
             }
             MinimizarClientes();
             cargando = false;
@@ -215,7 +229,10 @@ namespace InterfazClientes2Secure
                 {
                     httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
                     httpClient.DefaultRequestHeaders.Accept.Clear();
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                    if (Sesion != null)
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
+
                     HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CLIENTES, cliente);
                     
                     if (response.IsSuccessStatusCode)
@@ -251,6 +268,9 @@ namespace InterfazClientes2Secure
                             httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
                             httpClient.DefaultRequestHeaders.Accept.Clear();
                             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                            if (Sesion != null)
+                                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
+
                             HttpResponseMessage response = await httpClient.PostAsJsonAsync(RUTA_CONTACTOS, contacto);
 
                             if (response.IsSuccessStatusCode)
@@ -272,6 +292,61 @@ namespace InterfazClientes2Secure
                     clienteControl.Cliente.MainContactId = contacto.Id;
                     clienteControl.GuardarCambiosCliente();
                     clienteControl.ImprimirDatosContactoPrincipal(contacto);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IniciarSesion(object sender, EventArgs e)
+        {
+            IniciarSesion();
+        }
+
+        /// <summary>
+        /// Abre un dialogo donde el usuario puede escribir sus credenciales.
+        /// Envía una petición POST con las credenciales proporcionadas. La respuesta 
+        /// contiene un token que se utiliza para comunicarse con el servidor.
+        /// </summary>
+        private async void IniciarSesion()
+        {
+            FormIniciarSesion dialogo = new FormIniciarSesion();
+
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                toolStripLabelMensaje.Text = "Iniciando sesión...";
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                    client.DefaultRequestHeaders.Accept.Clear();
+                    client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/x-www-form-urlencoded"));
+
+                    var formContent = new FormUrlEncodedContent(new[]
+                    {
+                        new KeyValuePair<string, string>("grant_type", "password"),
+                        new KeyValuePair<string, string>("username", dialogo.darLogin()),
+                        new KeyValuePair<string, string>("password", dialogo.darcontraseña())
+                    });
+                    HttpResponseMessage response = await client.PostAsync(RUTA_TOKEN, formContent);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Sesion = await response.Content.ReadAsAsync<Sesion>();                       
+                        toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.access_token;
+                        ToolStripButtonCargar.Enabled = true;
+                        ToolStripButtonNuevo.Enabled = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("No fue posible iniciar sesión.", "Inicio de sesión");
+                        toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
+                    }
+
+
+
                 }
             }
         }
