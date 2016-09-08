@@ -335,7 +335,7 @@ namespace InterfazClientes2Secure
                     if (response.IsSuccessStatusCode)
                     {
                         Sesion = await response.Content.ReadAsAsync<Sesion>();                       
-                        toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.access_token;
+                        toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.userName;
                         ToolStripButtonCargar.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
                     }
