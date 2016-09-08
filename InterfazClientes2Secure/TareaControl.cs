@@ -235,6 +235,8 @@ namespace InterfazClientes2Secure
                     httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    if (Form1.Sesion != null)
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.Sesion.access_token);
 
                     Tarea.Name = textBoxTareaNombre.Text;
                     Tarea.Description = textBoxDescripcion.Text;
@@ -264,6 +266,8 @@ namespace InterfazClientes2Secure
                     httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
                     httpClient.DefaultRequestHeaders.Accept.Clear();
                     httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                    if (Form1.Sesion != null)
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.Sesion.access_token);
 
                     Tarea.Name = textBoxTareaNombre.Text;
                     Tarea.Description = textBoxDescripcion.Text;
@@ -322,6 +326,8 @@ namespace InterfazClientes2Secure
                 httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
                 httpClient.DefaultRequestHeaders.Accept.Clear();
                 httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(Form1.APP_JSON));
+                if (Form1.Sesion != null)
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Form1.Sesion.access_token);
 
                 HttpResponseMessage response = await httpClient.GetAsync(Form1.RUTA_CONTACTOS + "/" + Tarea.ContactId);
                 if (response.IsSuccessStatusCode)

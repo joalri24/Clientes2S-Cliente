@@ -63,7 +63,7 @@ namespace InterfazClientes2Secure
         /// <summary>
         /// Objeto que almacena la información de sesión.
         /// </summary>
-        public Sesion Sesion { get; set; }
+        public static Sesion Sesion { get; set; }
 
         // ------------------------------------------------
         // Constructor
