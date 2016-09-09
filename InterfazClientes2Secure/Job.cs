@@ -37,6 +37,8 @@ namespace InterfazClientes2Secure
         // "Foreign Key"
         public int ContactId { get; set; }
 
+        public string ApplicationUserId { get; set; }
+
 
         // -----------------------------------------
         // Constructores

@@ -27,6 +27,7 @@ namespace InterfazClientes2Secure
 
         public string Notes { get; set; }
 
+        public string ApplicationUserId { get; set; }
 
         // -----------------------------------------
         // Constructores

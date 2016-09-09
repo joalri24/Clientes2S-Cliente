@@ -151,8 +151,20 @@ namespace InterfazClientes2Secure
         /// <summary>
         /// Obtiene los clientes desde el backend por medio de un servicio web.
         /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// Se ejecuta cuando se hace click sobre el botón correspondiente.
         /// </summary>
-        private async void CargarClientes(object sender, EventArgs e)
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CargarClientes(object sender, EventArgs e)
+        {
+            CargarClientes();
+        }
+
+        /// <summary>
+        /// Obtiene los clientes desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// </summary>
+        private async void CargarClientes()
         {
 
             tableLayoutClientes.Controls.Clear();
@@ -338,6 +350,7 @@ namespace InterfazClientes2Secure
                         toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.userName;
                         ToolStripButtonCargar.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
+                        CargarClientes();
                     }
                     else
                     {
