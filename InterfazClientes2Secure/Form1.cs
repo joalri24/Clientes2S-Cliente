@@ -29,6 +29,9 @@ namespace InterfazClientes2Secure
         public const string RUTA_TOKEN = "Token";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
+        private const string LOGIN = "Login";
+        private const string LOGOUT = "Logout";
+        public const string RUTA_LOGOUT = "api/Account/Logout";
 
         // ------------------------------------------------
         // Atributos
@@ -222,6 +225,46 @@ namespace InterfazClientes2Secure
             toolStripLabelMensaje.Text = "";
         }
 
+
+        /// <summary>
+        /// Borra la información de sesión. También borra los clientes de la pantalla
+        /// y bloquea ciertos botones. Envía una petición al servidor para informarle
+        /// que la sesión acabó.
+        /// </summary>
+        private async void CerrarSesion()
+        {
+
+            if (Sesion != null)
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                    httpClient.DefaultRequestHeaders.Accept.Clear();
+                    if (Sesion != null)
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
+
+                    HttpResponseMessage response = await httpClient.PostAsync(RUTA_LOGOUT, null);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        Sesion = null;
+                        tableLayoutClientes.Controls.Clear();
+                        tableLayoutClientes.RowCount = 1;
+                        vacio = true;
+                        ToolStripButtonCargar.Enabled = false;
+                        ToolStripButtonNuevo.Enabled = false;
+                        toolStripButtonLogin.Tag = LOGIN;
+                        toolStripButtonLogin.Text = "Iniciar sesión";
+                        toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
+                    }
+                    else
+                    {
+                        toolStripLabelMensaje.Text = "No fue posible cerrar sesión.";
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Crear nuevo cliente cuando se hace click en el botón correspondiente.
         /// </summary>
@@ -315,7 +358,14 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private void IniciarSesion(object sender, EventArgs e)
         {
-            IniciarSesion();
+            var boton = sender as ToolStripButton;
+
+            if (boton.Tag as string == LOGIN)
+                IniciarSesion();         
+            else
+                CerrarSesion();
+            
+                      
         }
 
         /// <summary>
@@ -350,6 +400,8 @@ namespace InterfazClientes2Secure
                         toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.userName;
                         ToolStripButtonCargar.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
+                        toolStripButtonLogin.Text = "Cerrar sesión";
+                        toolStripButtonLogin.Tag = LOGOUT;
                         CargarClientes();
                     }
                     else

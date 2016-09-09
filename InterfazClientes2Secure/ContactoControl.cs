@@ -120,14 +120,14 @@ namespace InterfazClientes2Secure
             if (splitContainerContacto.Visible)
             {
                 splitContainerContacto.Visible = false;
-                this.Height = ALTURA_MINIMIZADO;
+                Height = ALTURA_MINIMIZADO;
                 toolStripButtonMinimizarContacto.Text = "[+]";
                 toolStripButtonMinimizarContacto.ToolTipText = "Maximizar";
             }
             else
             {
                 splitContainerContacto.Visible = true;
-                this.Height = ALTURA_ORIGINAL;
+                Height = ALTURA_ORIGINAL;
                 toolStripButtonMinimizarContacto.Text = "[-]";
                 toolStripButtonMinimizarContacto.ToolTipText = "Minimizar";
             }
