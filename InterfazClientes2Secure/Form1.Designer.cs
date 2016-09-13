@@ -42,16 +42,21 @@
             this.tableLayoutClientes = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuNuevoCliente = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuCargarClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.minimizarClientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ClientesToolStripMenuMinimizar = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparatorAdmin = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuCargarTodos = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +165,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.ToolStripMenuUsuarios,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -170,47 +176,51 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newToolStripMenuItem,
-            this.openToolStripMenuItem,
+            this.ToolStripMenuNuevoCliente,
+            this.ToolStripMenuCargarClientes,
             this.toolStripSeparator2,
-            this.minimizarClientesToolStripMenuItem});
+            this.ClientesToolStripMenuMinimizar,
+            this.toolStripSeparatorAdmin,
+            this.toolStripMenuCargarTodos});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
             this.fileToolStripMenuItem.Text = "&Archivo";
             // 
-            // newToolStripMenuItem
+            // ToolStripMenuNuevoCliente
             // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.newToolStripMenuItem.Text = "Nuevo cliente";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.CrearCliente);
+            this.ToolStripMenuNuevoCliente.Enabled = false;
+            this.ToolStripMenuNuevoCliente.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuNuevoCliente.Image")));
+            this.ToolStripMenuNuevoCliente.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripMenuNuevoCliente.Name = "ToolStripMenuNuevoCliente";
+            this.ToolStripMenuNuevoCliente.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
+            this.ToolStripMenuNuevoCliente.Size = new System.Drawing.Size(231, 22);
+            this.ToolStripMenuNuevoCliente.Text = "Nuevo cliente";
+            this.ToolStripMenuNuevoCliente.Click += new System.EventHandler(this.CrearCliente);
             // 
-            // openToolStripMenuItem
+            // ToolStripMenuCargarClientes
             // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.openToolStripMenuItem.Text = "Cargar clientes";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.CargarClientes);
+            this.ToolStripMenuCargarClientes.Enabled = false;
+            this.ToolStripMenuCargarClientes.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuCargarClientes.Image")));
+            this.ToolStripMenuCargarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripMenuCargarClientes.Name = "ToolStripMenuCargarClientes";
+            this.ToolStripMenuCargarClientes.ShortcutKeys = System.Windows.Forms.Keys.F5;
+            this.ToolStripMenuCargarClientes.Size = new System.Drawing.Size(231, 22);
+            this.ToolStripMenuCargarClientes.Text = "Cargar clientes";
+            this.ToolStripMenuCargarClientes.Click += new System.EventHandler(this.CargarClientes);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
             this.toolStripSeparator2.Size = new System.Drawing.Size(228, 6);
             // 
-            // minimizarClientesToolStripMenuItem
+            // ClientesToolStripMenuMinimizar
             // 
-            this.minimizarClientesToolStripMenuItem.Name = "minimizarClientesToolStripMenuItem";
-            this.minimizarClientesToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.minimizarClientesToolStripMenuItem.Size = new System.Drawing.Size(231, 22);
-            this.minimizarClientesToolStripMenuItem.Text = "[-] Minimizar clientes";
-            this.minimizarClientesToolStripMenuItem.Click += new System.EventHandler(this.MinimizarClientes);
+            this.ClientesToolStripMenuMinimizar.Name = "ClientesToolStripMenuMinimizar";
+            this.ClientesToolStripMenuMinimizar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
+            this.ClientesToolStripMenuMinimizar.Size = new System.Drawing.Size(231, 22);
+            this.ClientesToolStripMenuMinimizar.Text = "[-] Minimizar clientes";
+            this.ClientesToolStripMenuMinimizar.Click += new System.EventHandler(this.MinimizarClientes);
             // 
             // helpToolStripMenuItem
             // 
@@ -253,6 +263,42 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // ToolStripMenuUsuarios
+            // 
+            this.ToolStripMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rolesToolStripMenuItem,
+            this.nuevoUsuarioToolStripMenuItem});
+            this.ToolStripMenuUsuarios.Name = "ToolStripMenuUsuarios";
+            this.ToolStripMenuUsuarios.Size = new System.Drawing.Size(64, 20);
+            this.ToolStripMenuUsuarios.Text = "Usuarios";
+            this.ToolStripMenuUsuarios.Visible = false;
+            // 
+            // toolStripSeparatorAdmin
+            // 
+            this.toolStripSeparatorAdmin.Name = "toolStripSeparatorAdmin";
+            this.toolStripSeparatorAdmin.Size = new System.Drawing.Size(228, 6);
+            this.toolStripSeparatorAdmin.Visible = false;
+            // 
+            // toolStripMenuCargarTodos
+            // 
+            this.toolStripMenuCargarTodos.Enabled = false;
+            this.toolStripMenuCargarTodos.Name = "toolStripMenuCargarTodos";
+            this.toolStripMenuCargarTodos.Size = new System.Drawing.Size(231, 22);
+            this.toolStripMenuCargarTodos.Text = "Cargar clientes (Admin)";
+            this.toolStripMenuCargarTodos.Visible = false;
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rolesToolStripMenuItem.Text = "Roles";
+            // 
+            // nuevoUsuarioToolStripMenuItem
+            // 
+            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -281,8 +327,8 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutClientes;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem newToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuNuevoCliente;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuCargarClientes;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contentsToolStripMenuItem;
@@ -296,9 +342,14 @@
         private System.Windows.Forms.ToolStripButton ToolStripButtonCargar;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabelMensaje;
-        private System.Windows.Forms.ToolStripMenuItem minimizarClientesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ClientesToolStripMenuMinimizar;
         private System.Windows.Forms.ToolStripButton toolStripButtonLogin;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuUsuarios;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparatorAdmin;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuCargarTodos;
+        private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
     }
 }
 

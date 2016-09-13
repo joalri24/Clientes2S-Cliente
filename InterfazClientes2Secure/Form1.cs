@@ -253,9 +253,15 @@ namespace InterfazClientes2Secure
                         vacio = true;
                         ToolStripButtonCargar.Enabled = false;
                         ToolStripButtonNuevo.Enabled = false;
+                        ToolStripMenuNuevoCliente.Enabled = true;
+                        ToolStripMenuCargarClientes.Enabled = true;
                         toolStripButtonLogin.Tag = LOGIN;
                         toolStripButtonLogin.Text = "Iniciar sesión";
                         toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
+                        toolStripSeparatorAdmin.Visible = false;
+                        toolStripMenuCargarTodos.Visible = false;
+                        toolStripMenuCargarTodos.Enabled = false;
+                        ToolStripMenuUsuarios.Visible = false;
                     }
                     else
                     {
@@ -396,12 +402,27 @@ namespace InterfazClientes2Secure
 
                     if (response.IsSuccessStatusCode)
                     {
-                        Sesion = await response.Content.ReadAsAsync<Sesion>();                       
+                        Sesion = await response.Content.ReadAsAsync<Sesion>();  
+                        
+                        // Actualiza la interfaz gráfica.                     
                         toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.userName;
                         ToolStripButtonCargar.Enabled = true;
+                        ToolStripMenuNuevoCliente.Enabled = true;
+                        ToolStripMenuCargarClientes.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
                         toolStripButtonLogin.Text = "Cerrar sesión";
                         toolStripButtonLogin.Tag = LOGOUT;
+
+                        var roles = Sesion.roles.Split(',');
+                        if (roles.Contains(Sesion.ROL_ADMIN)) 
+                        {
+                            // Muestra las opciones exclusivas de administrador.
+                            toolStripSeparatorAdmin.Visible = true;
+                            toolStripMenuCargarTodos.Visible = true;
+                            toolStripMenuCargarTodos.Enabled = true;
+                            ToolStripMenuUsuarios.Visible = true;
+                        }
+
                         CargarClientes();
                     }
                     else
