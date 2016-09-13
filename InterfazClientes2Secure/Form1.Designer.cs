@@ -286,6 +286,7 @@
             this.toolStripMenuCargarTodos.Size = new System.Drawing.Size(231, 22);
             this.toolStripMenuCargarTodos.Text = "Cargar clientes (Admin)";
             this.toolStripMenuCargarTodos.Visible = false;
+            this.toolStripMenuCargarTodos.Click += new System.EventHandler(this.CargarTodosClientes);
             // 
             // rolesToolStripMenuItem
             // 

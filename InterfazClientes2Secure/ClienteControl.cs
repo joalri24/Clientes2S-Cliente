@@ -243,7 +243,12 @@ namespace InterfazClientes2Secure
                     HttpResponseMessage response = await httpClient.PutAsJsonAsync(Form1.RUTA_CLIENTES + "/" + Cliente.Id, Cliente);
 
                     if (!response.IsSuccessStatusCode)
-                        MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                    {
+                        if (response.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+                            MessageBox.Show("Permiso denegado para modificar este cliente.", "Error al guardar los cambios");
+                        else
+                            MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
+                    }
                 }
             }
         }

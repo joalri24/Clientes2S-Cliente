@@ -22,6 +22,7 @@ namespace InterfazClientes2Secure
         public const string APP_JSON = "application/json";
 
         public const string RUTA_CLIENTES = "api/clients";
+        public const string RUTA_TODOS_CLIENTES = "api/clients/all";
         public const string RUTA_TAREAS = "api/jobs";
         public const string RUTA_CONTACTOS = "api/contacts";
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
@@ -152,7 +153,7 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Obtiene los clientes desde el backend por medio de un servicio web.
+        /// Obtiene los clientes pertenecientes al usuario desde el backend por medio de un servicio web.
         /// Crea los controles correspondientes y los agrega a al layout de fondo.
         /// Se ejecuta cuando se hace click sobre el botón correspondiente.
         /// </summary>
@@ -160,14 +161,26 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private void CargarClientes(object sender, EventArgs e)
         {
-            CargarClientes();
+            CargarClientes(RUTA_CLIENTES);
+        }
+
+        /// <summary>
+        /// Obtiene todos los clientes desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// Se ejecuta cuando se hace click sobre el botón correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CargarTodosClientes(object sender, EventArgs e)
+        {
+            CargarClientes(RUTA_TODOS_CLIENTES);
         }
 
         /// <summary>
         /// Obtiene los clientes desde el backend por medio de un servicio web.
         /// Crea los controles correspondientes y los agrega a al layout de fondo.
         /// </summary>
-        private async void CargarClientes()
+        private async void CargarClientes(string ruta)
         {
 
             tableLayoutClientes.Controls.Clear();
@@ -184,7 +197,7 @@ namespace InterfazClientes2Secure
                 if (Sesion != null)
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
 
-                HttpResponseMessage response = await httpClient.GetAsync(RUTA_CLIENTES);
+                HttpResponseMessage response = await httpClient.GetAsync(ruta);
                 if (response.IsSuccessStatusCode)
                 {
                     Client[] clientes = await response.Content.ReadAsAsync<Client[]>();
@@ -423,7 +436,7 @@ namespace InterfazClientes2Secure
                             ToolStripMenuUsuarios.Visible = true;
                         }
 
-                        CargarClientes();
+                        CargarClientes(RUTA_CLIENTES);
                     }
                     else
                     {
