@@ -54,94 +54,103 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BarraNuevoClienteControl.cs">
+    <Compile Include="Controles\UsuarioControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="BarraNuevoClienteControl.Designer.cs">
-      <DependentUpon>BarraNuevoClienteControl.cs</DependentUpon>
+    <Compile Include="Controles\UsuarioControl.Designer.cs">
+      <DependentUpon>UsuarioControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Client.cs" />
-    <Compile Include="ClienteControl.cs">
+    <Compile Include="Forms\FormGestionUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormGestionUsuarios.Designer.cs">
+      <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Modelos\Client.cs" />
+    <Compile Include="Controles\ClienteControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ClienteControl.Designer.cs">
+    <Compile Include="Controles\ClienteControl.Designer.cs">
       <DependentUpon>ClienteControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Contact.cs" />
-    <Compile Include="ContactoControl.cs">
+    <Compile Include="Modelos\Contact.cs" />
+    <Compile Include="Controles\ContactoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ContactoControl.Designer.cs">
+    <Compile Include="Controles\ContactoControl.Designer.cs">
       <DependentUpon>ContactoControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Forms\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
+    <Compile Include="Forms\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormEliminar.cs">
+    <Compile Include="Forms\FormEliminar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormEliminar.Designer.cs">
+    <Compile Include="Forms\FormEliminar.Designer.cs">
       <DependentUpon>FormEliminar.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormIniciarSesion.cs">
+    <Compile Include="Forms\FormIniciarSesion.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormIniciarSesion.Designer.cs">
+    <Compile Include="Forms\FormIniciarSesion.Designer.cs">
       <DependentUpon>FormIniciarSesion.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormNuevoCliente.cs">
+    <Compile Include="Forms\FormNuevoCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormNuevoCliente.Designer.cs">
+    <Compile Include="Forms\FormNuevoCliente.Designer.cs">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormNuevoContacto.cs">
+    <Compile Include="Forms\FormNuevoContacto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormNuevoContacto.Designer.cs">
+    <Compile Include="Forms\FormNuevoContacto.Designer.cs">
       <DependentUpon>FormNuevoContacto.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormSeleccionarContacto.cs">
+    <Compile Include="Forms\FormSeleccionarContacto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormSeleccionarContacto.Designer.cs">
+    <Compile Include="Forms\FormSeleccionarContacto.Designer.cs">
       <DependentUpon>FormSeleccionarContacto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Job.cs" />
+    <Compile Include="Modelos\Job.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sesion.cs" />
-    <Compile Include="TareaControl.cs">
+    <Compile Include="Modelos\Sesion.cs" />
+    <Compile Include="Controles\TareaControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="TareaControl.Designer.cs">
+    <Compile Include="Controles\TareaControl.Designer.cs">
       <DependentUpon>TareaControl.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="BarraNuevoClienteControl.resx">
-      <DependentUpon>BarraNuevoClienteControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ClienteControl.resx">
+    <EmbeddedResource Include="Controles\ClienteControl.resx">
       <DependentUpon>ClienteControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ContactoControl.resx">
+    <EmbeddedResource Include="Controles\ContactoControl.resx">
       <DependentUpon>ContactoControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
+    <EmbeddedResource Include="Controles\UsuarioControl.resx">
+      <DependentUpon>UsuarioControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormEliminar.resx">
+    <EmbeddedResource Include="Forms\FormEliminar.resx">
       <DependentUpon>FormEliminar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormNuevoCliente.resx">
+    <EmbeddedResource Include="Forms\FormGestionUsuarios.resx">
+      <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormNuevoCliente.resx">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormNuevoContacto.resx">
+    <EmbeddedResource Include="Forms\FormNuevoContacto.resx">
       <DependentUpon>FormNuevoContacto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormSeleccionarContacto.resx">
+    <EmbeddedResource Include="Forms\FormSeleccionarContacto.resx">
       <DependentUpon>FormSeleccionarContacto.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -153,7 +162,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="TareaControl.resx">
+    <EmbeddedResource Include="Controles\TareaControl.resx">
       <DependentUpon>TareaControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
