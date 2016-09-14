@@ -30,6 +30,7 @@ namespace InterfazClientes2Secure
         public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
         public const string RUTA_TOKEN = "Token";
         public const string RUTA_ROLES = "api/Account/RolesInfo";
+        public const string RUTA_MODIFICAR_ROLES = "api/Account/Roles";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
         private const string LOGIN = "Login";
@@ -268,8 +269,8 @@ namespace InterfazClientes2Secure
                         vacio = true;
                         ToolStripButtonCargar.Enabled = false;
                         ToolStripButtonNuevo.Enabled = false;
-                        ToolStripMenuNuevoCliente.Enabled = true;
-                        ToolStripMenuCargarClientes.Enabled = true;
+                        ToolStripMenuNuevoCliente.Enabled = false;
+                        ToolStripMenuCargarClientes.Enabled = false;
                         toolStripButtonLogin.Tag = LOGIN;
                         toolStripButtonLogin.Text = "Iniciar sesión";
                         toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
