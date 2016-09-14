@@ -28,26 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormGestionUsuarios));
+            this.flowLayoutPanelFondo = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.usuarioControl1 = new InterfazClientes2Secure.Controles.UsuarioControl();
-            this.flowLayoutPanel1.SuspendLayout();
+            this.flowLayoutPanelFondo.SuspendLayout();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // flowLayoutPanelFondo
             // 
-            this.flowLayoutPanel1.AutoScroll = true;
-            this.flowLayoutPanel1.Controls.Add(this.label1);
-            this.flowLayoutPanel1.Controls.Add(this.label2);
-            this.flowLayoutPanel1.Controls.Add(this.label3);
-            this.flowLayoutPanel1.Controls.Add(this.usuarioControl1);
-            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(432, 238);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.flowLayoutPanelFondo.AutoScroll = true;
+            this.flowLayoutPanelFondo.Controls.Add(this.label1);
+            this.flowLayoutPanelFondo.Controls.Add(this.label2);
+            this.flowLayoutPanelFondo.Controls.Add(this.label3);
+            this.flowLayoutPanelFondo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelFondo.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanelFondo.Name = "flowLayoutPanelFondo";
+            this.flowLayoutPanelFondo.Size = new System.Drawing.Size(432, 128);
+            this.flowLayoutPanelFondo.TabIndex = 0;
             // 
             // label1
             // 
@@ -82,32 +81,25 @@
             this.label3.TabIndex = 3;
             this.label3.Text = "Empleado";
             // 
-            // usuarioControl1
-            // 
-            this.usuarioControl1.Location = new System.Drawing.Point(3, 39);
-            this.usuarioControl1.Name = "usuarioControl1";
-            this.usuarioControl1.Size = new System.Drawing.Size(418, 28);
-            this.usuarioControl1.TabIndex = 4;
-            // 
             // FormGestionUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(432, 238);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(432, 128);
+            this.Controls.Add(this.flowLayoutPanelFondo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormGestionUsuarios";
             this.Text = "Gestión de roles";
-            this.flowLayoutPanel1.ResumeLayout(false);
+            this.flowLayoutPanelFondo.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelFondo;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private Controles.UsuarioControl usuarioControl1;
     }
 }

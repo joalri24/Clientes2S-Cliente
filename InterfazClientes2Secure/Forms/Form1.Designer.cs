@@ -46,17 +46,17 @@
             this.ToolStripMenuCargarClientes = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.ClientesToolStripMenuMinimizar = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparatorAdmin = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripMenuCargarTodos = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
+            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contentsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.indexToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparatorAdmin = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripMenuCargarTodos = new System.Windows.Forms.ToolStripMenuItem();
-            this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -222,6 +222,45 @@
             this.ClientesToolStripMenuMinimizar.Text = "[-] Minimizar clientes";
             this.ClientesToolStripMenuMinimizar.Click += new System.EventHandler(this.MinimizarClientes);
             // 
+            // toolStripSeparatorAdmin
+            // 
+            this.toolStripSeparatorAdmin.Name = "toolStripSeparatorAdmin";
+            this.toolStripSeparatorAdmin.Size = new System.Drawing.Size(228, 6);
+            this.toolStripSeparatorAdmin.Visible = false;
+            // 
+            // toolStripMenuCargarTodos
+            // 
+            this.toolStripMenuCargarTodos.Enabled = false;
+            this.toolStripMenuCargarTodos.Name = "toolStripMenuCargarTodos";
+            this.toolStripMenuCargarTodos.Size = new System.Drawing.Size(231, 22);
+            this.toolStripMenuCargarTodos.Text = "Cargar clientes (Admin)";
+            this.toolStripMenuCargarTodos.Visible = false;
+            this.toolStripMenuCargarTodos.Click += new System.EventHandler(this.CargarTodosClientes);
+            // 
+            // ToolStripMenuUsuarios
+            // 
+            this.ToolStripMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.rolesToolStripMenuItem,
+            this.nuevoUsuarioToolStripMenuItem});
+            this.ToolStripMenuUsuarios.Name = "ToolStripMenuUsuarios";
+            this.ToolStripMenuUsuarios.Size = new System.Drawing.Size(64, 20);
+            this.ToolStripMenuUsuarios.Text = "Usuarios";
+            this.ToolStripMenuUsuarios.Visible = false;
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.rolesToolStripMenuItem.Text = "Roles";
+            this.rolesToolStripMenuItem.Click += new System.EventHandler(this.GestionarRoles);
+            // 
+            // nuevoUsuarioToolStripMenuItem
+            // 
+            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
+            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
+            this.nuevoUsuarioToolStripMenuItem.Visible = false;
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -262,44 +301,6 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
-            // 
-            // ToolStripMenuUsuarios
-            // 
-            this.ToolStripMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.rolesToolStripMenuItem,
-            this.nuevoUsuarioToolStripMenuItem});
-            this.ToolStripMenuUsuarios.Name = "ToolStripMenuUsuarios";
-            this.ToolStripMenuUsuarios.Size = new System.Drawing.Size(64, 20);
-            this.ToolStripMenuUsuarios.Text = "Usuarios";
-            this.ToolStripMenuUsuarios.Visible = false;
-            // 
-            // toolStripSeparatorAdmin
-            // 
-            this.toolStripSeparatorAdmin.Name = "toolStripSeparatorAdmin";
-            this.toolStripSeparatorAdmin.Size = new System.Drawing.Size(228, 6);
-            this.toolStripSeparatorAdmin.Visible = false;
-            // 
-            // toolStripMenuCargarTodos
-            // 
-            this.toolStripMenuCargarTodos.Enabled = false;
-            this.toolStripMenuCargarTodos.Name = "toolStripMenuCargarTodos";
-            this.toolStripMenuCargarTodos.Size = new System.Drawing.Size(231, 22);
-            this.toolStripMenuCargarTodos.Text = "Cargar clientes (Admin)";
-            this.toolStripMenuCargarTodos.Visible = false;
-            this.toolStripMenuCargarTodos.Click += new System.EventHandler(this.CargarTodosClientes);
-            // 
-            // rolesToolStripMenuItem
-            // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.rolesToolStripMenuItem.Text = "Roles";
-            // 
-            // nuevoUsuarioToolStripMenuItem
-            // 
-            this.nuevoUsuarioToolStripMenuItem.Name = "nuevoUsuarioToolStripMenuItem";
-            this.nuevoUsuarioToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.nuevoUsuarioToolStripMenuItem.Text = "Nuevo Usuario";
-            this.nuevoUsuarioToolStripMenuItem.Visible = false;
             // 
             // Form1
             // 

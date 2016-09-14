@@ -1,4 +1,5 @@
-﻿using System;
+﻿using InterfazClientes2Secure.Forms;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -28,6 +29,7 @@ namespace InterfazClientes2Secure
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
         public const string RUTA_CONTACTOS_CLIENTE = "/contacts";
         public const string RUTA_TOKEN = "Token";
+        public const string RUTA_ROLES = "api/Account/RolesInfo";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
         private const string LOGIN = "Login";
@@ -488,5 +490,15 @@ namespace InterfazClientes2Secure
                 control.Minimizar();
         }
 
+        /// <summary>
+        /// Abre una ventana de dialogo donde se pueden gestionar los roles de los usuario de la aplicación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GestionarRoles(object sender, EventArgs e)
+        {
+            var dialogo = new FormGestionUsuarios();
+            dialogo.ShowDialog();
+        }
     }
 }
