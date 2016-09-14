@@ -60,6 +60,12 @@
     <Compile Include="Controles\UsuarioControl.Designer.cs">
       <DependentUpon>UsuarioControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\FormCrearUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormCrearUsuario.Designer.cs">
+      <DependentUpon>FormCrearUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGestionUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,7 @@
       <DependentUpon>FormSeleccionarContacto.cs</DependentUpon>
     </Compile>
     <Compile Include="Modelos\Job.cs" />
+    <Compile Include="Modelos\NuevoUsuario.cs" />
     <Compile Include="Modelos\Usuario.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -139,11 +146,17 @@
     <EmbeddedResource Include="Forms\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormCrearUsuario.resx">
+      <DependentUpon>FormCrearUsuario.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormEliminar.resx">
       <DependentUpon>FormEliminar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGestionUsuarios.resx">
       <DependentUpon>FormGestionUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormIniciarSesion.resx">
+      <DependentUpon>FormIniciarSesion.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormNuevoCliente.resx">
       <DependentUpon>FormNuevoCliente.cs</DependentUpon>

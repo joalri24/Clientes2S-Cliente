@@ -1,4 +1,5 @@
 ﻿using InterfazClientes2Secure.Forms;
+using InterfazClientes2Secure.Modelos;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +32,7 @@ namespace InterfazClientes2Secure
         public const string RUTA_TOKEN = "Token";
         public const string RUTA_ROLES = "api/Account/RolesInfo";
         public const string RUTA_MODIFICAR_ROLES = "api/Account/Roles";
+        public const string RUTA_REGISTRAR = "api/Account/Register";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
         private const string LOGIN = "Login";
@@ -501,5 +503,38 @@ namespace InterfazClientes2Secure
             var dialogo = new FormGestionUsuarios();
             dialogo.ShowDialog();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private async void nuevoUsuarioToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var dialogo = new FormCrearUsuario();
+
+            if (dialogo.ShowDialog() == DialogResult.OK)
+            {
+                var usuario = new NuevoUsuario() { Email = dialogo.darLogin(), Password = dialogo.darcontraseña(), ConfirmPassword = dialogo.darConfirmacion()};
+                toolStripLabelMensaje.Text = "Registrando usuario...";
+                using (var HttpClient = new HttpClient())
+                {
+                    HttpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                    HttpClient.DefaultRequestHeaders.Accept.Clear();
+                    HttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                    HttpResponseMessage response = await HttpClient.PostAsJsonAsync(RUTA_REGISTRAR, usuario);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        toolStripLabelMensaje.Text = "Usuario registrado...";
+                    }
+                    else
+                    {
+                        toolStripLabelMensaje.Text = "Error al registrar al usuario.";
+                    }
+                }
+            }
+         }
+
     }
 }
