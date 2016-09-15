@@ -13,9 +13,9 @@ namespace InterfazClientes2Secure
         // Propiedades
         // -----------------------------------------
         public const string ROL_ADMIN = "1";
-        public const string ROL_EMPLOYEE = "2";
+        public const string ROL_COMERCIAL = "2";
         public const string ROL_ADMIN_NOMBRE= "Admin";
-        public const string ROL_EMPLOYEE_NOMBRE = "Employee";
+        public const string ROL_COMERCIAL_NOMBRE = "Comercial";
 
 
         // -----------------------------------------

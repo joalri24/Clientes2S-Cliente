@@ -49,8 +49,8 @@ namespace InterfazClientes2Secure.Controles
             }
                 
 
-            if (roles.Contains(Sesion.ROL_EMPLOYEE))
-                checkBoxEmpleado.Checked = true;
+            if (roles.Contains(Sesion.ROL_COMERCIAL))
+                checkBoxComercial.Checked = true;
         }
 
         // ------------------------------------------------------------------
@@ -70,8 +70,8 @@ namespace InterfazClientes2Secure.Controles
             if (checkBoxAdmin.Checked)
                 roles.Add(Sesion.ROL_ADMIN_NOMBRE);
 
-            if (checkBoxEmpleado.Checked)
-                roles.Add(Sesion.ROL_EMPLOYEE_NOMBRE);
+            if (checkBoxComercial.Checked)
+                roles.Add(Sesion.ROL_COMERCIAL_NOMBRE);
 
             Usuario.Roles = String.Join(",", roles);
 

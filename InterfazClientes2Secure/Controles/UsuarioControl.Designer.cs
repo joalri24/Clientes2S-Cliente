@@ -30,7 +30,7 @@
         {
             this.labelUsuario = new System.Windows.Forms.Label();
             this.checkBoxAdmin = new System.Windows.Forms.CheckBox();
-            this.checkBoxEmpleado = new System.Windows.Forms.CheckBox();
+            this.checkBoxComercial = new System.Windows.Forms.CheckBox();
             this.buttonGuardar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -53,14 +53,14 @@
             this.checkBoxAdmin.TabIndex = 1;
             this.checkBoxAdmin.UseVisualStyleBackColor = true;
             // 
-            // checkBoxEmpleado
+            // checkBoxComercial
             // 
-            this.checkBoxEmpleado.AutoSize = true;
-            this.checkBoxEmpleado.Location = new System.Drawing.Point(327, 7);
-            this.checkBoxEmpleado.Name = "checkBoxEmpleado";
-            this.checkBoxEmpleado.Size = new System.Drawing.Size(15, 14);
-            this.checkBoxEmpleado.TabIndex = 2;
-            this.checkBoxEmpleado.UseVisualStyleBackColor = true;
+            this.checkBoxComercial.AutoSize = true;
+            this.checkBoxComercial.Location = new System.Drawing.Point(327, 7);
+            this.checkBoxComercial.Name = "checkBoxComercial";
+            this.checkBoxComercial.Size = new System.Drawing.Size(15, 14);
+            this.checkBoxComercial.TabIndex = 2;
+            this.checkBoxComercial.UseVisualStyleBackColor = true;
             // 
             // buttonGuardar
             // 
@@ -77,7 +77,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.buttonGuardar);
-            this.Controls.Add(this.checkBoxEmpleado);
+            this.Controls.Add(this.checkBoxComercial);
             this.Controls.Add(this.checkBoxAdmin);
             this.Controls.Add(this.labelUsuario);
             this.Name = "UsuarioControl";
@@ -91,7 +91,7 @@
 
         private System.Windows.Forms.Label labelUsuario;
         private System.Windows.Forms.CheckBox checkBoxAdmin;
-        private System.Windows.Forms.CheckBox checkBoxEmpleado;
+        private System.Windows.Forms.CheckBox checkBoxComercial;
         private System.Windows.Forms.Button buttonGuardar;
     }
 }

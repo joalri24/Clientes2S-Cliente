@@ -79,7 +79,7 @@
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(86, 23);
             this.label3.TabIndex = 3;
-            this.label3.Text = "Empleado";
+            this.label3.Text = "Comercial";
             // 
             // FormGestionUsuarios
             // 

@@ -254,6 +254,7 @@ namespace InterfazClientes2Secure
 
             if (Sesion != null)
             {
+                cargando = true;
                 using (var httpClient = new HttpClient())
                 {
                     httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
@@ -279,12 +280,13 @@ namespace InterfazClientes2Secure
                         toolStripSeparatorAdmin.Visible = false;
                         toolStripMenuCargarTodos.Visible = false;
                         toolStripMenuCargarTodos.Enabled = false;
-                        ToolStripMenuUsuarios.Visible = false;
+                        ToolStripMenuUsuarios.Visible = false;                     
                     }
                     else
                     {
                         toolStripLabelMensaje.Text = "No fue posible cerrar sesión.";
                     }
+                    cargando = false;
                 }
             }
         }
