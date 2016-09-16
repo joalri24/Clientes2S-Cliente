@@ -418,7 +418,21 @@ namespace InterfazClientes2Secure
                         new KeyValuePair<string, string>("username", dialogo.darLogin()),
                         new KeyValuePair<string, string>("password", dialogo.darcontraseña())
                     });
-                    HttpResponseMessage response = await client.PostAsync(RUTA_TOKEN, formContent);
+
+                    HttpResponseMessage response = null;
+                    try
+                    {
+                        response = await client.PostAsync(RUTA_TOKEN, formContent);
+                    }
+                        
+                    catch (Exception)
+                    {
+
+                        MessageBox.Show("Se produjo un error al intentar comunicarse con el servidor","Error de conexión");
+                        toolStripLabelMensaje.Text = "";
+                        return;
+                    }
+                    
 
                     if (response.IsSuccessStatusCode)
                     {

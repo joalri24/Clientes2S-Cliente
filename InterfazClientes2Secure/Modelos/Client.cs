@@ -28,6 +28,8 @@ namespace InterfazClientes2Secure
 
         public string ApplicationUserId { get; set; }
 
+        public string OwnerEmail { get; set; }
+
 
         // ------------------------------------
         // Constructor

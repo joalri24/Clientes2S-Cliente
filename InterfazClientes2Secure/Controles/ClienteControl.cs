@@ -79,6 +79,7 @@ namespace InterfazClientes2Secure
             textBoxPendientes.Text = Cliente.Pendings;
             CambiarEstado(Cliente.State);
             dateTimePickerUltimoContacto.Value = Cliente.LastContact;
+            toolStripLabelOwner.Text = Cliente.OwnerEmail;
         }
 
 

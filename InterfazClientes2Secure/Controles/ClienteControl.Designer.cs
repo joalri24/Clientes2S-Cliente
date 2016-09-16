@@ -85,6 +85,7 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonMinimizarContacto = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelOwner = new System.Windows.Forms.ToolStripLabel();
             this.toolStripCliente.SuspendLayout();
             this.tabControlCliente.SuspendLayout();
             this.tabPageResumen.SuspendLayout();
@@ -118,7 +119,8 @@
             this.toolStripButtonEstadoU,
             this.toolStripButtonEstadoA,
             this.toolStripButtonEstadoN,
-            this.toolStripButtonEliminar});
+            this.toolStripButtonEliminar,
+            this.toolStripLabelOwner});
             this.toolStripCliente.Location = new System.Drawing.Point(0, 0);
             this.toolStripCliente.Name = "toolStripCliente";
             this.toolStripCliente.Size = new System.Drawing.Size(978, 25);
@@ -660,11 +662,11 @@
             this.tableLayoutContactos.ColumnCount = 1;
             this.tableLayoutContactos.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutContactos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutContactos.Location = new System.Drawing.Point(35, 3);
+            this.tableLayoutContactos.Location = new System.Drawing.Point(28, 3);
             this.tableLayoutContactos.Name = "tableLayoutContactos";
             this.tableLayoutContactos.RowCount = 1;
             this.tableLayoutContactos.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutContactos.Size = new System.Drawing.Size(932, 403);
+            this.tableLayoutContactos.Size = new System.Drawing.Size(939, 403);
             this.tableLayoutContactos.TabIndex = 2;
             // 
             // toolStrip2
@@ -680,7 +682,7 @@
             this.toolStripButtonMinimizarContacto});
             this.toolStrip2.Location = new System.Drawing.Point(3, 3);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(32, 403);
+            this.toolStrip2.Size = new System.Drawing.Size(25, 403);
             this.toolStrip2.TabIndex = 1;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -730,10 +732,17 @@
             this.toolStripButtonMinimizarContacto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMinimizarContacto.Image")));
             this.toolStripButtonMinimizarContacto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMinimizarContacto.Name = "toolStripButtonMinimizarContacto";
-            this.toolStripButtonMinimizarContacto.Size = new System.Drawing.Size(29, 19);
+            this.toolStripButtonMinimizarContacto.Size = new System.Drawing.Size(22, 19);
             this.toolStripButtonMinimizarContacto.Text = "[-]";
             this.toolStripButtonMinimizarContacto.ToolTipText = "Minimizar todos";
             this.toolStripButtonMinimizarContacto.Click += new System.EventHandler(this.toolStripButtonMinimizarContacto_Click);
+            // 
+            // toolStripLabelOwner
+            // 
+            this.toolStripLabelOwner.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelOwner.Name = "toolStripLabelOwner";
+            this.toolStripLabelOwner.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabelOwner.Text = "2Secure";
             // 
             // ClienteControl
             // 
@@ -834,5 +843,6 @@
         private System.Windows.Forms.Label labelPendientes;
         private System.Windows.Forms.Button buttonSeleccionarUsuario;
         private System.Windows.Forms.GroupBox groupBoxFecha;
+        private System.Windows.Forms.ToolStripLabel toolStripLabelOwner;
     }
 }
