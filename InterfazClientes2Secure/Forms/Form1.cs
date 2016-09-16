@@ -139,6 +139,7 @@ namespace InterfazClientes2Secure
 
         }
 
+
         /// <summary>
         /// Agrega el cliente pasado como parámetro al layout del fondo.
         /// Lo introduce en una nueva fila.
@@ -155,6 +156,24 @@ namespace InterfazClientes2Secure
 
             tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
             controlesCliente.Add(control);
+        }
+
+        /// <summary>
+        /// Agrega el Control Contacto pasado como parámetro al layout del fondo.
+        /// Lo introduce en una nueva fila.
+        /// </summary>
+        /// <param name="control"></param>
+        void AgregarContactoControl(ContactoControl control)
+        {
+            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
+            // disponibles donde se puede poner el nuevo cliente.
+            if (vacio)
+                vacio = false;
+            else
+                tableLayoutClientes.RowCount++;
+
+            tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
+            // TODO controlesCliente.Add(control); 
         }
 
         /// <summary>
@@ -243,6 +262,56 @@ namespace InterfazClientes2Secure
             toolStripLabelMensaje.Text = "";
         }
 
+        /// <summary>
+        /// Obtiene los contactos pertenecientes al usuario desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// Se ejecuta cuando se hace click sobre el botón correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CargarContactos(object sender, EventArgs e)
+        {
+            CargarContactos();
+        }
+
+        /// <summary>
+        /// Obtiene todos los contactos asociados con el usuario. Utiliza un query GET.
+        /// </summary>
+        private async void CargarContactos()
+        {
+            tableLayoutClientes.Controls.Clear();
+            tableLayoutClientes.RowCount = 1;
+            vacio = true;
+            cargando = true;
+            toolStripLabelMensaje.Text = CARGANDO;
+
+            using (var httpClient = new HttpClient())
+            {
+                httpClient.BaseAddress = new Uri(DIRECCION_SERVIDOR);
+                httpClient.DefaultRequestHeaders.Accept.Clear();
+                httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(APP_JSON));
+                if (Sesion != null)
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
+
+                HttpResponseMessage response = await httpClient.GetAsync(RUTA_CONTACTOS);
+                if (response.IsSuccessStatusCode)
+                {
+                    Contact[] contactos = await response.Content.ReadAsAsync<Contact[]>();
+
+                    foreach (var contacto in contactos)
+                    {
+                        var control = new ContactoControl(contacto);
+                        AgregarContactoControl(control);
+                    }
+                }
+                else
+                {
+                    toolStripLabelMensaje.Text = "Respuesta negativa del servidor";
+                }
+                cargando = false;
+                toolStripLabelMensaje.Text = "";
+            }
+        }
 
         /// <summary>
         /// Borra la información de sesión. También borra los clientes de la pantalla
@@ -270,7 +339,7 @@ namespace InterfazClientes2Secure
                         tableLayoutClientes.Controls.Clear();
                         tableLayoutClientes.RowCount = 1;
                         vacio = true;
-                        ToolStripButtonCargar.Enabled = false;
+                        ToolStripButtonCargarClientes.Enabled = false;
                         ToolStripButtonNuevo.Enabled = false;
                         ToolStripMenuNuevoCliente.Enabled = false;
                         ToolStripMenuCargarClientes.Enabled = false;
@@ -440,7 +509,7 @@ namespace InterfazClientes2Secure
                         
                         // Actualiza la interfaz gráfica.                     
                         toolStripLabelMensaje.Text = "Inicio de sesión exitoso: " + Sesion.userName;
-                        ToolStripButtonCargar.Enabled = true;
+                        ToolStripButtonCargarClientes.Enabled = true;
                         ToolStripMenuNuevoCliente.Enabled = true;
                         ToolStripMenuCargarClientes.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
@@ -464,9 +533,6 @@ namespace InterfazClientes2Secure
                         MessageBox.Show("No fue posible iniciar sesión.", "Inicio de sesión");
                         toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
                     }
-
-
-
                 }
             }
         }

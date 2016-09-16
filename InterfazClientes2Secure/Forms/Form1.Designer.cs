@@ -32,7 +32,7 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.ToolStripButtonCargar = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripButtonCargarClientes = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripButtonNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,6 +57,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButtonCargarContactos = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -66,7 +67,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonLogin,
             this.toolStripSeparator4,
-            this.ToolStripButtonCargar,
+            this.ToolStripButtonCargarClientes,
+            this.toolStripButtonCargarContactos,
             this.toolStripSeparator1,
             this.ToolStripButtonNuevo,
             this.toolStripSeparator8,
@@ -95,15 +97,15 @@
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(6, 25);
             // 
-            // ToolStripButtonCargar
+            // ToolStripButtonCargarClientes
             // 
-            this.ToolStripButtonCargar.Enabled = false;
-            this.ToolStripButtonCargar.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonCargar.Image")));
-            this.ToolStripButtonCargar.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.ToolStripButtonCargar.Name = "ToolStripButtonCargar";
-            this.ToolStripButtonCargar.Size = new System.Drawing.Size(107, 22);
-            this.ToolStripButtonCargar.Text = "Cargar Clientes";
-            this.ToolStripButtonCargar.Click += new System.EventHandler(this.CargarClientes);
+            this.ToolStripButtonCargarClientes.Enabled = false;
+            this.ToolStripButtonCargarClientes.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonCargarClientes.Image")));
+            this.ToolStripButtonCargarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.ToolStripButtonCargarClientes.Name = "ToolStripButtonCargarClientes";
+            this.ToolStripButtonCargarClientes.Size = new System.Drawing.Size(89, 22);
+            this.ToolStripButtonCargarClientes.Text = "Ver Clientes";
+            this.ToolStripButtonCargarClientes.Click += new System.EventHandler(this.CargarClientes);
             // 
             // toolStripSeparator1
             // 
@@ -302,6 +304,15 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
+            // toolStripButtonCargarContactos
+            // 
+            this.toolStripButtonCargarContactos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCargarContactos.Image")));
+            this.toolStripButtonCargarContactos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCargarContactos.Name = "toolStripButtonCargarContactos";
+            this.toolStripButtonCargarContactos.Size = new System.Drawing.Size(101, 22);
+            this.toolStripButtonCargarContactos.Text = "Ver Contactos";
+            this.toolStripButtonCargarContactos.Click += new System.EventHandler(this.CargarContactos);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,7 +353,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
         private System.Windows.Forms.ToolStripButton ToolStripButtonMinimizar;
-        private System.Windows.Forms.ToolStripButton ToolStripButtonCargar;
+        private System.Windows.Forms.ToolStripButton ToolStripButtonCargarClientes;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripLabel toolStripLabelMensaje;
         private System.Windows.Forms.ToolStripMenuItem ClientesToolStripMenuMinimizar;
@@ -353,6 +364,7 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuCargarTodos;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonCargarContactos;
     }
 }
 
