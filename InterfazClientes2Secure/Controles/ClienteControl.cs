@@ -24,9 +24,9 @@ namespace InterfazClientes2Secure
         private const int ALTURA_MINIMIZADO = 25;
 
         // Texto de los botones de cambio de estado
-        private const string URGENTE = "Urgente";
-        private const string ATENCION = "Atención";
-        private const string NORMAL = "Normal";
+        public const string URGENTE = "Urgente";
+        public const string ATENCION = "Atención";
+        public const string NORMAL = "Normal";
 
 
         // ------------------------------------------------------------------

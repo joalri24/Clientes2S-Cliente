@@ -49,6 +49,7 @@
             this.ClientesToolStripMenuMinimizar = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparatorAdmin = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuCargarTodos = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuCargarContactos = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuUsuarios = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nuevoUsuarioToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -58,7 +59,11 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ToolStripMenuCargarContactos = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuFiltros = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltroEstado = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltroEstadoUrgente = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltroEstadoAtencion = new System.Windows.Forms.ToolStripMenuItem();
+            this.FiltroEstadoNormal = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -158,6 +163,7 @@
             // toolStripLabelMensaje
             // 
             this.toolStripLabelMensaje.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelMensaje.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.toolStripLabelMensaje.Name = "toolStripLabelMensaje";
             this.toolStripLabelMensaje.Size = new System.Drawing.Size(0, 22);
             // 
@@ -179,6 +185,7 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.ToolStripMenuUsuarios,
+            this.ToolStripMenuFiltros,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -251,6 +258,15 @@
             this.toolStripMenuCargarTodos.Visible = false;
             this.toolStripMenuCargarTodos.Click += new System.EventHandler(this.CargarTodosClientes);
             // 
+            // ToolStripMenuCargarContactos
+            // 
+            this.ToolStripMenuCargarContactos.Enabled = false;
+            this.ToolStripMenuCargarContactos.Name = "ToolStripMenuCargarContactos";
+            this.ToolStripMenuCargarContactos.Size = new System.Drawing.Size(231, 22);
+            this.ToolStripMenuCargarContactos.Text = "Cargar contactos (Admin)";
+            this.ToolStripMenuCargarContactos.Visible = false;
+            this.ToolStripMenuCargarContactos.Click += new System.EventHandler(this.CargarTodosContactos);
+            // 
             // ToolStripMenuUsuarios
             // 
             this.ToolStripMenuUsuarios.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -290,39 +306,85 @@
             // contentsToolStripMenuItem
             // 
             this.contentsToolStripMenuItem.Name = "contentsToolStripMenuItem";
-            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.contentsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.contentsToolStripMenuItem.Text = "&Contents";
             // 
             // indexToolStripMenuItem
             // 
             this.indexToolStripMenuItem.Name = "indexToolStripMenuItem";
-            this.indexToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.indexToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.indexToolStripMenuItem.Text = "&Index";
             // 
             // searchToolStripMenuItem
             // 
             this.searchToolStripMenuItem.Name = "searchToolStripMenuItem";
-            this.searchToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.searchToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.searchToolStripMenuItem.Text = "&Search";
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(119, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(149, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // ToolStripMenuCargarContactos
+            // ToolStripMenuFiltros
             // 
-            this.ToolStripMenuCargarContactos.Enabled = false;
-            this.ToolStripMenuCargarContactos.Name = "ToolStripMenuCargarContactos";
-            this.ToolStripMenuCargarContactos.Size = new System.Drawing.Size(231, 22);
-            this.ToolStripMenuCargarContactos.Text = "Cargar contactos (Admin)";
-            this.ToolStripMenuCargarContactos.Click += new System.EventHandler(this.CargarTodosContactos);
+            this.ToolStripMenuFiltros.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltroEstado});
+            this.ToolStripMenuFiltros.Name = "ToolStripMenuFiltros";
+            this.ToolStripMenuFiltros.Size = new System.Drawing.Size(49, 20);
+            this.ToolStripMenuFiltros.Text = "Filtrar";
+            // 
+            // FiltroEstado
+            // 
+            this.FiltroEstado.CheckOnClick = true;
+            this.FiltroEstado.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.FiltroEstadoUrgente,
+            this.FiltroEstadoAtencion,
+            this.FiltroEstadoNormal});
+            this.FiltroEstado.Name = "FiltroEstado";
+            this.FiltroEstado.Size = new System.Drawing.Size(152, 22);
+            this.FiltroEstado.Text = "Por Estado";
+            this.FiltroEstado.CheckedChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstado.CheckStateChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstado.Click += new System.EventHandler(this.FiltrarClientes);
+            // 
+            // FiltroEstadoUrgente
+            // 
+            this.FiltroEstadoUrgente.Checked = true;
+            this.FiltroEstadoUrgente.CheckOnClick = true;
+            this.FiltroEstadoUrgente.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.FiltroEstadoUrgente.Name = "FiltroEstadoUrgente";
+            this.FiltroEstadoUrgente.Size = new System.Drawing.Size(152, 22);
+            this.FiltroEstadoUrgente.Text = "Urgente";
+            this.FiltroEstadoUrgente.CheckedChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoUrgente.CheckStateChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoUrgente.Click += new System.EventHandler(this.FiltrarClientes);
+            // 
+            // FiltroEstadoAtencion
+            // 
+            this.FiltroEstadoAtencion.CheckOnClick = true;
+            this.FiltroEstadoAtencion.Name = "FiltroEstadoAtencion";
+            this.FiltroEstadoAtencion.Size = new System.Drawing.Size(152, 22);
+            this.FiltroEstadoAtencion.Text = "Atención";
+            this.FiltroEstadoAtencion.CheckedChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoAtencion.CheckStateChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoAtencion.Click += new System.EventHandler(this.FiltrarClientes);
+            // 
+            // FiltroEstadoNormal
+            // 
+            this.FiltroEstadoNormal.CheckOnClick = true;
+            this.FiltroEstadoNormal.Name = "FiltroEstadoNormal";
+            this.FiltroEstadoNormal.Size = new System.Drawing.Size(152, 22);
+            this.FiltroEstadoNormal.Text = "Normal";
+            this.FiltroEstadoNormal.CheckedChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoNormal.CheckStateChanged += new System.EventHandler(this.FiltrarClientes);
+            this.FiltroEstadoNormal.Click += new System.EventHandler(this.FiltrarClientes);
             // 
             // Form1
             // 
@@ -377,6 +439,11 @@
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonCargarContactos;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuCargarContactos;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuFiltros;
+        private System.Windows.Forms.ToolStripMenuItem FiltroEstado;
+        private System.Windows.Forms.ToolStripMenuItem FiltroEstadoUrgente;
+        private System.Windows.Forms.ToolStripMenuItem FiltroEstadoAtencion;
+        private System.Windows.Forms.ToolStripMenuItem FiltroEstadoNormal;
     }
 }
 

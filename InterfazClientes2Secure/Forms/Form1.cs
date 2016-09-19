@@ -81,6 +81,7 @@ namespace InterfazClientes2Secure
         public Form1()
         {
             InitializeComponent();
+
             vacio = true;
             cargando = false;
             controlesCliente = new List<ClienteControl>();
@@ -473,6 +474,45 @@ namespace InterfazClientes2Secure
                 CerrarSesion();
             
                       
+        }
+
+        /// <summary>
+        /// Hace invisible los controles que no pasen por los filtros establecidos.
+        /// </summary>
+        private void FiltrarClientes()
+        {
+            // Filtros por estado
+            if (FiltroEstado.Checked)
+            {
+                toolStripLabelMensaje.Text = "Filtro por estado activado!";
+                foreach (var control in controlesCliente)
+                {
+
+                    if (control.Cliente.State == ClienteControl.NORMAL)
+                        control.Visible = FiltroEstadoNormal.Checked;
+
+                    if (control.Cliente.State == ClienteControl.ATENCION)
+                        control.Visible = FiltroEstadoAtencion.Checked;
+
+                    if (control.Cliente.State == ClienteControl.URGENTE)
+                        control.Visible = FiltroEstadoUrgente.Checked;
+                }
+            }
+            else
+            {               
+                toolStripLabelMensaje.Text = "";
+                foreach (var control in controlesCliente)
+                    control.Visible =  true;
+            }
+        }
+
+        /// <summary>
+        /// Hace invisible los controles que no pasen por los filtros establecidos. 
+        /// Se ejecuta cuando se hace click en los botones correspondientes.
+        /// </summary>
+        private void FiltrarClientes(object sender, EventArgs e)
+        {
+            FiltrarClientes();
         }
 
         /// <summary>
