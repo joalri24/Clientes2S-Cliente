@@ -211,6 +211,9 @@ namespace InterfazClientes2Secure
 
             LimpiarListas();          
             cargando = true;
+
+            // Quitar filtros
+            FiltroEstado.Checked = false;
             toolStripLabelMensaje.Text = CARGANDO;
 
             // Obtener los clientes con un query GET.
