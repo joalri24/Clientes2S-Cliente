@@ -460,6 +460,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerTarea);
             this.Controls.Add(this.toolStripTarea);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
             this.Name = "TareaControl";
             this.Size = new System.Drawing.Size(902, 285);
             this.toolStripTarea.ResumeLayout(false);

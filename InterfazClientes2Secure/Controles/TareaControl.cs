@@ -52,6 +52,7 @@ namespace InterfazClientes2Secure
         public TareaControl(Job tarea)
         {
             InitializeComponent();
+            Dock = DockStyle.Top;
             Tarea = tarea;
 
             toolStripLabelTarea.Text = Tarea.Name;

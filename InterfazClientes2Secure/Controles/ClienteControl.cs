@@ -54,6 +54,7 @@ namespace InterfazClientes2Secure
         public ClienteControl()
         {
             InitializeComponent();
+            Dock = DockStyle.Top;
             hayTareas = false;
             hayContactos = false;
             Cliente = null;
@@ -67,6 +68,7 @@ namespace InterfazClientes2Secure
         public ClienteControl(Client cliente)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             hayTareas = false;
             hayContactos = false;
             Cliente = cliente;

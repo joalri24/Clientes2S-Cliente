@@ -39,6 +39,7 @@
             this.toolStripButtonEstadoA = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEstadoN = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonEliminar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripLabelOwner = new System.Windows.Forms.ToolStripLabel();
             this.tabControlCliente = new System.Windows.Forms.TabControl();
             this.tabPageResumen = new System.Windows.Forms.TabPage();
             this.splitContainerClienteFondo = new System.Windows.Forms.SplitContainer();
@@ -85,7 +86,6 @@
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonMinimizarContacto = new System.Windows.Forms.ToolStripButton();
-            this.toolStripLabelOwner = new System.Windows.Forms.ToolStripLabel();
             this.toolStripCliente.SuspendLayout();
             this.tabControlCliente.SuspendLayout();
             this.tabPageResumen.SuspendLayout();
@@ -215,6 +215,13 @@
             this.toolStripButtonEliminar.ToolTipText = "Eliminar cliente";
             this.toolStripButtonEliminar.Click += new System.EventHandler(this.EliminarCliente);
             // 
+            // toolStripLabelOwner
+            // 
+            this.toolStripLabelOwner.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.toolStripLabelOwner.Name = "toolStripLabelOwner";
+            this.toolStripLabelOwner.Size = new System.Drawing.Size(48, 22);
+            this.toolStripLabelOwner.Text = "2Secure";
+            // 
             // tabControlCliente
             // 
             this.tabControlCliente.Controls.Add(this.tabPageResumen);
@@ -254,7 +261,7 @@
             // 
             this.splitContainerClienteFondo.Panel2.Controls.Add(this.groupBoxOtros);
             this.splitContainerClienteFondo.Size = new System.Drawing.Size(964, 403);
-            this.splitContainerClienteFondo.SplitterDistance = 241;
+            this.splitContainerClienteFondo.SplitterDistance = 263;
             this.splitContainerClienteFondo.TabIndex = 0;
             // 
             // splitContainerSuperior
@@ -271,7 +278,7 @@
             // 
             this.splitContainerSuperior.Panel2.Controls.Add(this.groupBoxFecha);
             this.splitContainerSuperior.Panel2.Controls.Add(this.groupBoxContactoP);
-            this.splitContainerSuperior.Size = new System.Drawing.Size(964, 241);
+            this.splitContainerSuperior.Size = new System.Drawing.Size(964, 263);
             this.splitContainerSuperior.SplitterDistance = 412;
             this.splitContainerSuperior.TabIndex = 0;
             // 
@@ -288,7 +295,7 @@
             this.groupBoxInfoGeneral.ForeColor = System.Drawing.Color.Brown;
             this.groupBoxInfoGeneral.Location = new System.Drawing.Point(0, 0);
             this.groupBoxInfoGeneral.Name = "groupBoxInfoGeneral";
-            this.groupBoxInfoGeneral.Size = new System.Drawing.Size(412, 241);
+            this.groupBoxInfoGeneral.Size = new System.Drawing.Size(412, 263);
             this.groupBoxInfoGeneral.TabIndex = 0;
             this.groupBoxInfoGeneral.TabStop = false;
             this.groupBoxInfoGeneral.Text = "Información general";
@@ -521,19 +528,20 @@
             this.groupBoxOtros.ForeColor = System.Drawing.Color.Brown;
             this.groupBoxOtros.Location = new System.Drawing.Point(0, 0);
             this.groupBoxOtros.Name = "groupBoxOtros";
-            this.groupBoxOtros.Size = new System.Drawing.Size(964, 158);
+            this.groupBoxOtros.Size = new System.Drawing.Size(964, 136);
             this.groupBoxOtros.TabIndex = 0;
             this.groupBoxOtros.TabStop = false;
             this.groupBoxOtros.Text = "Otros";
             // 
             // textBoxPendientes
             // 
+            this.textBoxPendientes.Dock = System.Windows.Forms.DockStyle.Top;
             this.textBoxPendientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxPendientes.Location = new System.Drawing.Point(6, 47);
+            this.textBoxPendientes.Location = new System.Drawing.Point(3, 16);
             this.textBoxPendientes.Multiline = true;
             this.textBoxPendientes.Name = "textBoxPendientes";
             this.textBoxPendientes.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxPendientes.Size = new System.Drawing.Size(937, 95);
+            this.textBoxPendientes.Size = new System.Drawing.Size(958, 95);
             this.textBoxPendientes.TabIndex = 6;
             this.textBoxPendientes.Leave += new System.EventHandler(this.GuardarCambiosCliente);
             // 
@@ -737,19 +745,13 @@
             this.toolStripButtonMinimizarContacto.ToolTipText = "Minimizar todos";
             this.toolStripButtonMinimizarContacto.Click += new System.EventHandler(this.toolStripButtonMinimizarContacto_Click);
             // 
-            // toolStripLabelOwner
-            // 
-            this.toolStripLabelOwner.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
-            this.toolStripLabelOwner.Name = "toolStripLabelOwner";
-            this.toolStripLabelOwner.Size = new System.Drawing.Size(48, 22);
-            this.toolStripLabelOwner.Text = "2Secure";
-            // 
             // ClienteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tabControlCliente);
             this.Controls.Add(this.toolStripCliente);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 10, 3);
             this.Name = "ClienteControl";
             this.Size = new System.Drawing.Size(978, 460);
             this.toolStripCliente.ResumeLayout(false);

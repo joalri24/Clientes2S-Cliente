@@ -38,12 +38,14 @@ namespace InterfazClientes2Secure
         public ContactoControl()
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             Contacto = null;
         }
 
         public ContactoControl(Contact contacto)
         {
             InitializeComponent();
+            Dock = DockStyle.Fill;
             Contacto = contacto;
 
             toolStripLabelContacto.Text = Contacto.Name;

@@ -280,6 +280,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainerContacto);
             this.Controls.Add(this.toolStripContacto);
+            this.Margin = new System.Windows.Forms.Padding(3, 3, 9, 3);
             this.Name = "ContactoControl";
             this.Size = new System.Drawing.Size(902, 233);
             this.toolStripContacto.ResumeLayout(false);
