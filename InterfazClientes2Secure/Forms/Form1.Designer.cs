@@ -148,7 +148,7 @@
             this.ToolStripButtonMinimizar.Size = new System.Drawing.Size(113, 22);
             this.ToolStripButtonMinimizar.Text = "[-] Minimizar todos";
             this.ToolStripButtonMinimizar.ToolTipText = "Minimizar todos";
-            this.ToolStripButtonMinimizar.Click += new System.EventHandler(this.MinimizarClientes);
+            this.ToolStripButtonMinimizar.Click += new System.EventHandler(this.MinimizarControles);
             // 
             // toolStripSeparator3
             // 
@@ -234,7 +234,7 @@
             this.ClientesToolStripMenuMinimizar.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.ClientesToolStripMenuMinimizar.Size = new System.Drawing.Size(231, 22);
             this.ClientesToolStripMenuMinimizar.Text = "[-] Minimizar clientes";
-            this.ClientesToolStripMenuMinimizar.Click += new System.EventHandler(this.MinimizarClientes);
+            this.ClientesToolStripMenuMinimizar.Click += new System.EventHandler(this.MinimizarControles);
             // 
             // toolStripSeparatorAdmin
             // 

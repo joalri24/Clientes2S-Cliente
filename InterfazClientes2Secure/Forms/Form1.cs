@@ -174,7 +174,7 @@ namespace InterfazClientes2Secure
                 tableLayoutClientes.RowCount++;
 
             tableLayoutClientes.Controls.Add(control, 0, tableLayoutClientes.RowCount - 1);
-            // TODO controlesCliente.Add(control); 
+            controlesContactos.Add(control); 
         }
 
         /// <summary>
@@ -253,13 +253,12 @@ namespace InterfazClientes2Secure
                     }
                 }
                 else
-                {
                     toolStripLabelMensaje.Text = "Respuesta negativa del servidor";
-                }
+                
             }
-            MinimizarClientes();
+            MinimizarControles();
             cargando = false;
-            toolStripLabelMensaje.Text = "";
+            toolStripLabelMensaje.Text = "Conectado como: "+ Sesion.userName;
         }
 
         /// <summary>
@@ -274,6 +273,13 @@ namespace InterfazClientes2Secure
             CargarContactos(RUTA_CONTACTOS);
         }
 
+        /// <summary>
+        /// Obtiene todos los contactos desde el backend por medio de un servicio web.
+        /// Crea los controles correspondientes y los agrega a al layout de fondo.
+        /// Se ejecuta cuando se hace click sobre el botón correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CargarTodosContactos(object sender, EventArgs e)
         {
             CargarContactos(RUTA_TODOS_CONTACTOS);
@@ -308,11 +314,11 @@ namespace InterfazClientes2Secure
                     }
                 }
                 else
-                {
-                    toolStripLabelMensaje.Text = "Respuesta negativa del servidor";
-                }
+                    toolStripLabelMensaje.Text = "Respuesta negativa del servidor";               
+
                 cargando = false;
-                toolStripLabelMensaje.Text = "";
+                MinimizarControles();
+                toolStripLabelMensaje.Text = "Conectado como: "+ Sesion.userName;
             }
         }
 
@@ -564,18 +570,21 @@ namespace InterfazClientes2Secure
         /// Obtiene los clientes desde el backend por medio de un servicio web.
         /// Crea los controles correspondientes y los agrega a al layout de fondo.
         /// </summary>
-        private void MinimizarClientes(object sender, EventArgs e)
+        private void MinimizarControles(object sender, EventArgs e)
         {
-            MinimizarClientes();
+            MinimizarControles();
             
         }
 
         /// <summary>
-        /// Minimiza todos los controles cliente.
+        /// Minimiza todos los controles de la interfaz.
         /// </summary>
-        private void MinimizarClientes()
+        private void MinimizarControles()
         {
             foreach (ClienteControl control in controlesCliente)
+                control.Minimizar();
+
+            foreach (ContactoControl control in controlesContactos)
                 control.Minimizar();
         }
 
