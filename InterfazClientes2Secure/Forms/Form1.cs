@@ -582,7 +582,6 @@ namespace InterfazClientes2Secure
                             ToolStripMenuUsuarios.Visible = true;
                             ToolStripMenuCargarContactos.Visible = true;
                             ToolStripMenuCargarContactos.Enabled = true;
-
                         }
 
                         CargarClientes(RUTA_CLIENTES);

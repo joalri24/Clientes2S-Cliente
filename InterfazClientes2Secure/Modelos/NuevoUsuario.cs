@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace InterfazClientes2Secure.Modelos
 {
+    /// <summary>
+    /// Representación de los datos que se van a enviar al servidor 
+    /// para crear un nuevo usuario de la aplicación.
+    /// </summary>
     public class NuevoUsuario
     {
         public string Email { get; set; }
