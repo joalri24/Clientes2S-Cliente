@@ -33,6 +33,7 @@
             this.toolStripButtonLogin = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripButtonCargarClientes = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonCargarContactos = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.ToolStripButtonNuevo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
@@ -57,7 +58,7 @@
             this.searchToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripButtonCargarContactos = new System.Windows.Forms.ToolStripButton();
+            this.ToolStripMenuCargarContactos = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -106,6 +107,16 @@
             this.ToolStripButtonCargarClientes.Size = new System.Drawing.Size(89, 22);
             this.ToolStripButtonCargarClientes.Text = "Ver Clientes";
             this.ToolStripButtonCargarClientes.Click += new System.EventHandler(this.CargarClientes);
+            // 
+            // toolStripButtonCargarContactos
+            // 
+            this.toolStripButtonCargarContactos.Enabled = false;
+            this.toolStripButtonCargarContactos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCargarContactos.Image")));
+            this.toolStripButtonCargarContactos.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonCargarContactos.Name = "toolStripButtonCargarContactos";
+            this.toolStripButtonCargarContactos.Size = new System.Drawing.Size(101, 22);
+            this.toolStripButtonCargarContactos.Text = "Ver Contactos";
+            this.toolStripButtonCargarContactos.Click += new System.EventHandler(this.CargarContactos);
             // 
             // toolStripSeparator1
             // 
@@ -183,7 +194,8 @@
             this.toolStripSeparator2,
             this.ClientesToolStripMenuMinimizar,
             this.toolStripSeparatorAdmin,
-            this.toolStripMenuCargarTodos});
+            this.toolStripMenuCargarTodos,
+            this.ToolStripMenuCargarContactos});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(60, 20);
@@ -304,14 +316,13 @@
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(122, 22);
             this.aboutToolStripMenuItem.Text = "&About...";
             // 
-            // toolStripButtonCargarContactos
+            // ToolStripMenuCargarContactos
             // 
-            this.toolStripButtonCargarContactos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCargarContactos.Image")));
-            this.toolStripButtonCargarContactos.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCargarContactos.Name = "toolStripButtonCargarContactos";
-            this.toolStripButtonCargarContactos.Size = new System.Drawing.Size(101, 22);
-            this.toolStripButtonCargarContactos.Text = "Ver Contactos";
-            this.toolStripButtonCargarContactos.Click += new System.EventHandler(this.CargarContactos);
+            this.ToolStripMenuCargarContactos.Enabled = false;
+            this.ToolStripMenuCargarContactos.Name = "ToolStripMenuCargarContactos";
+            this.ToolStripMenuCargarContactos.Size = new System.Drawing.Size(231, 22);
+            this.ToolStripMenuCargarContactos.Text = "Cargar contactos (Admin)";
+            this.ToolStripMenuCargarContactos.Click += new System.EventHandler(this.CargarTodosContactos);
             // 
             // Form1
             // 
@@ -365,6 +376,7 @@
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nuevoUsuarioToolStripMenuItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonCargarContactos;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuCargarContactos;
     }
 }
 

@@ -25,6 +25,7 @@ namespace InterfazClientes2Secure
 
         public const string RUTA_CLIENTES = "api/clients";
         public const string RUTA_TODOS_CLIENTES = "api/clients/all";
+        public const string RUTA_TODOS_CONTACTOS = "api/contacts/all";
         public const string RUTA_TAREAS = "api/jobs";
         public const string RUTA_CONTACTOS = "api/contacts";
         public const string RUTA_TAREAS_CLIENTE = "/jobs";
@@ -123,11 +124,11 @@ namespace InterfazClientes2Secure
         /// Agrega el cliente pasado como parámetro al layout del fondo.
         /// Crea el control correspondiente y lo introduce en una nueva fila.
         /// </summary>
-        /// <param name="control"></param>
+        /// <param name="cliente"></param>
         void AgregarClienteControl(Client cliente)
         {
-            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
-            // disponibles donde se puede poner el nuevo cliente.
+            // La sentencia if es para que no se cree una nueva fila si exiten 
+            // filas vacías disponibles donde se puede poner el nuevo cliente.
             if (vacio)
                 vacio = false;
             else
@@ -207,11 +208,10 @@ namespace InterfazClientes2Secure
         private async void CargarClientes(string ruta)
         {
 
-            tableLayoutClientes.Controls.Clear();
-            tableLayoutClientes.RowCount = 1;
-            vacio = true;            
+            LimpiarListas();          
             cargando = true;
             toolStripLabelMensaje.Text = CARGANDO;
+
             // Obtener los clientes con un query GET.
             using (var httpClient = new HttpClient())
             {
@@ -271,17 +271,20 @@ namespace InterfazClientes2Secure
         /// <param name="e"></param>
         private void CargarContactos(object sender, EventArgs e)
         {
-            CargarContactos();
+            CargarContactos(RUTA_CONTACTOS);
+        }
+
+        private void CargarTodosContactos(object sender, EventArgs e)
+        {
+            CargarContactos(RUTA_TODOS_CONTACTOS);
         }
 
         /// <summary>
         /// Obtiene todos los contactos asociados con el usuario. Utiliza un query GET.
         /// </summary>
-        private async void CargarContactos()
+        private async void CargarContactos(string ruta)
         {
-            tableLayoutClientes.Controls.Clear();
-            tableLayoutClientes.RowCount = 1;
-            vacio = true;
+            LimpiarListas();
             cargando = true;
             toolStripLabelMensaje.Text = CARGANDO;
 
@@ -293,7 +296,7 @@ namespace InterfazClientes2Secure
                 if (Sesion != null)
                     httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", Sesion.access_token);
 
-                HttpResponseMessage response = await httpClient.GetAsync(RUTA_CONTACTOS);
+                HttpResponseMessage response = await httpClient.GetAsync(ruta);
                 if (response.IsSuccessStatusCode)
                 {
                     Contact[] contactos = await response.Content.ReadAsAsync<Contact[]>();
@@ -343,13 +346,16 @@ namespace InterfazClientes2Secure
                         ToolStripButtonNuevo.Enabled = false;
                         ToolStripMenuNuevoCliente.Enabled = false;
                         ToolStripMenuCargarClientes.Enabled = false;
+                        toolStripButtonCargarContactos.Enabled = false;
                         toolStripButtonLogin.Tag = LOGIN;
                         toolStripButtonLogin.Text = "Iniciar sesión";
                         toolStripLabelMensaje.Text = "Se debe iniciar sesión para obtener acceso a los datos.";
                         toolStripSeparatorAdmin.Visible = false;
                         toolStripMenuCargarTodos.Visible = false;
                         toolStripMenuCargarTodos.Enabled = false;
-                        ToolStripMenuUsuarios.Visible = false;                     
+                        ToolStripMenuUsuarios.Visible = false;
+                        ToolStripMenuCargarContactos.Visible = false;
+                        ToolStripMenuCargarContactos.Enabled = false;                   
                     }
                     else
                     {
@@ -513,6 +519,7 @@ namespace InterfazClientes2Secure
                         ToolStripMenuNuevoCliente.Enabled = true;
                         ToolStripMenuCargarClientes.Enabled = true;
                         ToolStripButtonNuevo.Enabled = true;
+                        toolStripButtonCargarContactos.Enabled = true;
                         toolStripButtonLogin.Text = "Cerrar sesión";
                         toolStripButtonLogin.Tag = LOGOUT;
 
@@ -524,6 +531,9 @@ namespace InterfazClientes2Secure
                             toolStripMenuCargarTodos.Visible = true;
                             toolStripMenuCargarTodos.Enabled = true;
                             ToolStripMenuUsuarios.Visible = true;
+                            ToolStripMenuCargarContactos.Visible = true;
+                            ToolStripMenuCargarContactos.Enabled = true;
+
                         }
 
                         CargarClientes(RUTA_CLIENTES);
@@ -535,6 +545,19 @@ namespace InterfazClientes2Secure
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Limpia las listas y el contenedor de la interfaz gráfica.
+        /// </summary>
+        private void LimpiarListas()
+        {
+            tableLayoutClientes.Controls.Clear();
+            controlesCliente.Clear();
+            controlesContactos.Clear();
+            controlesTareas.Clear();
+            tableLayoutClientes.RowCount = 1;
+            vacio = true;
         }
 
         /// <summary>
