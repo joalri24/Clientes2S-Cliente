@@ -33,6 +33,9 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
+        /// <summary>
+        /// Objeto Job del control. Contiene los datos de la tarea.
+        /// </summary>
         public Job Tarea;
 
 
@@ -70,42 +73,7 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------------------------
 
         /// <summary>
-        /// Minimiza el control cuando se hace click en el boton correspondiente.
-        /// Lo maximiza si ya se encuentra minimizado.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Minimizar(object sender, EventArgs e)
-        {
-            if (splitContainerTarea.Visible)
-            {
-                splitContainerTarea.Visible = false;
-                Height = ALTURA_MINIMIZADO;
-                toolStripButtonMinimizarTarea.Text = "[+]";
-                toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
-            }
-            else
-            {
-                splitContainerTarea.Visible = true;
-                Height = ALTURA_ORIGINAL;
-                toolStripButtonMinimizarTarea.Text = "[-]";
-                toolStripButtonMinimizarTarea.ToolTipText = "Minimizar";
-            }
-        }
-
-        public void Minimizar()
-        {
-            if (splitContainerTarea.Visible)
-            {
-                splitContainerTarea.Visible = false;
-                Height = ALTURA_MINIMIZADO;
-                toolStripButtonMinimizarTarea.Text = "[+]";
-                toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
-            }
-        }
-
-        /// <summary>
-        /// Cambia el estado del cliente. En la interfaz el color de la
+        /// Cambia el estado de la tarea. En la interfaz el color de la
         /// barra donde aparece el nombre cambia de color.
         /// </summary>
         /// <param name="sender"></param>
@@ -136,18 +104,18 @@ namespace InterfazClientes2Secure
                 toolStripTarea.BackColor = Color.OliveDrab;
                 boton.BackColor = Color.DarkGreen;
             }
-            
+
             // Actualiza los labels de la interfaz
             toolStripLabelEstadoTarea.Text = "(" + boton.Text + ")";
             Tarea.State = boton.Text;
             GuardarCambiosTarea();
             textBoxTareaEstado.Text = boton.Text;
-            
+
 
         }
 
         /// <summary>
-        /// Cambia el estado del cliente según la cadena pasada como parámetro. 
+        /// Cambia el estado de la tarea según la cadena pasada como parámetro. 
         /// Si no reconoce el estado dado, asume que es Normal.
         /// La  barra donde aparece el nombre cambia de color.
         /// </summary>
@@ -186,30 +154,15 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Elimina una tarea. Quita el control.
-        /// TODO: El control se elimina pero la fila donde se encontraba 
-        /// queda vacía. Se deben eliminar las filas vacías en algún momento.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void EliminarTarea(object sender, EventArgs e)
         {
             // TODO Reemplazar por el nombre de la tarea.
-            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eleminar la tarea \"" + Tarea.Name + "\"?");
+            Form dialogoConfirmacion = new FormEliminar("¿Está seguro que desea eliminar la tarea \"" + Tarea.Name + "\"?");
             if (dialogoConfirmacion.ShowDialog() == DialogResult.OK)
                 this.Dispose();
-        }
-
-        /// <summary>
-        /// Actualiza el nombre de la empresa en la barra superior cuando
-        /// se modifica el campo correspondiente dentro de la pestaña de 
-        /// resumen.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void textBoxTareaNombre_TextChanged(object sender, EventArgs e)
-        {    
-            TextBox textbox = sender as TextBox;
-            toolStripLabelTarea.Text = textbox.Text;
         }
 
         /// <summary>
@@ -222,7 +175,7 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente. Se ejecuta al recibir ciertos eventos de la interfaz.
+        /// se hayan realizado sobre la tarea. Se ejecuta al recibir ciertos eventos de la interfaz.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -257,7 +210,7 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// Envía un query PUT para guardar en el servidor los cambios que 
         /// se hayan realizado sobre la tarea.
         /// </summary>
         /// <param name="sender"></param>
@@ -289,26 +242,6 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Muestra un formulario donde se puede seleccionar un contacto para asociarlo 
-        /// con la tarea.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SeleccionarContacto(object sender, EventArgs e)
-        {
-            var dialogo = new FormSeleccionarContacto(Tarea.ClientId);
-
-            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
-            if (dialogo.ShowDialog() == DialogResult.OK && dialogo.DarContactoSeleccionado() != null)
-            {
-                Contact contacto = dialogo.DarContactoSeleccionado();
-                Tarea.ContactId = contacto.Id;
-                ImprimirDatosContacto(contacto);
-                GuardarCambiosTarea();
-            }
-        }
-
-        /// <summary>
         /// Actualiza la interfaz para que los campos correspondientes muestren los datos 
         /// del contacto pasado como parámetro.
         /// </summary>
@@ -319,6 +252,44 @@ namespace InterfazClientes2Secure
             textBoxTareaCargoContacto.Text = contacto.JobTitle;
             textBoxTareaTelContacto.Text = contacto.Telephone;
             textBoxTareaCorreoContacto.Text = contacto.Mail;
+        }
+
+        /// <summary>
+        /// Minimiza el control cuando se hace click en el boton correspondiente.
+        /// Lo maximiza si ya se encuentra minimizado.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Minimizar(object sender, EventArgs e)
+        {
+            if (splitContainerTarea.Visible)
+            {
+                splitContainerTarea.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizarTarea.Text = "[+]";
+                toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
+            }
+            else
+            {
+                splitContainerTarea.Visible = true;
+                Height = ALTURA_ORIGINAL;
+                toolStripButtonMinimizarTarea.Text = "[-]";
+                toolStripButtonMinimizarTarea.ToolTipText = "Minimizar";
+            }
+        }
+
+        /// <summary>
+        /// Minimiza el control.
+        /// </summary>
+        public void Minimizar()
+        {
+            if (splitContainerTarea.Visible)
+            {
+                splitContainerTarea.Visible = false;
+                Height = ALTURA_MINIMIZADO;
+                toolStripButtonMinimizarTarea.Text = "[+]";
+                toolStripButtonMinimizarTarea.ToolTipText = "Maximizar";
+            }
         }
 
         /// <summary>
@@ -344,6 +315,38 @@ namespace InterfazClientes2Secure
             }
         }
 
+        /// <summary>
+        /// Muestra un formulario donde se puede seleccionar un contacto para asociarlo 
+        /// con la tarea.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SeleccionarContacto(object sender, EventArgs e)
+        {
+            var dialogo = new FormSeleccionarContacto(Tarea.ClientId);
+
+            // Abre una ventana de dialogo para obtener la información del nuevo contacto.
+            if (dialogo.ShowDialog() == DialogResult.OK && dialogo.DarContactoSeleccionado() != null)
+            {
+                Contact contacto = dialogo.DarContactoSeleccionado();
+                Tarea.ContactId = contacto.Id;
+                ImprimirDatosContacto(contacto);
+                GuardarCambiosTarea();
+            }
+        }
+
+        /// <summary>
+        /// Actualiza el nombre de la empresa en la barra superior cuando
+        /// se modifica el campo correspondiente dentro de la pestaña de 
+        /// resumen.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void textBoxTareaNombre_TextChanged(object sender, EventArgs e)
+        {    
+            TextBox textbox = sender as TextBox;
+            toolStripLabelTarea.Text = textbox.Text;
+        }
 
     }
 }

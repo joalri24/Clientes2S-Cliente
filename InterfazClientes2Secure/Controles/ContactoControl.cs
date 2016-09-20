@@ -12,6 +12,9 @@ using System.Net.Http.Headers;
 
 namespace InterfazClientes2Secure
 {
+    /// <summary>
+    /// Control que contiene todos los datos de un contacto.
+    /// </summary>
     public partial class ContactoControl : UserControl
     {
 
@@ -28,6 +31,9 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
+        /// <summary>
+        /// Objeto Contact del control. Contiene los datos del contacto.
+        /// </summary>
         public Contact Contacto;
 
 
@@ -42,6 +48,10 @@ namespace InterfazClientes2Secure
             Contacto = null;
         }
 
+        /// <summary>
+        /// Crea un nuevo control utilizando los datos del contacto pasado como parámetro
+        /// </summary>
+        /// <param name="contacto"></param>
         public ContactoControl(Contact contacto)
         {
             InitializeComponent();
@@ -64,8 +74,6 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Elimina al contacto. Quita el control.
-        /// TODO: El control se elimina pero la fila donde se encontraba 
-        /// queda vacía. Se deben eliminar las filas vacías en algún momento.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,10 +119,21 @@ namespace InterfazClientes2Secure
                             MessageBox.Show("Permiso denegado para modificar este cliente.", "Error al guardar los cambios");
                         else
                             MessageBox.Show("No fue posible guardar los cambios en la base de datos. Revise si el servidor está disponible.", "Error al comunicarse con el servidor");
-                    }
-                        
+                    }                       
                 }
             }
+        }
+
+        /// <summary>
+        /// Actualiza los campos del control con los datos del cliente pasado como parámetro.
+        /// </summary>
+        /// <param name="contacto"></param>
+        public void ImprimirDatosContacto(Contact contacto)
+        {
+            textBoxNombreContacto.Text = contacto.Name;
+            textBoxCargo.Text = contacto.JobTitle;
+            textBoxTelefono.Text = contacto.Telephone;
+            textBoxCorreo.Text = contacto.Mail;
         }
 
         /// <summary>
@@ -167,14 +186,6 @@ namespace InterfazClientes2Secure
         {
             TextBox textbox = sender as TextBox;
             toolStripLabelContacto.Text = textbox.Text;
-        }
-
-        public void ImprimirDatosContacto(Contact contacto)
-        {
-            textBoxNombreContacto.Text = contacto.Name;
-            textBoxCargo.Text = contacto.JobTitle;
-            textBoxTelefono.Text = contacto.Telephone;
-            textBoxCorreo.Text = contacto.Mail;
         }
 
     }

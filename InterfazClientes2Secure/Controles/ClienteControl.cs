@@ -12,6 +12,10 @@ using System.Net.Http.Headers;
 
 namespace InterfazClientes2Secure
 {
+    /// <summary>
+    /// Control que contiene todos los datos de un cliente. Contiene 3 pestañas:
+    /// una de resumen, una con las tareas y otra con los contactos.
+    /// </summary>
     public partial class ClienteControl : UserControl
     {
 
@@ -43,7 +47,9 @@ namespace InterfazClientes2Secure
         /// </summary>
         private bool hayContactos;
 
-        //private Cliente cliente;
+        /// <summary>
+        /// Objeto Client del control. Contiene los datos del cliente.
+        /// </summary>
         public Client Cliente;
 
 
@@ -73,6 +79,7 @@ namespace InterfazClientes2Secure
             hayContactos = false;
             Cliente = cliente;
 
+            // Actualizar interfaz gráfica.
             textBoxNombreCliente.Text = Cliente.Name;
             toolStripLabelCliente.Text = Cliente.Name;
             comboBoxTipoAsociacion.Text = Cliente.Association;
@@ -93,29 +100,34 @@ namespace InterfazClientes2Secure
         /// Añade un nuevo contacto en el tablelayout de contactos.
         /// Un contacto por fila.
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+        /// <param name="contacto"></param>
         public void AgregarControlContacto(Contact contacto)
         {
             TableLayoutPanel tablaFondo = tableLayoutContactos;
+
+            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
+            // disponibles donde se puede poner el nuevo contacto.
             if (!hayContactos)
                 hayContactos = true;
             else
                 tablaFondo.RowCount++;
+
             var control = new ContactoControl(contacto);
             tablaFondo.Controls.Add(control, 0, tablaFondo.RowCount - 1);
             Form1.controlesContactos.Add(control);
-
         }
 
         /// <summary>
         /// Agrega un controlTarea al tableLayout correspondiente.
-        /// Coloca el controlador en una tabla nueva.
+        /// Una tarea por fila.
         /// </summary>
         /// <param name="tarea"></param>
         public void AgregarControlTarea(Job tarea)
         {
 
+
+            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
+            // disponibles donde se puede poner la nuevo tarea.
             if (!hayTareas)
                 hayTareas = true;
             else
@@ -133,7 +145,8 @@ namespace InterfazClientes2Secure
         /// <param name="tarea"></param>
         public void AgregarControlTarea(TareaControl control)
         {
-
+            // La sentencia if es para que no se cree una nueva fila si exiten filas vacías
+            // disponibles donde se puede poner el nuevo contacto.
             if (!hayTareas)
                 hayTareas = true;
             else
@@ -144,8 +157,8 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Cambia el estado del cliente. En la interfaz el color de la
-        /// barra donde aparece el nombre cambia de color.
+        /// Cambia el estado del cliente al hacer click en el botón correspondiente.
+        /// En la interfaz el color de la barra donde aparece el nombre cambia de color.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -203,9 +216,8 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Elimina un cliente Después de que se muestra un dialogo de confirmación. Quita el control.
-        /// TODO: El control se elimina pero la fila donde se encontraba 
-        /// queda vacía. Se deben eliminar las filas vacías en algún momento.
+        /// Elimina un cliente Después de que se muestra un dialogo de confirmación. 
+        /// Quita el control.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -218,7 +230,7 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Envá un query PUT para guardar en el servidor los cambios que se hayan
+        /// Envía un query PUT para guardar en el servidor los cambios que se hayan
         /// realizado sobre el cliente. Se ejecuta cuando recibe eventos de la interfaz
         /// </summary>
         /// <param name="sender"></param>
@@ -259,7 +271,7 @@ namespace InterfazClientes2Secure
 
         /// <summary>
         /// Envá un query PUT para guardar en el servidor los cambios que 
-        /// se hayan realizado sobre el cliente
+        /// se hayan realizado sobre el cliente.
         /// </summary>
         public async void GuardarCambiosCliente()
         {
@@ -290,7 +302,7 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Envá un query PUT para guardar en el servidor los cambios que 
+        /// Envía un query PUT para guardar en el servidor los cambios que 
         /// se hayan realizado sobre el contacto principal.
         /// </summary>
         /// <param name="sender"></param>
