@@ -575,11 +575,11 @@
             this.tableLayoutTareas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tableLayoutTareas.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutTareas.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutTareas.Location = new System.Drawing.Point(29, 3);
+            this.tableLayoutTareas.Location = new System.Drawing.Point(28, 3);
             this.tableLayoutTareas.Name = "tableLayoutTareas";
             this.tableLayoutTareas.RowCount = 1;
             this.tableLayoutTareas.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.tableLayoutTareas.Size = new System.Drawing.Size(938, 403);
+            this.tableLayoutTareas.Size = new System.Drawing.Size(939, 403);
             this.tableLayoutTareas.TabIndex = 1;
             // 
             // toolStrip1
@@ -595,18 +595,18 @@
             this.toolStripButtonMinimizarTodos});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(26, 403);
+            this.toolStrip1.Size = new System.Drawing.Size(25, 403);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripButtonNuevaTarea
             // 
-            this.toolStripButtonNuevaTarea.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonNuevaTarea.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonNuevaTarea.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonNuevaTarea.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNuevaTarea.Image")));
             this.toolStripButtonNuevaTarea.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonNuevaTarea.Name = "toolStripButtonNuevaTarea";
-            this.toolStripButtonNuevaTarea.Size = new System.Drawing.Size(23, 23);
+            this.toolStripButtonNuevaTarea.Size = new System.Drawing.Size(22, 20);
             this.toolStripButtonNuevaTarea.Text = "+";
             this.toolStripButtonNuevaTarea.ToolTipText = "Añadir tarea";
             this.toolStripButtonNuevaTarea.Click += new System.EventHandler(this.NuevaTarea);
@@ -614,7 +614,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(23, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(22, 6);
             // 
             // toolStripButtonOrdenarNombre
             // 
@@ -625,6 +625,7 @@
             this.toolStripButtonOrdenarNombre.Size = new System.Drawing.Size(23, 19);
             this.toolStripButtonOrdenarNombre.Text = "Aa";
             this.toolStripButtonOrdenarNombre.ToolTipText = "Ordenar por nombre";
+            this.toolStripButtonOrdenarNombre.Visible = false;
             // 
             // toolStripButtonOrdenarEstado
             // 
@@ -632,14 +633,16 @@
             this.toolStripButtonOrdenarEstado.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonOrdenarEstado.Image")));
             this.toolStripButtonOrdenarEstado.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOrdenarEstado.Name = "toolStripButtonOrdenarEstado";
-            this.toolStripButtonOrdenarEstado.Size = new System.Drawing.Size(23, 20);
+            this.toolStripButtonOrdenarEstado.Size = new System.Drawing.Size(22, 20);
             this.toolStripButtonOrdenarEstado.Text = "Es";
             this.toolStripButtonOrdenarEstado.ToolTipText = "Ordenar por estado";
+            this.toolStripButtonOrdenarEstado.Visible = false;
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(23, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(22, 6);
+            this.toolStripSeparator3.Visible = false;
             // 
             // toolStripButtonMinimizarTodos
             // 
@@ -647,7 +650,7 @@
             this.toolStripButtonMinimizarTodos.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMinimizarTodos.Image")));
             this.toolStripButtonMinimizarTodos.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMinimizarTodos.Name = "toolStripButtonMinimizarTodos";
-            this.toolStripButtonMinimizarTodos.Size = new System.Drawing.Size(23, 19);
+            this.toolStripButtonMinimizarTodos.Size = new System.Drawing.Size(22, 19);
             this.toolStripButtonMinimizarTodos.Text = "[-]";
             this.toolStripButtonMinimizarTodos.ToolTipText = "Minimizar todos";
             this.toolStripButtonMinimizarTodos.Click += new System.EventHandler(this.toolStripButtonMinimizarTodos_Click);
@@ -696,12 +699,12 @@
             // 
             // toolStripButtonNuevoContacto
             // 
-            this.toolStripButtonNuevoContacto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonNuevoContacto.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonNuevoContacto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.toolStripButtonNuevoContacto.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNuevoContacto.Image")));
             this.toolStripButtonNuevoContacto.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonNuevoContacto.Name = "toolStripButtonNuevoContacto";
-            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(22, 23);
+            this.toolStripButtonNuevoContacto.Size = new System.Drawing.Size(22, 20);
             this.toolStripButtonNuevoContacto.Text = "+";
             this.toolStripButtonNuevoContacto.ToolTipText = "Añadir contacto";
             this.toolStripButtonNuevoContacto.Click += new System.EventHandler(this.NuevoContacto_Click);
@@ -719,6 +722,7 @@
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(22, 20);
             this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Visible = false;
             // 
             // toolStripButton3
             // 
@@ -728,11 +732,13 @@
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(22, 20);
             this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Visible = false;
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
             this.toolStripSeparator5.Size = new System.Drawing.Size(22, 6);
+            this.toolStripSeparator5.Visible = false;
             // 
             // toolStripButtonMinimizarContacto
             // 
