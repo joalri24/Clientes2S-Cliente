@@ -89,11 +89,10 @@
             // 
             // toolStripButtonLogin
             // 
-            this.toolStripButtonLogin.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.toolStripButtonLogin.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogin.Image")));
             this.toolStripButtonLogin.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonLogin.Name = "toolStripButtonLogin";
-            this.toolStripButtonLogin.Size = new System.Drawing.Size(79, 22);
+            this.toolStripButtonLogin.Size = new System.Drawing.Size(95, 22);
             this.toolStripButtonLogin.Tag = "Login";
             this.toolStripButtonLogin.Text = "Iniciar sesión";
             this.toolStripButtonLogin.Click += new System.EventHandler(this.IniciarSesion);
@@ -109,8 +108,9 @@
             this.ToolStripButtonCargarClientes.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripButtonCargarClientes.Image")));
             this.ToolStripButtonCargarClientes.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.ToolStripButtonCargarClientes.Name = "ToolStripButtonCargarClientes";
-            this.ToolStripButtonCargarClientes.Size = new System.Drawing.Size(89, 22);
-            this.ToolStripButtonCargarClientes.Text = "Ver Clientes";
+            this.ToolStripButtonCargarClientes.Size = new System.Drawing.Size(107, 22);
+            this.ToolStripButtonCargarClientes.Text = "Cargar Clientes";
+            this.ToolStripButtonCargarClientes.ToolTipText = "Cargar Clientes";
             this.ToolStripButtonCargarClientes.Click += new System.EventHandler(this.CargarClientes);
             // 
             // toolStripButtonCargarContactos
@@ -261,6 +261,7 @@
             // ToolStripMenuCargarContactos
             // 
             this.ToolStripMenuCargarContactos.Enabled = false;
+            this.ToolStripMenuCargarContactos.Image = ((System.Drawing.Image)(resources.GetObject("ToolStripMenuCargarContactos.Image")));
             this.ToolStripMenuCargarContactos.Name = "ToolStripMenuCargarContactos";
             this.ToolStripMenuCargarContactos.Size = new System.Drawing.Size(231, 22);
             this.ToolStripMenuCargarContactos.Text = "Cargar contactos (Admin)";
