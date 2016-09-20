@@ -17,13 +17,6 @@ namespace InterfazClientes2Secure.Forms
     public partial class FormGestionUsuarios : Form
     {
 
-        // ------------------------------------------------------------------
-        // Constantes
-        // ------------------------------------------------------------------
-
-        // ------------------------------------------------------------------
-        // Propiedades
-        // ------------------------------------------------------------------
 
         // ------------------------------------------------------------------
         // Contructor
@@ -39,7 +32,7 @@ namespace InterfazClientes2Secure.Forms
         // ------------------------------------------------------------------
 
         /// <summary>
-        /// 
+        /// Obtiene los usuarios desde el servidor con un query GET.
         /// </summary>
         private async void CargarUsuarios()
         {

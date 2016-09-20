@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace InterfazClientes2Secure
 {
     /// <summary>
-    /// El formulati que aparece cuando se va a crear un nuevo contacto.
+    /// El formulario que aparece cuando se va a crear un nuevo contacto.
     /// </summary>
     public partial class FormNuevoContacto : Form
     {

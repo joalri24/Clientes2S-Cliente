@@ -21,9 +21,17 @@ namespace InterfazClientes2Secure
         // Atributos
         // ------------------------------------------------------------------
 
+        /// <summary>
+        /// Indica si se va a crear un nuevo usuario o si se va a seleccionar uno nuevo.
+        /// </summary>
         public bool CrearNuevoContacto { get; set; }
 
+        /// <summary>
+        /// Objeto Contact que contiene los datos del contacto principal.
+        /// </summary>
         private Contact ContactoPrincipal;
+
+
         // ------------------------------------------------------------------
         // Contructores
         // ------------------------------------------------------------------
@@ -150,6 +158,12 @@ namespace InterfazClientes2Secure
             }
         }
 
+        /// <summary>
+        /// Limpia los campos del contacto principal y le indica al control
+        /// que se va a crear un nuevo contacto.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonCrearNuevoContacto_Click(object sender, EventArgs e)
         {
             Button boton = sender as Button;

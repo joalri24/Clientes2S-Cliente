@@ -14,6 +14,9 @@ using System.Windows.Forms;
 
 namespace InterfazClientes2Secure
 {
+    /// <summary>
+    /// El Form principal de la aplicación.
+    /// </summary>
     public partial class Form1 : Form
     {
 
@@ -34,16 +37,19 @@ namespace InterfazClientes2Secure
         public const string RUTA_ROLES = "api/Account/RolesInfo";
         public const string RUTA_MODIFICAR_ROLES = "api/Account/Roles";
         public const string RUTA_REGISTRAR = "api/Account/Register";
+        public const string RUTA_LOGOUT = "api/Account/Logout";
 
         private const string CARGANDO = "Obteniendo datos desde el servidor...";
         private const string LOGIN = "Login";
-        private const string LOGOUT = "Logout";
-        public const string RUTA_LOGOUT = "api/Account/Logout";
+        private const string LOGOUT = "Logout";      
 
         // ------------------------------------------------
         // Atributos
         // ------------------------------------------------
 
+        /// <summary>
+        /// Indica si el tablelayout está vacío.
+        /// </summary>
         private bool vacio;
 
         /// <summary>
@@ -462,22 +468,6 @@ namespace InterfazClientes2Secure
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void IniciarSesion(object sender, EventArgs e)
-        {
-            var boton = sender as ToolStripButton;
-
-            if (boton.Tag as string == LOGIN)
-                IniciarSesion();         
-            else
-                CerrarSesion();
-            
-                      
-        }
 
         /// <summary>
         /// Hace invisible los controles que no pasen por los filtros establecidos.
@@ -504,6 +494,8 @@ namespace InterfazClientes2Secure
             else
             {               
                 toolStripLabelMensaje.Text = "";
+
+                // Vuelve a mostrar todos lo clientes.
                 foreach (var control in controlesCliente)
                     control.Visible =  true;
             }
@@ -516,6 +508,32 @@ namespace InterfazClientes2Secure
         private void FiltrarClientes(object sender, EventArgs e)
         {
             FiltrarClientes();
+        }
+
+        /// <summary>
+        /// Abre una ventana de dialogo donde se pueden gestionar los roles de los usuario de la aplicación.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GestionarRoles(object sender, EventArgs e)
+        {
+            var dialogo = new FormGestionUsuarios();
+            dialogo.ShowDialog();
+        }
+
+        /// <summary>
+        /// Inicia sesión al hacer click en el botón correspondiente.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void IniciarSesion(object sender, EventArgs e)
+        {
+            var boton = sender as ToolStripButton;
+
+            if (boton.Tag as string == LOGIN)
+                IniciarSesion();
+            else
+                CerrarSesion();
         }
 
         /// <summary>
@@ -650,18 +668,9 @@ namespace InterfazClientes2Secure
         }
 
         /// <summary>
-        /// Abre una ventana de dialogo donde se pueden gestionar los roles de los usuario de la aplicación.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GestionarRoles(object sender, EventArgs e)
-        {
-            var dialogo = new FormGestionUsuarios();
-            dialogo.ShowDialog();
-        }
-
-        /// <summary>
-        /// 
+        /// Registra un nuevo usuario de la aplicación. Muestra un dialogo
+        /// donde se deben ingresar el nombre de usuario, la contraseña y 
+        /// la confirmación de la contraseña.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

@@ -20,9 +20,12 @@ namespace InterfazClientes2Secure
 
         const string TODOS_LOS_CONTACTOS = "Todos los contactos: ";
         const string CONTACTOS_DEL_CLIENTE = "Contactos del cliente: ";
+
+
         // ------------------------------------------------------------------
         // Atributos
         // ------------------------------------------------------------------
+
         int IdCliente;
 
         // ------------------------------------------------------------------
