@@ -13,15 +13,19 @@ using System.Net.Http.Headers;
 
 namespace InterfazClientes2Secure.Controles
 {
+    /// <summary>
+    /// Control que contiene información de los usuarios de la aplicación.
+    /// </summary>
     public partial class UsuarioControl : UserControl
     {
-        // ------------------------------------------------------------------
-        // Constantes
-        // ------------------------------------------------------------------
 
         // ------------------------------------------------------------------
         // Atributos
         // ------------------------------------------------------------------
+
+        /// <summary>
+        /// Objeto Usuario con el email y los roles del usuario.
+        /// </summary>
         public Usuario Usuario { get; set; }
 
 
@@ -33,7 +37,10 @@ namespace InterfazClientes2Secure.Controles
             InitializeComponent();
         }
 
-
+        /// <summary>
+        /// Crea un nuevo control utilizando los datos de usuario pasado como parámetro.
+        /// </summary>
+        /// <param name="usuario"></param>
         public UsuarioControl(Usuario usuario)
         {
             InitializeComponent();
@@ -45,7 +52,7 @@ namespace InterfazClientes2Secure.Controles
             if (roles.Contains(Sesion.ROL_ADMIN))
             {
                 checkBoxAdmin.Checked = true;
-                checkBoxAdmin.Enabled = !(Form1.Sesion.userName == Usuario.Email);
+                checkBoxAdmin.Enabled = !(Form1.Sesion.userName == Usuario.Email); //Deshabilita el checkbox para que el admin no se quite sus propios privilegios.
             }
                 
 
@@ -83,8 +90,7 @@ namespace InterfazClientes2Secure.Controles
         /// </summary>
         private async void GuardarCambios()
         {
-
-            
+                       
             using (var httpClient = new HttpClient())
             {
                 httpClient.BaseAddress = new Uri(Form1.DIRECCION_SERVIDOR);
