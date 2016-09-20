@@ -20,7 +20,7 @@ namespace InterfazClientes2Secure
         // ------------------------------------------------
         // Constantes
         // ------------------------------------------------
-        public const string DIRECCION_SERVIDOR = "http://localhost:2424/";
+        public const string DIRECCION_SERVIDOR = "https://localhost:44332/";
         public const string APP_JSON = "application/json";
 
         public const string RUTA_CLIENTES = "api/clients";
